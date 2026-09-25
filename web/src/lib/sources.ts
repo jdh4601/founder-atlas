@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { z } from "zod";
 import { ORIGINS, SOURCE_FORMATS, type Source } from "./types";
 import { yamlDateString } from "./yaml";
+import { toKoreanSourceTitle } from "./sourceTitle";
 
 const sourceFrontmatterSchema = z.object({
   id: z.string().min(1),
@@ -34,7 +35,7 @@ function parseSourceFile(filePath: string): Source {
   return {
     id: fm.id,
     title: fm.title,
-    titleKo: fm.title_ko || fm.title,
+    titleKo: toKoreanSourceTitle(fm.title, fm.title_ko, fm.id),
     url: fm.url,
     origin: fm.origin,
     format: fm.format,
