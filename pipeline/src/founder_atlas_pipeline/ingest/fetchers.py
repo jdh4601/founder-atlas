@@ -8,12 +8,15 @@ module stays importable (and tests stay fast) without touching those libs.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from typing import Any, Protocol
 
 from founder_atlas_pipeline.models import TranscriptSegment
 
 _MIN_PARAGRAPH_CHARS = 40
+MAX_PARAGRAPH_CHARS = 1200
+_SENTENCE_END = re.compile(r"(?<=[.!?])\s+")
 
 
 class FetchError(Exception):
@@ -182,4 +185,26 @@ def split_paragraphs(text: str) -> list[str]:
         pending = ""
     if pending:
         paragraphs.append(pending)
-    return paragraphs
+    return [piece for paragraph in paragraphs for piece in _split_oversized(paragraph)]
+
+
+def _split_oversized(paragraph: str) -> list[str]:
+    """Split a block longer than `MAX_PARAGRAPH_CHARS` into sentence groups.
+
+    Some pages (e.g. older paulgraham.com essays using `<br><br>`) come back
+    from trafilatura as one huge block, which would make every paragraph
+    anchor point at index 0.
+    """
+    if len(paragraph) <= MAX_PARAGRAPH_CHARS:
+        return [paragraph]
+    groups: list[str] = []
+    current = ""
+    for sentence in _SENTENCE_END.split(paragraph):
+        candidate = f"{current} {sentence}".strip()
+        if current and len(candidate) > MAX_PARAGRAPH_CHARS:
+            groups.append(current)
+            candidate = sentence
+        current = candidate
+    if current:
+        groups.append(current)
+    return groups

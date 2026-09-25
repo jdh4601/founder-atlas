@@ -181,3 +181,16 @@ def test_clean_title_drops_trailing_site_name(raw: str, expected: str) -> None:
     from founder_atlas_pipeline.ingest.pipeline import clean_title
 
     assert clean_title(raw) == expected
+
+
+def test_split_paragraphs_breaks_oversized_block_on_sentences() -> None:
+    from founder_atlas_pipeline.ingest.fetchers import MAX_PARAGRAPH_CHARS, split_paragraphs
+
+    sentence = "Founders should recruit their first users by hand, one at a time. "
+    text = sentence * 80  # one ~5,000-char block with no newlines, like some PG essays
+
+    paragraphs = split_paragraphs(text)
+
+    assert len(paragraphs) > 1
+    assert all(len(p) <= MAX_PARAGRAPH_CHARS for p in paragraphs)
+    assert " ".join(paragraphs).split() == text.split()
