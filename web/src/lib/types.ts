@@ -126,22 +126,3 @@ export interface QuestionLogEntry {
   readonly citedAdvice: readonly string[];
   readonly clicked: string | null;
 }
-
-export interface GraphNode {
-  readonly slug: string;
-  readonly title: string;
-  readonly category: string;
-  readonly color: string;
-  readonly adviceCount: number;
-}
-
-export interface GraphEdge {
-  readonly source: string;
-  readonly target: string;
-  readonly weight: number;
-}
-
-export interface Graph {
-  readonly nodes: readonly GraphNode[];
-  readonly edges: readonly GraphEdge[];
-}

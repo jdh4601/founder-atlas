@@ -11,6 +11,5 @@ describe("getSiteData", () => {
     expect(site.keywordPages).toHaveLength(3);
     expect(site.advice).toHaveLength(8);
     expect(site.sources).toHaveLength(3);
-    expect(site.graph.nodes.length).toBeGreaterThan(0);
   });
 });

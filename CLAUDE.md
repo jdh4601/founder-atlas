@@ -11,7 +11,7 @@ organized as keyword pages with exact source timestamps.
 ```
 content/      Markdown data (source of truth). taxonomy.yaml & profile.yaml are hand-edited.
 pipeline/     Python (uv): discover → ingest → extract → verify → build-pages
-web/          Next.js + TypeScript: /, /k/[slug], /map, /api/ask
+web/          Next.js + TypeScript: /, /k/[slug], /explore, /api/ask
 docs/         design.md, content-schema.md
 ```
 

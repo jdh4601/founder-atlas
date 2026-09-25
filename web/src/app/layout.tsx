@@ -17,10 +17,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               Founder Atlas
             </Link>
             <Link
-              href="/map"
+              href="/explore"
               className="text-[14px] text-ink-muted transition-colors hover:text-ink"
             >
-              전체 지도
+              콘텐츠 탐색
             </Link>
           </div>
         </header>

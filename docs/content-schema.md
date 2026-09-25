@@ -22,7 +22,7 @@ content/
 categories:
   - slug: idea            # one of 8 fixed slugs
     title: 아이디어·문제 발견
-    color: "#..."         # used by the graph
+    color: "#..."         # category accent color in the web UI
     keywords:
       - slug: problem-validation
         title: 문제 검증
@@ -131,8 +131,10 @@ updated_at: 2026-09-25
 
 `answered: false` + empty `matched` = candidate for a new keyword page.
 
-## Graph (computed by web, not stored)
+## Content explore (computed by web, not stored)
 
-- Nodes: keywords that have ≥1 advice. Color = category color. Size = advice count.
-- Edge weight between keywords A and B = number of advice units tagged with both
-  + number of sources that have advice in both.
+- `/explore` lists source metadata from `sources/{source_id}.md`.
+- Hashtags are derived from each source's origin and format, plus literal matches
+  from a fixed vocabulary against its title. They are view filters, not stored
+  source metadata or model-generated claims.
+- The former `/map` route redirects to `/explore`.

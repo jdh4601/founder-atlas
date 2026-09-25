@@ -1,10 +1,9 @@
 import { loadAdvice } from "./advice";
-import { buildGraph } from "./graph";
 import { loadKeywordPages } from "./keywords";
 import { loadProfile } from "./profile";
 import { loadSources } from "./sources";
 import { loadTaxonomy } from "./taxonomy";
-import type { Advice, Graph, KeywordPage, Profile, Source, Taxonomy } from "./types";
+import type { Advice, KeywordPage, Profile, Source, Taxonomy } from "./types";
 
 export interface SiteData {
   readonly taxonomy: Taxonomy;
@@ -12,7 +11,6 @@ export interface SiteData {
   readonly keywordPages: readonly KeywordPage[];
   readonly advice: readonly Advice[];
   readonly sources: readonly Source[];
-  readonly graph: Graph;
 }
 
 /**
@@ -28,6 +26,5 @@ export function getSiteData(contentDir: string): SiteData {
     keywordPages: loadKeywordPages(contentDir),
     advice,
     sources: loadSources(contentDir),
-    graph: buildGraph(taxonomy, advice),
   };
 }

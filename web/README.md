@@ -12,7 +12,8 @@ covers `web/`.
 |---|---|
 | `/` | Input-first home: a large "지금 어떤 문제에 부딪혔나요?" question box, plus the 8 taxonomy categories showing only the keywords that already have a page. Asking calls `/api/ask` and renders a short answer, matched keyword pages, and evidence chips (or a "아직 정리되지 않은 주제예요" message when nothing matched). |
 | `/k/[slug]` | One keyword page: category chip, an "AI 정리 · 검수 전" badge while `reviewed: false`, source thumbnails, the Markdown body (wikilinks, inline evidence chips, client-rendered Mermaid diagrams), a profile-sorted "근거 모아보기" evidence list, and "이 페이지를 언급한 페이지" backlinks. |
-| `/map` | The only graph view — a force-directed map of every keyword with advice (`react-force-graph-2d`, client-only), colored by category, sized by advice count, click-through to `/k/[slug]`. |
+| `/explore` | A list of collected source videos and articles with thumbnail, source, date, title search, and hashtag filters. Hashtags come from source origin, format, and literal terms in the source title. |
+| `/map` | Redirects existing links to `/explore`. |
 | `POST /api/ask` | Two-step answer flow: (1) match the question to 0–3 real keyword slugs, (2) if matched, draft a 2–3 sentence Korean answer grounded only in those keywords' advice (never the hidden `quote` field), citing advice ids. The request can select Anthropic API, Codex CLI, or Claude Code CLI. Every successfully processed question is appended to `content/questions/log.jsonl`. |
 
 ## Setup
@@ -46,16 +47,17 @@ src/
 ├── app/
 │   ├── page.tsx            /  (AskPanel + CategoryExplorer)
 │   ├── k/[slug]/page.tsx   /k/[slug]
-│   ├── map/page.tsx        /map
+│   ├── explore/page.tsx    /explore (source browser)
+│   ├── map/page.tsx        /map → /explore
 │   └── api/ask/route.ts    POST /api/ask
 ├── components/              One component per file, PascalCase.
 │   ├── AskPanel.tsx          Client: question input + fetch + results
 │   ├── AskResults.tsx        Answer + matched pages + evidence
 │   ├── MarkdownBody.tsx      react-markdown + custom renderers
 │   ├── MermaidDiagram.tsx    Client: mermaid.render() for ```mermaid
-│   ├── ForceGraphClient.tsx  Client: dynamic(ssr:false) react-force-graph-2d
+│   ├── SourceBrowser.tsx     Client: title search + hashtag filters + source list
 │   ├── EvidenceChip.tsx / InlineEvidenceLink.tsx
-│   ├── CategoryChip.tsx / CategoryExplorer.tsx / CategoryLegend.tsx
+│   ├── CategoryChip.tsx / CategoryExplorer.tsx
 │   ├── ReviewBadge.tsx / SourceThumbnails.tsx / BacklinksList.tsx
 └── lib/                      Data layer — pure functions, no React.
     ├── contentDir.ts         Resolves CONTENT_DIR
@@ -64,7 +66,7 @@ src/
     │                         Load + validate (zod) each content/ collection
     ├── markdown.ts           [[wikilink]] / {{advice:id}} transforms
     ├── backlinks.ts          Pages that [[link]] to a given slug
-    ├── graph.ts               /map's nodes + edges (see content-schema.md)
+    ├── sourceBrowse.ts        Source metadata → browse items and title-backed tags
     ├── evidence.ts            Evidence link/label building (timestamp/paragraph)
     ├── site.ts                Loads every collection in one call
     ├── env.ts                 Repo-root .env loader
