@@ -26,4 +26,6 @@ docs/         design.md, content-schema.md
 
 - Pipeline tests: `cd pipeline && uv run pytest -x -q`
 - Web tests: `cd web && npx jest --passWithNoTests`
-- Web type check: `cd web && npx tsc --noEmit`
+- Web type check: `cd web && npm run typecheck` (runs `next typegen` first)
+- Web build on real data: `cd web && CONTENT_DIR=../content npm run build`
+- Pipeline CLI: `cd pipeline && uv run atlas --help` (see pipeline/README.md)
