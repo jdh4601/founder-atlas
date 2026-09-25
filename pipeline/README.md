@@ -49,8 +49,8 @@ Edit a candidates file before ingesting: delete lines you don't want, `#` commen
   without an API key. The web app falls back to the original title.
 - YouTube can't tell YC from Lightcone by URL; pass `--origin lightcone` for those.
 - Failed URLs (e.g. no English transcript) are reported and the batch continues.
-- Re-running `extract` on a source that already has advice would duplicate it,
-  so `--all` skips those. Delete a source's advice files to re-extract it.
+- `--all` skips sources that already have advice. A direct re-extract skips
+  already stored quotes; delete a source's advice files to regenerate them.
 - `extract` and `build-pages` default to the Anthropic API and require
   `ANTHROPIC_API_KEY`. The `codex-cli` and `claude-code-cli` providers use the
   respective installed CLI's existing login, with no API key in `.env`.

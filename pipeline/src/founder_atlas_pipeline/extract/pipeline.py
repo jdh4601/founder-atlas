@@ -11,7 +11,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from founder_atlas_pipeline.advice import list_advice_ids, write_advice
+from founder_atlas_pipeline.advice import list_advice_ids, read_advice, write_advice
 from founder_atlas_pipeline.chunking import DEFAULT_MAX_CHARS, chunk_transcript
 from founder_atlas_pipeline.extract.client import ExtractClient, ExtractionCandidate
 from founder_atlas_pipeline.models import AdviceAnchor, AdviceContext, AdviceUnit
@@ -34,6 +34,7 @@ class ExtractStats:
     written: int
     dropped_low_score: int
     dropped_invalid_taxonomy: int
+    dropped_duplicate_quote: int
     written_ids: list[str] = field(default_factory=list)
 
 
@@ -93,9 +94,14 @@ def extract_source(
         )
 
     known_ids = list(list_advice_ids(content_root, source_id))
+    known_quotes = {
+        " ".join(read_advice(content_root, advice_id).quote.split()).casefold()
+        for advice_id in known_ids
+    }
     written_ids: list[str] = []
     dropped_low_score = 0
     dropped_invalid_taxonomy = 0
+    dropped_duplicate_quote = 0
 
     for candidate in candidates:
         if _taxonomy_reason(candidate, taxonomy) is not None:
@@ -107,10 +113,16 @@ def extract_source(
             dropped_low_score += 1
             continue
 
+        quote_key = " ".join(candidate.quote.split()).casefold()
+        if quote_key in known_quotes:
+            dropped_duplicate_quote += 1
+            continue
+
         advice_id = make_advice_id(source_id, next_advice_index(known_ids + written_ids))
         unit = _build_advice_unit(advice_id, source_id, candidate, match.anchor, match.score)
         write_advice(content_root, unit)
         written_ids.append(advice_id)
+        known_quotes.add(quote_key)
 
     return ExtractStats(
         source_id=source_id,
@@ -118,6 +130,7 @@ def extract_source(
         written=len(written_ids),
         dropped_low_score=dropped_low_score,
         dropped_invalid_taxonomy=dropped_invalid_taxonomy,
+        dropped_duplicate_quote=dropped_duplicate_quote,
         written_ids=written_ids,
     )
 

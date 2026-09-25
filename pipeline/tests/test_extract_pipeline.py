@@ -83,6 +83,7 @@ def test_valid_candidate_is_verified_and_written(content_root: Path) -> None:
     assert stats.written == 1
     assert stats.dropped_low_score == 0
     assert stats.dropped_invalid_taxonomy == 0
+    assert stats.dropped_duplicate_quote == 0
     assert stats.written_ids == ["yc-youtube-pricing--01"]
 
     unit = read_advice(content_root, "yc-youtube-pricing--01")
@@ -147,7 +148,9 @@ def test_advice_ids_continue_from_existing_advice(content_root: Path) -> None:
     extract_source(content_root, "yc-youtube-pricing", taxonomy, client1)
 
     # A second run (e.g. re-extract) should continue at --02, not collide.
-    client2 = FakeExtractClient([[_valid_candidate(claim="다른 조언")]])
+    client2 = FakeExtractClient([[_valid_candidate(
+        claim="다른 조언", quote="That is the whole pricing lesson."
+    )]])
     stats2 = extract_source(content_root, "yc-youtube-pricing", taxonomy, client2)
 
     assert stats2.written_ids == ["yc-youtube-pricing--02"]
@@ -161,9 +164,43 @@ def test_multiple_candidates_in_one_chunk_get_sequential_ids(content_root: Path)
     _seed_source(content_root)
     taxonomy = load_taxonomy(content_root / "taxonomy.yaml")
     client = FakeExtractClient(
-        [[_valid_candidate(claim="첫 번째"), _valid_candidate(claim="두 번째")]]
+        [[_valid_candidate(claim="첫 번째"), _valid_candidate(
+            claim="두 번째", quote="That is the whole pricing lesson."
+        )]]
     )
 
     stats = extract_source(content_root, "yc-youtube-pricing", taxonomy, client)
 
     assert stats.written_ids == ["yc-youtube-pricing--01", "yc-youtube-pricing--02"]
+
+
+def test_duplicate_quote_from_overlapping_chunks_is_written_once(content_root: Path) -> None:
+    _seed_source(content_root)
+    taxonomy = load_taxonomy(content_root / "taxonomy.yaml")
+    client = FakeExtractClient([[
+        _valid_candidate(),
+        _valid_candidate(claim="같은 인용을 다시 해석", quote="  CHARGE more than you think you should. "),
+    ]])
+
+    stats = extract_source(content_root, "yc-youtube-pricing", taxonomy, client)
+
+    assert stats.written == 1
+    assert stats.dropped_duplicate_quote == 1
+    assert stats.written_ids == ["yc-youtube-pricing--01"]
+
+
+def test_reextract_skips_quote_already_written(content_root: Path) -> None:
+    _seed_source(content_root)
+    taxonomy = load_taxonomy(content_root / "taxonomy.yaml")
+    extract_source(content_root, "yc-youtube-pricing", taxonomy, FakeExtractClient([[_valid_candidate()]]))
+
+    stats = extract_source(
+        content_root,
+        "yc-youtube-pricing",
+        taxonomy,
+        FakeExtractClient([[_valid_candidate(claim="중복 재추출")]]),
+    )
+
+    assert stats.written == 0
+    assert stats.dropped_duplicate_quote == 1
+    assert list_advice_ids(content_root, "yc-youtube-pricing") == ["yc-youtube-pricing--01"]

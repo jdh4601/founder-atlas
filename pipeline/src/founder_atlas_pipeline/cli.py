@@ -159,7 +159,8 @@ def extract_command(ctx: click.Context, source_id: str | None, extract_all: bool
         click.echo(
             f"{target}: {stats.written}/{stats.total_candidates} written "
             f"(dropped: {stats.dropped_low_score} low score, "
-            f"{stats.dropped_invalid_taxonomy} invalid taxonomy)"
+            f"{stats.dropped_invalid_taxonomy} invalid taxonomy, "
+            f"{stats.dropped_duplicate_quote} duplicate quote)"
         )
 
 
