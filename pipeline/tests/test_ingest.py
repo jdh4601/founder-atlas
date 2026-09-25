@@ -166,3 +166,18 @@ def test_split_paragraphs_merges_short_heading_into_next_block() -> None:
         "Recruit The most common unscalable thing founders have to do is recruit users.",
         "short tail",
     ]
+
+
+@pytest.mark.parametrize(
+    ("raw", "expected"),
+    [
+        ("Leaving It All on the Field | Andreessen Horowitz", "Leaving It All on the Field"),
+        ("Pricing 101 - a16z", "Pricing 101"),
+        ("Do Things that Don't Scale", "Do Things that Don't Scale"),
+        ("Build vs. Buy - Part 2", "Build vs. Buy - Part 2"),
+    ],
+)
+def test_clean_title_drops_trailing_site_name(raw: str, expected: str) -> None:
+    from founder_atlas_pipeline.ingest.pipeline import clean_title
+
+    assert clean_title(raw) == expected

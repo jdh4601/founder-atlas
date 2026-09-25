@@ -24,6 +24,9 @@ _YOUTUBE_HOSTS = {"youtube.com", "www.youtube.com", "m.youtube.com", "youtu.be"}
 _VIDEO_ID = re.compile(r"^[A-Za-z0-9_-]{11}$")
 _TEXT_ORIGIN_BY_HOST = {"paulgraham.com": "paul-graham", "a16z.com": "a16z"}
 _FORMAT_BY_TEXT_ORIGIN = {"paul-graham": "essay", "a16z": "blog"}
+_SITE_NAME_SUFFIX = re.compile(
+    r"\s+[|\-–]\s+(andreessen horowitz|a16z|paul graham)\s*$", re.IGNORECASE
+)
 
 
 class IngestError(Exception):
@@ -49,6 +52,11 @@ def _host(url: str) -> str:
     return host.removeprefix("www.") if host not in _YOUTUBE_HOSTS else host
 
 
+def is_video_id(candidate: str) -> bool:
+    """Return True if `candidate` looks like an 11-character YouTube video id."""
+    return bool(_VIDEO_ID.match(candidate))
+
+
 def parse_youtube_id(url: str) -> str | None:
     """Extract the video id from a YouTube watch/short URL.
 
@@ -65,7 +73,7 @@ def parse_youtube_id(url: str) -> str | None:
         candidate = parsed.path.lstrip("/")
     else:
         candidate = parse_qs(parsed.query).get("v", [""])[0]
-    return candidate if _VIDEO_ID.match(candidate) else None
+    return candidate if is_video_id(candidate) else None
 
 
 def infer_origin(url: str, override: str | None) -> str:
@@ -96,11 +104,25 @@ def infer_origin(url: str, override: str | None) -> str:
     return origin
 
 
+def clean_title(title: str) -> str:
+    """Drop a trailing site name like " | Andreessen Horowitz" from a page title.
+
+    Args:
+        title: The raw page title.
+
+    Returns:
+        The title without a known site-name suffix.
+    """
+    return _SITE_NAME_SUFFIX.sub("", title).strip()
+
+
 def _today() -> str:
     return datetime.now(timezone.utc).date().isoformat()
 
 
-def _fetch_video(url: str, origin: str, youtube: YouTubeFetcher, today: str) -> tuple[SourceMeta, Transcript]:
+def _fetch_video(
+    url: str, origin: str, youtube: YouTubeFetcher, today: str
+) -> tuple[SourceMeta, Transcript]:
     video_id = parse_youtube_id(url)
     if video_id is None:
         raise UnsupportedSourceError(f"not a YouTube video URL: {url}")
@@ -124,11 +146,14 @@ def _fetch_video(url: str, origin: str, youtube: YouTubeFetcher, today: str) -> 
     return meta, Transcript(kind="segments", segments=segments)
 
 
-def _fetch_text(url: str, origin: str, web: WebFetcher, today: str) -> tuple[SourceMeta, Transcript]:
+def _fetch_text(
+    url: str, origin: str, web: WebFetcher, today: str
+) -> tuple[SourceMeta, Transcript]:
     article = web.fetch_article(url)
+    title = clean_title(article.title)
     meta = SourceMeta(
-        id=make_source_id(origin, article.title),
-        title=article.title,
+        id=make_source_id(origin, title),
+        title=title,
         title_ko="",
         url=url,
         origin=origin,
