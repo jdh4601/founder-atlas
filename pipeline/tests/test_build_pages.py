@@ -13,7 +13,7 @@ from pathlib import Path
 import pytest
 
 from founder_atlas_pipeline.advice import write_advice
-from founder_atlas_pipeline.build_pages.client import PageCandidate
+from founder_atlas_pipeline.build_pages.client import CLIPageWriterClient, PageCandidate
 from founder_atlas_pipeline.build_pages.pipeline import build_pages
 from founder_atlas_pipeline.keywords import keyword_path, read_keyword, write_keyword
 from founder_atlas_pipeline.models import (
@@ -236,3 +236,32 @@ def test_images_deduplicated_by_source(content_root: Path) -> None:
 
     page = read_keyword(content_root, "pricing-strategy")
     assert len(page.images) == 1
+
+
+@pytest.mark.parametrize("provider", ["codex-cli", "claude-code-cli"])
+def test_cli_page_writer_uses_only_public_advice_material(
+    provider: str, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import founder_atlas_pipeline.cli_providers as cli_providers
+
+    calls = []
+
+    def fake_run(selected, *, system_prompt, user_prompt, schema):
+        calls.append((selected, system_prompt, user_prompt, schema))
+        return {"title": "가격 책정", "summary": "한 줄 요약", "body_ko": "본문 {{advice:src-a--01}}"}
+
+    monkeypatch.setattr(cli_providers, "run_structured_cli", fake_run)
+    result = CLIPageWriterClient(provider).write_page(
+        keyword_title="가격 책정",
+        category_title="가격",
+        advice_units=[_advice("src-a", 1, "pricing-strategy")],
+        related_keywords={"unit-economics": "단위 경제"},
+    )
+
+    assert result.body_ko == "본문 {{advice:src-a--01}}"
+    selected, system_prompt, user_prompt, schema = calls[0]
+    assert selected == provider
+    assert "src-a--01" in user_prompt
+    assert "quote 1" not in user_prompt
+    assert "unit-economics" in user_prompt
+    assert schema["required"] == ["title", "summary", "body_ko"]

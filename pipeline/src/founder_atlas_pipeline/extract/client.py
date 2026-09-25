@@ -13,6 +13,8 @@ import os
 from dataclasses import dataclass, field
 from typing import Protocol
 
+from founder_atlas_pipeline.cli_providers import run_structured_cli
+
 EXTRACTION_MODEL = "claude-sonnet-5"
 
 _SYSTEM_PROMPT = """\
@@ -138,12 +140,8 @@ class ClaudeExtractClient:
         Returns:
             Raw candidates as proposed by the model (not yet verified).
         """
-        user_content = (
-            f"제목: {source_title}\n"
-            f"화자 목록: {', '.join(speakers) or '(명시되지 않음)'}\n"
-            f"사용 가능한 카테고리: {', '.join(category_slugs)}\n"
-            f"사용 가능한 키워드: {', '.join(keyword_slugs)}\n\n"
-            f"원문:\n{chunk_text}"
+        user_content = _extract_prompt(
+            chunk_text, source_title, speakers, category_slugs, keyword_slugs
         )
         response = self._client.messages.create(
             model=self._model,
@@ -155,3 +153,47 @@ class ClaudeExtractClient:
         text = next(block.text for block in response.content if block.type == "text")
         payload = json.loads(text)
         return [ExtractionCandidate(**c) for c in payload.get("candidates", [])]
+
+
+def _extract_prompt(
+    chunk_text: str,
+    source_title: str,
+    speakers: list[str],
+    category_slugs: list[str],
+    keyword_slugs: list[str],
+) -> str:
+    return (
+        f"제목: {source_title}\n"
+        f"화자 목록: {', '.join(speakers) or '(명시되지 않음)'}\n"
+        f"사용 가능한 카테고리: {', '.join(category_slugs)}\n"
+        f"사용 가능한 키워드: {', '.join(keyword_slugs)}\n\n"
+        f"원문:\n{chunk_text}"
+    )
+
+
+class CLIExtractClient:
+    """Extraction through the user's authenticated Codex or Claude Code CLI."""
+
+    def __init__(self, provider: str) -> None:
+        if provider not in {"codex-cli", "claude-code-cli"}:
+            raise ValueError(f"Unknown extraction CLI provider: {provider}")
+        self._provider = provider
+
+    def extract_candidates(
+        self,
+        chunk_text: str,
+        *,
+        source_title: str,
+        speakers: list[str],
+        category_slugs: list[str],
+        keyword_slugs: list[str],
+    ) -> list[ExtractionCandidate]:
+        payload = run_structured_cli(
+            self._provider,
+            system_prompt=_SYSTEM_PROMPT,
+            user_prompt=_extract_prompt(
+                chunk_text, source_title, speakers, category_slugs, keyword_slugs
+            ),
+            schema=_candidate_schema(),
+        )
+        return [ExtractionCandidate(**candidate) for candidate in payload["candidates"]]

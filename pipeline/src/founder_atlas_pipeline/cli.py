@@ -51,6 +51,15 @@ def _require_api_key() -> None:
         )
 
 
+MODEL_PROVIDERS = ("anthropic", "codex-cli", "claude-code-cli")
+
+
+def _prepare_provider(provider: str) -> None:
+    """Load .env for API calls; local CLI providers use their own login state."""
+    if provider == "anthropic":
+        _require_api_key()
+
+
 def _content_dir(ctx: click.Context) -> Path:
     explicit: Path | None = ctx.obj.get("content_dir")
     return explicit or find_repo_root() / "content"
@@ -129,19 +138,24 @@ def ingest_command(
 @main.command("extract")
 @click.argument("source_id", required=False)
 @click.option("--all", "extract_all", is_flag=True, help="Every source without advice yet.")
+@click.option("--provider", type=click.Choice(MODEL_PROVIDERS), default="anthropic", show_default=True)
 @click.pass_context
-def extract_command(ctx: click.Context, source_id: str | None, extract_all: bool) -> None:
+def extract_command(ctx: click.Context, source_id: str | None, extract_all: bool, provider: str) -> None:
     """Extract and verify advice units for SOURCE_ID (or --all)."""
-    _require_api_key()
-    from founder_atlas_pipeline.extract.client import ClaudeExtractClient
+    _prepare_provider(provider)
+    from founder_atlas_pipeline.extract.client import CLIExtractClient, ClaudeExtractClient
     from founder_atlas_pipeline.extract.pipeline import extract_source
+    from founder_atlas_pipeline.cli_providers import CLIProviderError
 
     content = _content_dir(ctx)
     targets = _extract_targets(content, source_id, extract_all)
     taxonomy = load_taxonomy(content / "taxonomy.yaml")
-    client = ClaudeExtractClient()
+    client = ClaudeExtractClient() if provider == "anthropic" else CLIExtractClient(provider)
     for target in targets:
-        stats = extract_source(content, target, taxonomy, client)
+        try:
+            stats = extract_source(content, target, taxonomy, client)
+        except CLIProviderError as exc:
+            raise click.ClickException(str(exc)) from exc
         click.echo(
             f"{target}: {stats.written}/{stats.total_candidates} written "
             f"(dropped: {stats.dropped_low_score} low score, "
@@ -162,18 +176,22 @@ def _extract_targets(content: Path, source_id: str | None, extract_all: bool) ->
 @main.command("build-pages")
 @click.option("--keyword", "keyword_slug", default=None, help="Only build this keyword's page.")
 @click.option("--force", is_flag=True, help="Also regenerate pages marked reviewed: true.")
+@click.option("--provider", type=click.Choice(MODEL_PROVIDERS), default="anthropic", show_default=True)
 @click.pass_context
-def build_pages_command(ctx: click.Context, keyword_slug: str | None, force: bool) -> None:
+def build_pages_command(ctx: click.Context, keyword_slug: str | None, force: bool, provider: str) -> None:
     """Write content/keywords/{slug}.md from advice units."""
-    _require_api_key()
-    from founder_atlas_pipeline.build_pages.client import ClaudePageWriterClient
+    _prepare_provider(provider)
+    from founder_atlas_pipeline.build_pages.client import CLIPageWriterClient, ClaudePageWriterClient
     from founder_atlas_pipeline.build_pages.pipeline import build_pages
+    from founder_atlas_pipeline.cli_providers import CLIProviderError
 
     content = _content_dir(ctx)
     taxonomy = load_taxonomy(content / "taxonomy.yaml")
-    stats = build_pages(
-        content, taxonomy, ClaudePageWriterClient(), keyword_slug=keyword_slug, force=force
-    )
+    client = ClaudePageWriterClient() if provider == "anthropic" else CLIPageWriterClient(provider)
+    try:
+        stats = build_pages(content, taxonomy, client, keyword_slug=keyword_slug, force=force)
+    except CLIProviderError as exc:
+        raise click.ClickException(str(exc)) from exc
     click.echo(
         f"written: {len(stats.written)}, preserved (reviewed): "
         f"{len(stats.preserved_reviewed)}, skipped (no advice): {stats.skipped_no_advice}"

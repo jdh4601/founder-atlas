@@ -86,3 +86,30 @@ def test_extract_without_api_key_fails_clearly(
 
     assert result.exit_code != 0
     assert "ANTHROPIC_API_KEY" in result.output
+
+
+@pytest.mark.parametrize("provider", ["codex-cli", "claude-code-cli"])
+def test_build_pages_cli_provider_does_not_require_api_key(
+    runner: CliRunner, content_root: Path, monkeypatch: pytest.MonkeyPatch, provider: str
+) -> None:
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    monkeypatch.setattr(cli, "load_env", lambda: None)
+
+    result = runner.invoke(
+        cli.main, _args(content_root, "build-pages", "--provider", provider)
+    )
+
+    assert result.exit_code == 0, result.output
+    assert "written: 0" in result.output
+
+
+def test_build_pages_default_still_requires_api_key(
+    runner: CliRunner, content_root: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    monkeypatch.setattr(cli, "load_env", lambda: None)
+
+    result = runner.invoke(cli.main, _args(content_root, "build-pages"))
+
+    assert result.exit_code != 0
+    assert "ANTHROPIC_API_KEY" in result.output

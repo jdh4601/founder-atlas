@@ -1,9 +1,8 @@
-"""Claude-backed keyword page writer.
+"""Keyword page writers backed by Anthropic API or an authenticated local CLI.
 
 `PageWriterClient` is a `Protocol` so `build_pages/pipeline.py` can be tested
-with a fake implementation. `ClaudePageWriterClient` is the real
-implementation (`claude-api` skill patterns: structured output on
-`claude-sonnet-5`). The prompt is built only from advice claim/body/context
+with a fake implementation. Both real implementations use structured output.
+The prompt is built only from advice claim/body/context
 (Korean) — never the hidden `quote` field — so the page cannot cite material
 it wasn't given.
 """
@@ -85,6 +84,21 @@ def _format_advice_material(advice_units: list[AdviceUnit]) -> str:
     return "\n".join(lines)
 
 
+def _page_user_content(
+    keyword_title: str,
+    category_title: str,
+    advice_units: list[AdviceUnit],
+    related_keywords: dict[str, str],
+) -> str:
+    related_lines = "\n".join(f"- {slug}: {title}" for slug, title in related_keywords.items())
+    return (
+        f"키워드: {keyword_title}\n"
+        f"카테고리: {category_title}\n\n"
+        f"조언 단위 (id / 주장 / 설명 / 상황 / 화자):\n{_format_advice_material(advice_units)}\n\n"
+        f"관련 키워드 (링크 가능한 slug):\n{related_lines}"
+    )
+
+
 class ClaudePageWriterClient:
     """Real `PageWriterClient` backed by the Anthropic Messages API."""
 
@@ -120,12 +134,8 @@ class ClaudePageWriterClient:
         Returns:
             The proposed page content.
         """
-        related_lines = "\n".join(f"- {slug}: {title}" for slug, title in related_keywords.items())
-        user_content = (
-            f"키워드: {keyword_title}\n"
-            f"카테고리: {category_title}\n\n"
-            f"조언 단위 (id / 주장 / 설명 / 상황 / 화자):\n{_format_advice_material(advice_units)}\n\n"
-            f"관련 키워드 (링크 가능한 slug):\n{related_lines}"
+        user_content = _page_user_content(
+            keyword_title, category_title, advice_units, related_keywords
         )
         response = self._client.messages.create(
             model=self._model,
@@ -136,6 +146,38 @@ class ClaudePageWriterClient:
         )
         text = next(block.text for block in response.content if block.type == "text")
         payload = json.loads(text)
+        return PageCandidate(
+            title=payload["title"], summary=payload["summary"], body_ko=payload["body_ko"]
+        )
+
+
+class CLIPageWriterClient:
+    """Write keyword pages with an authenticated Codex or Claude Code CLI."""
+
+    def __init__(self, provider: str) -> None:
+        if provider not in ("codex-cli", "claude-code-cli"):
+            raise ValueError(f"Unsupported CLI provider: {provider}")
+        self._provider = provider
+
+    def write_page(
+        self,
+        *,
+        keyword_title: str,
+        category_title: str,
+        advice_units: list[AdviceUnit],
+        related_keywords: dict[str, str],
+    ) -> PageCandidate:
+        from founder_atlas_pipeline.cli_providers import run_structured_cli
+
+        user_content = _page_user_content(
+            keyword_title, category_title, advice_units, related_keywords
+        )
+        payload = run_structured_cli(
+            self._provider,
+            system_prompt=_SYSTEM_PROMPT,
+            user_prompt=user_content,
+            schema=_page_schema(),
+        )
         return PageCandidate(
             title=payload["title"], summary=payload["summary"], body_ko=payload["body_ko"]
         )
