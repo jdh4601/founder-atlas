@@ -1,0 +1,55 @@
+# founder-atlas pipeline
+
+Python CLI (`atlas`) that turns source URLs into schema-conformant Markdown under
+`content/`. Data contract: `../docs/content-schema.md`.
+
+## Setup
+
+```bash
+cd pipeline
+uv sync
+cp ../.env.example ../.env   # then set ANTHROPIC_API_KEY (needed for extract/build-pages)
+```
+
+## Commands
+
+```bash
+# 1. List real candidate URLs → pipeline/candidates/{origin}.txt (no API key needed)
+uv run atlas discover --origin yc-youtube --limit 50
+uv run atlas discover --origin lightcone --limit 30   # YC channel search; review the list
+uv run atlas discover --origin paul-graham --limit 50
+uv run atlas discover --origin a16z --limit 50        # from post-sitemap.xml (RSS is 404)
+
+# 2. Fetch metadata + raw text → content/sources/ (no API key needed)
+uv run atlas ingest https://paulgraham.com/ds.html
+uv run atlas ingest --from-file candidates/paul-graham.txt --limit 25
+uv run atlas ingest --from-file candidates/lightcone.txt --origin lightcone
+
+# 3. Extract advice, verify quotes (rapidfuzz >= 90), compute anchors by code
+uv run atlas extract --all          # only sources that have no advice yet
+uv run atlas extract <source_id>
+
+# 4. Write keyword pages (reviewed: true pages are preserved unless --force)
+uv run atlas build-pages
+uv run atlas build-pages --keyword pricing-strategy
+
+# 5. Counts + 20-keywords-per-category check (exit 1 on violation)
+uv run atlas stats
+```
+
+Edit a candidates file before ingesting: delete lines you don't want, `#` comments are ignored.
+
+## Notes
+
+- `ingest` leaves `title_ko` and the Korean summary empty so collection works
+  without an API key. The web app falls back to the original title.
+- YouTube can't tell YC from Lightcone by URL; pass `--origin lightcone` for those.
+- Failed URLs (e.g. no English transcript) are reported and the batch continues.
+- Re-running `extract` on a source that already has advice would duplicate it,
+  so `--all` skips those. Delete a source's advice files to re-extract it.
+
+## Tests
+
+```bash
+uv run pytest -x -q   # no network, no Claude calls
+```
