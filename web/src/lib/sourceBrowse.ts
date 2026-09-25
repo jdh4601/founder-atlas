@@ -52,13 +52,11 @@ export function toBrowseSources(sources: readonly Source[]): BrowseSource[] {
       format: formatLabels[source.format],
       published: source.published,
       speakers: source.speakers,
-      tags: [
-        originLabels[source.origin],
-        formatLabels[source.format],
-        ...titleTopics
-          .filter(({ pattern }) => pattern.test(source.title))
-          .map(({ tag }) => tag),
-      ],
+      // Filters stay focused on founder topics. Source and format are shown
+      // as metadata on each card, but are not useful content facets.
+      tags: titleTopics
+        .filter(({ pattern }) => pattern.test(`${source.title} ${source.titleKo}`))
+        .map(({ tag }) => tag),
     }))
     .sort((a, b) =>
       (b.published ?? "").localeCompare(a.published ?? "") ||

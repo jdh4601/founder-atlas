@@ -77,16 +77,16 @@ export function SourceBrowser({ sources }: SourceBrowserProps) {
       {filtered.length === 0 ? (
         <p className="border-t border-line py-16 text-center text-sm text-ink-muted">일치하는 콘텐츠가 없습니다. 검색어나 해시태그를 바꿔보세요.</p>
       ) : (
-        <ul className="divide-y divide-line">
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filtered.map((source) => (
-            <li key={source.id}>
+            <li key={source.id} className="min-w-0">
               <a
                 href={source.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex gap-4 py-5 transition-colors hover:bg-surface sm:gap-6"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-surface transition-colors hover:border-focus/40 hover:shadow-sm"
               >
-                <div className="relative aspect-video w-[38%] shrink-0 overflow-hidden rounded-lg bg-focus-soft sm:w-[230px]">
+                <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-focus-soft">
                   {source.thumbnail ? (
                     // Source hosts are varied; remote images are intentionally not optimized.
                     // eslint-disable-next-line @next/next/no-img-element
@@ -98,14 +98,14 @@ export function SourceBrowser({ sources }: SourceBrowserProps) {
                     <span className="absolute bottom-2 right-2 rounded bg-black/75 px-1.5 py-0.5 text-xs font-medium text-white">영상</span>
                   )}
                 </div>
-                <div className="min-w-0 flex-1 py-0.5">
-                  <h2 className="line-clamp-2 text-[15px] font-semibold leading-snug text-ink transition-colors group-hover:text-focus sm:text-lg">{source.title}</h2>
-                  <p className="mt-2 text-xs text-ink-muted sm:text-sm">
+                <div className="flex min-w-0 flex-1 flex-col p-3.5">
+                  <h2 className="line-clamp-2 text-[15px] font-semibold leading-snug text-ink transition-colors group-hover:text-focus">{source.title}</h2>
+                  <p className="mt-2 text-xs text-ink-muted">
                     {source.origin} · {source.format}{source.published ? ` · ${source.published}` : ""}
                   </p>
                   {source.speakers.length > 0 && <p className="mt-1 line-clamp-1 text-xs text-ink-muted">{source.speakers.join(", ")}</p>}
-                  <div className="mt-3 hidden flex-wrap gap-1.5 sm:flex">
-                    {source.tags.slice(2, 5).map((value) => (
+                  <div className="mt-auto flex flex-wrap gap-1.5 pt-3">
+                    {source.tags.map((value) => (
                       <span key={value} className="rounded-full bg-focus-soft px-2 py-1 text-xs text-ink-muted">#{value}</span>
                     ))}
                   </div>

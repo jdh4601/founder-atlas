@@ -14,7 +14,7 @@ const sources: BrowseSource[] = [
     format: "영상",
     published: "2024-01-01",
     speakers: [],
-    tags: ["YC", "영상", "고객"],
+    tags: ["고객"],
   },
   {
     id: "essay",
@@ -25,7 +25,7 @@ const sources: BrowseSource[] = [
     format: "에세이",
     published: "2023-01-01",
     speakers: [],
-    tags: ["PaulGraham", "에세이", "가격"],
+    tags: ["가격"],
   },
 ];
 

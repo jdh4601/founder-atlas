@@ -25,7 +25,7 @@ it("uses source metadata and literal title terms for hashtags", () => {
     source({ title: "Pricing and Sales", titleKo: "가격과 영업" }),
   ]);
 
-  expect(result.tags).toEqual(["PaulGraham", "에세이", "가격", "영업"]);
+  expect(result.tags).toEqual(["가격", "영업"]);
   expect(result.title).toBe("가격과 영업");
 });
 
@@ -33,7 +33,7 @@ it("does not infer topics from an unprocessed source's summary", () => {
   const [result] = toBrowseSources([
     source({ summary: "This article may mention pricing and fundraising." }),
   ]);
-  expect(result.tags).toEqual(["PaulGraham", "에세이"]);
+  expect(result.tags).toEqual([]);
 });
 
 it("shows more recently published sources first", () => {
