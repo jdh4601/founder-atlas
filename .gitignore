@@ -11,3 +11,7 @@ coverage/
 
 # Claude Code agent worktrees
 .claude/worktrees/
+
+# Full source text (captions, essays) stays local: the repo is public and
+# the design says originals are never republished. Recreate with `atlas ingest`.
+content/sources/*.transcript.json
