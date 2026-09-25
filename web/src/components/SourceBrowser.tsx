@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import type { BrowseSource } from "@/lib/sourceBrowse";
 
 interface SourceBrowserProps {
@@ -80,10 +81,8 @@ export function SourceBrowser({ sources }: SourceBrowserProps) {
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filtered.map((source) => (
             <li key={source.id} className="min-w-0">
-              <a
-                href={source.url}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={`/source/${source.id}`}
                 className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-surface transition-colors hover:border-focus/40 hover:shadow-sm"
               >
                 <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-focus-soft">
@@ -110,7 +109,7 @@ export function SourceBrowser({ sources }: SourceBrowserProps) {
                     ))}
                   </div>
                 </div>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
