@@ -194,3 +194,27 @@ def test_split_paragraphs_breaks_oversized_block_on_sentences() -> None:
     assert len(paragraphs) > 1
     assert all(len(p) <= MAX_PARAGRAPH_CHARS for p in paragraphs)
     assert " ".join(paragraphs).split() == text.split()
+
+
+class BlockedYouTube(FakeYouTube):
+    def __init__(self) -> None:
+        super().__init__()
+        self.segment_calls = 0
+
+    def fetch_segments(self, video_id: str) -> list[TranscriptSegment]:
+        from founder_atlas_pipeline.ingest.fetchers import RateLimitedError
+
+        self.segment_calls += 1
+        raise RateLimitedError("YouTube is blocking requests from this IP")
+
+
+def test_ingest_many_stops_youtube_requests_after_rate_limit(content_root: Path) -> None:
+    youtube = BlockedYouTube()
+    urls = [YT_URL, "https://youtu.be/zzzzzzzzzzz", "https://paulgraham.com/ds.html"]
+
+    outcomes = ingest_many(content_root, urls, youtube=youtube, web=FakeWeb())
+
+    assert youtube.segment_calls == 1
+    assert [o.status for o in outcomes] == ["failed", "failed", "written"]
+    assert "blocking" in (outcomes[0].error or "")
+    assert "skipped after YouTube rate limit" in (outcomes[1].error or "")

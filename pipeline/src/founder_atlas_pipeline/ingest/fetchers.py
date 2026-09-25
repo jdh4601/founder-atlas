@@ -23,6 +23,10 @@ class FetchError(Exception):
     """Raised when a source's metadata or raw text can't be fetched."""
 
 
+class RateLimitedError(FetchError):
+    """Raised when YouTube blocks or rate-limits this IP; retrying soon makes it worse."""
+
+
 @dataclass(frozen=True)
 class VideoMetadata:
     """Metadata for one YouTube video."""
@@ -112,15 +116,21 @@ class YtDlpYouTubeFetcher:
             Caption segments in playback order.
 
         Raises:
+            RateLimitedError: If YouTube is blocking this IP.
             FetchError: If no English transcript is available.
         """
         from youtube_transcript_api import YouTubeTranscriptApi
-        from youtube_transcript_api._errors import CouldNotRetrieveTranscript
+        from youtube_transcript_api._errors import CouldNotRetrieveTranscript, RequestBlocked
 
         try:
             fetched = YouTubeTranscriptApi().fetch(video_id, languages=["en", "en-US"])
+        except RequestBlocked as error:
+            raise RateLimitedError(
+                f"YouTube is blocking requests from this IP (at {video_id}); retry in a few hours"
+            ) from error
         except CouldNotRetrieveTranscript as error:
-            raise FetchError(f"no English transcript for {video_id}: {error}") from error
+            reason = " ".join(str(error).split())[:200]
+            raise FetchError(f"no English transcript for {video_id}: {reason}") from error
         return [
             TranscriptSegment(start=float(s.start), duration=float(s.duration), text=s.text)
             for s in fetched

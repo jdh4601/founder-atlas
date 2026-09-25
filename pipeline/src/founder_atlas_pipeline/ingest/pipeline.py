@@ -13,7 +13,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from founder_atlas_pipeline.ingest.fetchers import FetchError, WebFetcher, YouTubeFetcher
+from founder_atlas_pipeline.ingest.fetchers import (
+    FetchError,
+    RateLimitedError,
+    WebFetcher,
+    YouTubeFetcher,
+)
 from founder_atlas_pipeline.models import SourceMeta, Transcript
 from founder_atlas_pipeline.slugs import make_source_id
 from founder_atlas_pipeline.sources import source_exists, write_source
@@ -219,6 +224,9 @@ def ingest_many(
 ) -> list[IngestOutcome]:
     """Ingest a batch of URLs, recording per-URL failures instead of raising.
 
+    Once YouTube rate-limits this IP, the remaining YouTube URLs are skipped
+    without a request, since more requests only extend the block.
+
     Args:
         content_root: The `content/` directory.
         urls: Source URLs, processed in order.
@@ -231,11 +239,19 @@ def ingest_many(
         One `IngestOutcome` per URL, in input order.
     """
     outcomes: list[IngestOutcome] = []
+    youtube_blocked = False
     for url in urls:
+        if youtube_blocked and parse_youtube_id(url) is not None:
+            error = "skipped after YouTube rate limit; retry later"
+            outcomes.append(IngestOutcome(url=url, status="failed", error=error))
+            continue
         try:
             outcome = ingest_url(
                 content_root, url, youtube=youtube, web=web, origin=origin, force=force
             )
+        except RateLimitedError as error:
+            youtube_blocked = True
+            outcome = IngestOutcome(url=url, status="failed", error=str(error))
         except (IngestError, FetchError) as error:
             outcome = IngestOutcome(url=url, status="failed", error=str(error))
         outcomes.append(outcome)
