@@ -1,0 +1,23 @@
+# batch02: Paul Graham + a16z
+# 제품·PMF
+https://a16z.com/12-things-about-product-market-fit/
+https://a16z.com/building-products-with-generative-ai/
+https://a16z.com/generative-ai-probabilistic-products/
+# 성장·마케팅
+https://paulgraham.com/growth.html
+https://a16z.com/when-distribution-trumps-product/
+https://a16z.com/escaping-hells-flywheel-building-non-inflationary-distribution-channels/
+https://a16z.com/geo-over-seo/
+https://a16z.com/the-cinderella-glass-slipper-effect-retention-rules-in-the-ai-era/
+https://a16z.com/ai-retention-benchmarks/
+https://a16z.com/7-ways-ai-native-companies-can-improve-retention/
+https://a16z.com/services-led-growth/
+# 자금 조달
+https://paulgraham.com/fr.html
+https://paulgraham.com/aord.html
+https://paulgraham.com/ramenprofitable.html
+https://paulgraham.com/hiresfund.html
+https://paulgraham.com/convince.html
+https://paulgraham.com/fundraising.html
+https://a16z.com/the-16-commandments-of-raising-equity-in-a-challenging-market/
+https://a16z.com/why-do-investors-care-so-much-about-ltvcac/
