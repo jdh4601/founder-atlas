@@ -1,0 +1,3 @@
+# "내 상황". Advice matching this context is shown first.
+stage: pre-seed
+domain: [ai, b2b]

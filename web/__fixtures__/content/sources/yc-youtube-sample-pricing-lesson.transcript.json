@@ -1,0 +1,8 @@
+{
+  "kind": "segments",
+  "segments": [
+    { "start": 0, "duration": 8.0, "text": "[SAMPLE TRANSCRIPT] Welcome back to the show." },
+    { "start": 120, "duration": 6.5, "text": "[SAMPLE TRANSCRIPT] Charge more than you think you should for an early B2B product." },
+    { "start": 340, "duration": 7.2, "text": "[SAMPLE TRANSCRIPT] Judge a pricing experiment by conversion rate, not by revenue alone." }
+  ]
+}
