@@ -135,6 +135,46 @@ describe("answerQuestion", () => {
     expect(result.citedAdvice).toEqual(["advice--01"]);
   });
 
+  it("accepts citations only from the matched keyword's advice", async () => {
+    const client = mockClient([
+      { slugs: ["pricing-strategy"] },
+      {
+        answer: "가격에 관한 답변입니다.",
+        citedAdviceIds: ["advice--02", "advice--01", "advice--01"],
+      },
+    ]);
+
+    const result = await answerQuestion(
+      client,
+      "가격을 어떻게 정해야 하나요?",
+      keywordPages,
+      advice,
+    );
+
+    expect(result.citedAdvice).toEqual(["advice--01"]);
+  });
+
+  it("does not publish an answer without a valid citation", async () => {
+    const client = mockClient([
+      { slugs: ["pricing-strategy"] },
+      { answer: "근거가 없는 답변입니다.", citedAdviceIds: ["advice--02"] },
+    ]);
+
+    const result = await answerQuestion(
+      client,
+      "가격을 어떻게 정해야 하나요?",
+      keywordPages,
+      advice,
+    );
+
+    expect(result).toEqual({
+      matched: ["pricing-strategy"],
+      answered: false,
+      answer: null,
+      citedAdvice: [],
+    });
+  });
+
   it("returns answered: false when step 1 returns null (unparseable response)", async () => {
     const client = mockClient([null]);
 

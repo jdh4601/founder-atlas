@@ -52,10 +52,11 @@ export async function answerQuestion(
   const draft = await draftAnswer(client, question, relevantAdvice);
   if (!draft) return { ...emptyResult(), matched };
 
-  const knownAdviceIds = new Set(advice.map((a) => a.id));
-  const citedAdvice = draft.citedAdviceIds.filter((id) =>
-    knownAdviceIds.has(id),
+  const relevantAdviceIds = new Set(relevantAdvice.map((a) => a.id));
+  const citedAdvice = [...new Set(draft.citedAdviceIds)].filter((id) =>
+    relevantAdviceIds.has(id),
   );
+  if (citedAdvice.length === 0) return { ...emptyResult(), matched };
 
   return { matched, answered: true, answer: draft.answer, citedAdvice };
 }
