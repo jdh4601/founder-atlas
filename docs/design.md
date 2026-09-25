@@ -41,7 +41,7 @@ AI 스타트업 창업자가 **특정 문제에 부딪혔을 때**, YC·a16z 등
 [검증]  인용문 ↔ 원문 유사도 대조 (rapidfuzz, 기준 90) → 통과분만 content/advice/
         자막이면 일치 구간의 시작 시각을 타임스탬프로 계산
 [구성]  build-pages → 키워드별 조언 단위를 모아 content/keywords/ 작성 (reviewed: false)
-[화면]  / 질문 입력 → /api/ask (Claude Haiku 4.5) → 짧은 답변 + 페이지·구간 안내
+[화면]  / 질문 입력 → /api/ask (Anthropic API 또는 로컬 Codex/Claude Code CLI 선택) → 짧은 답변 + 페이지·구간 안내
         /k/[slug] 키워드 페이지, /map 전체 지도
 [기록]  content/questions/log.jsonl
 ```

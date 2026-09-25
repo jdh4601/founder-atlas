@@ -13,25 +13,31 @@ covers `web/`.
 | `/` | Input-first home: a large "지금 어떤 문제에 부딪혔나요?" question box, plus the 8 taxonomy categories showing only the keywords that already have a page. Asking calls `/api/ask` and renders a short answer, matched keyword pages, and evidence chips (or a "아직 정리되지 않은 주제예요" message when nothing matched). |
 | `/k/[slug]` | One keyword page: category chip, an "AI 정리 · 검수 전" badge while `reviewed: false`, source thumbnails, the Markdown body (wikilinks, inline evidence chips, client-rendered Mermaid diagrams), a profile-sorted "근거 모아보기" evidence list, and "이 페이지를 언급한 페이지" backlinks. |
 | `/map` | The only graph view — a force-directed map of every keyword with advice (`react-force-graph-2d`, client-only), colored by category, sized by advice count, click-through to `/k/[slug]`. |
-| `POST /api/ask` | Two-step Claude Haiku flow: (1) match the question to 0–3 real keyword slugs, (2) if matched, draft a 2–3 sentence Korean answer grounded only in those keywords' advice (never the hidden `quote` field), citing advice ids. Every question is appended to `content/questions/log.jsonl`. |
+| `POST /api/ask` | Two-step answer flow: (1) match the question to 0–3 real keyword slugs, (2) if matched, draft a 2–3 sentence Korean answer grounded only in those keywords' advice (never the hidden `quote` field), citing advice ids. The request can select Anthropic API, Codex CLI, or Claude Code CLI. Every successfully processed question is appended to `content/questions/log.jsonl`. |
 
 ## Setup
 
 ```bash
 npm install
-cp ../.env.example ../.env   # ANTHROPIC_API_KEY, read by /api/ask
 npm run dev
 ```
 
-`.env.local` sets `CONTENT_DIR=./__fixtures__/content` so local dev runs
-against the checked-in sample content instead of the real (pipeline-built,
-gitignored) `../content/`. Keep `.env.local` — don't delete it.
+For Anthropic API mode or the pipeline commands, create a repo-root `.env`
+from `.env.example` and replace its placeholder with a real API key.
+
+To run against the checked-in sample content while the pipeline is incomplete,
+set `CONTENT_DIR=./__fixtures__/content` when starting the server. The default
+is the real `../content/` directory.
 
 `ANTHROPIC_API_KEY` is read from the environment, or from a repo-root
 `.env` (one level above `web/`) if unset — Next.js only auto-loads
 `web/.env*`, so `lib/env.ts` loads the repo-root file explicitly. A
-missing key makes `/api/ask` return a clear `500`, it never silently
-no-ops.
+missing key makes Anthropic API requests return a clear `500`, it never silently
+no-ops. The question form can instead select Codex CLI or Claude Code CLI.
+Those options execute the installed CLI on the **web server** using its existing
+login, so they are intended for a local server; installing a CLI only on the
+browser user's machine is insufficient. They do not need `ANTHROPIC_API_KEY`.
+If a selected CLI is unavailable or fails, `/api/ask` returns `503`.
 
 ## Directory structure
 
@@ -64,6 +70,7 @@ src/
     ├── env.ts                 Repo-root .env loader
     ├── questionsLog.ts        Appends content/questions/log.jsonl
     ├── anthropicClient.ts     Injectable AnthropicJsonClient (real SDK adapter)
+    ├── cliClients.ts           Local Codex CLI and Claude Code CLI adapters
     ├── ask.ts                 /api/ask's two-step matching + answering logic
     └── askPresentation.ts     Turns AskResult (ids) into the API's JSON shape
 ```
@@ -81,7 +88,7 @@ mirrors the real schema exactly — see `docs/content-schema.md`.
 
 ```bash
 npx jest --passWithNoTests   # unit tests (lib/, api/ask/route.test.ts)
-npx tsc --noEmit             # type check
+npm run typecheck            # route type generation + TypeScript check
 npm run build                # production build (must succeed before ship)
 npm run lint                 # eslint
 ```

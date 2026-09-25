@@ -7,8 +7,13 @@ const FIXTURES_DIR = path.join(__dirname, "../../../../__fixtures__/content");
 jest.mock("../../../lib/anthropicClient", () => ({
   createAnthropicJsonClient: jest.fn(),
 }));
+jest.mock("../../../lib/cliClients", () => ({
+  createCodexCliJsonClient: jest.fn(),
+  createClaudeCodeCliJsonClient: jest.fn(),
+}));
 
 import { createAnthropicJsonClient } from "../../../lib/anthropicClient";
+import { createClaudeCodeCliJsonClient, createCodexCliJsonClient } from "../../../lib/cliClients";
 import { POST } from "./route";
 
 function makeRequest(body: unknown): Request {
@@ -96,5 +101,43 @@ describe("POST /api/ask", () => {
     const response = await POST(makeRequest({}));
 
     expect(response.status).toBe(400);
+  });
+
+  it.each([
+    ["codex-cli", createCodexCliJsonClient],
+    ["claude-code-cli", createClaudeCodeCliJsonClient],
+  ] as const)("answers through %s without an Anthropic API key", async (provider, factory) => {
+    delete process.env.ANTHROPIC_API_KEY;
+    const createJson = jest
+      .fn()
+      .mockResolvedValueOnce({ slugs: ["pricing-strategy"] })
+      .mockResolvedValueOnce({
+        answer: "근거가 있는 답변입니다.",
+        citedAdviceIds: ["yc-youtube-sample-pricing-lesson--01"],
+      });
+    (factory as jest.Mock).mockReturnValue({ createJson });
+
+    const response = await POST(makeRequest({ question: "가격은?", provider }));
+
+    expect(response.status).toBe(200);
+    expect((await response.json()).answered).toBe(true);
+    expect(factory).toHaveBeenCalledTimes(1);
+    expect(createAnthropicJsonClient).not.toHaveBeenCalled();
+  });
+
+  it("rejects unknown providers", async () => {
+    const response = await POST(makeRequest({ question: "가격은?", provider: "other" }));
+    expect(response.status).toBe(400);
+  });
+
+  it("reports CLI execution failures without exposing details", async () => {
+    (createCodexCliJsonClient as jest.Mock).mockReturnValue({
+      createJson: jest.fn().mockRejectedValue(new Error("private CLI details")),
+    });
+
+    const response = await POST(makeRequest({ question: "가격은?", provider: "codex-cli" }));
+
+    expect(response.status).toBe(503);
+    expect(await response.text()).not.toContain("private CLI details");
   });
 });
