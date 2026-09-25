@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens for Founder Atlas.
+ *
+ * Category colors are NOT defined here — they come from
+ * `content/taxonomy.yaml` at runtime and are applied via inline
+ * `style` (see `src/lib/color.ts`), since Tailwind can't generate
+ * utility classes for data-driven hex values at build time.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --paper: #faf9f6;
+  --surface: #ffffff;
+  --ink: #1c1f22;
+  --ink-muted: #5b6168;
+  --line: #e4e1db;
+  --focus: #2d3a4f;
+  --focus-soft: #dfe4ec;
+  --caution-bg: #fff4d6;
+  --caution-ink: #7a5200;
+  --caution-line: #eddca0;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #14171a;
+    --surface: #1c2024;
+    --ink: #e8e6e2;
+    --ink-muted: #9aa0a6;
+    --line: #2a2e33;
+    --focus: #90a8cc;
+    --focus-soft: #26374d;
+    --caution-bg: #3a2e12;
+    --caution-ink: #e0b84d;
+    --caution-line: #4d3d1a;
   }
 }
 
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-focus: var(--focus);
+  --color-focus-soft: var(--focus-soft);
+  --color-caution-bg: var(--caution-bg);
+  --color-caution-ink: var(--caution-ink);
+  --color-caution-line: var(--caution-line);
+  --font-sans:
+    "Apple SD Gothic Neo", "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--focus-soft);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

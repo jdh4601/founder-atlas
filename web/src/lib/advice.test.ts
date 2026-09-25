@@ -4,6 +4,7 @@ import {
   getAdviceByIds,
   getAdviceForKeyword,
   loadAdvice,
+  matchesProfile,
   sortAdviceByProfile,
 } from "./advice";
 import type { Profile } from "./types";
@@ -113,5 +114,27 @@ describe("sortAdviceByProfile", () => {
     expect(sorted.map((a) => a.id)).toEqual(
       firstCustomersAdvice.map((a) => a.id),
     );
+  });
+});
+
+describe("matchesProfile", () => {
+  const profile: Profile = { stage: "pre-seed", domain: ["ai", "b2b"] };
+
+  it("is true when both stage and domain match (or apply to all)", () => {
+    const advice = loadAdvice(FIXTURES_DIR);
+    const wildcard = getAdviceById(
+      advice,
+      "yc-youtube-sample-pricing-lesson--02",
+    );
+    expect(wildcard && matchesProfile(wildcard, profile)).toBe(true);
+  });
+
+  it("is false when neither stage nor domain matches", () => {
+    const advice = loadAdvice(FIXTURES_DIR);
+    const mismatch = getAdviceById(
+      advice,
+      "lightcone-sample-enterprise-first-customers--03",
+    );
+    expect(mismatch && matchesProfile(mismatch, profile)).toBe(false);
   });
 });

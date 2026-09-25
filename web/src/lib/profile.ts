@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import YAML from "js-yaml";
+import * as YAML from "js-yaml";
 import { z } from "zod";
 import { DOMAINS, STAGES, type Profile } from "./types";
 

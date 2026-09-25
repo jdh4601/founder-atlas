@@ -134,3 +134,8 @@ export function sortAdviceByProfile(
     (a, b) => contextMatchScore(b, profile) - contextMatchScore(a, profile),
   );
 }
+
+/** Whether an advice unit fully matches the profile's stage AND domain. */
+export function matchesProfile(advice: Advice, profile: Profile): boolean {
+  return contextMatchScore(advice, profile) === 2;
+}

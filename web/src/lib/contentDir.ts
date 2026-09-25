@@ -12,5 +12,7 @@ const DEFAULT_CONTENT_DIR = "../content";
  */
 export function getContentDir(): string {
   const configured = process.env.CONTENT_DIR ?? DEFAULT_CONTENT_DIR;
-  return path.resolve(process.cwd(), configured);
+  // `content/` lives outside `web/`'s own source tree (or is a fixtures
+  // dir), so it must never be included in Turbopack's output file tracing.
+  return path.resolve(/* turbopackIgnore: true */ process.cwd(), configured);
 }
