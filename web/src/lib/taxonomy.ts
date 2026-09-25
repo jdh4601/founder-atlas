@@ -51,3 +51,13 @@ export function findKeywordTitle(
   }
   return undefined;
 }
+
+/** Returns the category that owns the given keyword slug, if any. */
+export function findCategoryForKeyword(
+  taxonomy: Taxonomy,
+  keywordSlug: string,
+): TaxonomyCategory | undefined {
+  return taxonomy.categories.find((category) =>
+    category.keywords.some((k) => k.slug === keywordSlug),
+  );
+}

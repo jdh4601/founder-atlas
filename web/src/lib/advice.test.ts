@@ -4,7 +4,9 @@ import {
   getAdviceByIds,
   getAdviceForKeyword,
   loadAdvice,
+  sortAdviceByProfile,
 } from "./advice";
+import type { Profile } from "./types";
 
 const FIXTURES_DIR = path.join(__dirname, "../../__fixtures__/content");
 
@@ -86,6 +88,30 @@ describe("getAdviceForKeyword", () => {
         "lightcone-sample-enterprise-first-customers--02",
         "paul-graham-sample-do-things-that-dont-scale--01",
       ].sort(),
+    );
+  });
+});
+
+describe("sortAdviceByProfile", () => {
+  const profile: Profile = { stage: "pre-seed", domain: ["ai", "b2b"] };
+
+  it("ranks advice matching stage/domain above advice that doesn't, treating empty context as applies-to-all", () => {
+    const advice = loadAdvice(FIXTURES_DIR);
+    const unitEconomicsAdvice = getAdviceForKeyword(advice, "unit-economics");
+    const sorted = sortAdviceByProfile(unitEconomicsAdvice, profile);
+    expect(sorted.map((a) => a.id)).toEqual([
+      "yc-youtube-sample-pricing-lesson--02",
+      "yc-youtube-sample-pricing-lesson--03",
+      "lightcone-sample-enterprise-first-customers--03",
+    ]);
+  });
+
+  it("keeps the original relative order for advice units that tie in score", () => {
+    const advice = loadAdvice(FIXTURES_DIR);
+    const firstCustomersAdvice = getAdviceForKeyword(advice, "first-customers");
+    const sorted = sortAdviceByProfile(firstCustomersAdvice, profile);
+    expect(sorted.map((a) => a.id)).toEqual(
+      firstCustomersAdvice.map((a) => a.id),
     );
   });
 });

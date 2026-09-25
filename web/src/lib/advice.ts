@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
-import { DOMAINS, STAGES, type Advice } from "./types";
+import { DOMAINS, STAGES, type Advice, type Profile } from "./types";
 
 const anchorSchema = z.object({
   kind: z.enum(["timestamp", "paragraph"]),
@@ -105,4 +105,32 @@ export function getAdviceForKeyword(
   keywordSlug: string,
 ): Advice[] {
   return advice.filter((a) => a.keywords.includes(keywordSlug));
+}
+
+/**
+ * Score an advice unit's fit for the given profile. An empty `stage`/`domain`
+ * list on the advice means "applies to all" and counts as a match. Higher is
+ * a better fit; the max score is 2 (stage match + domain match).
+ */
+function contextMatchScore(advice: Advice, profile: Profile): number {
+  const stageMatches =
+    advice.context.stage.length === 0 ||
+    advice.context.stage.includes(profile.stage);
+  const domainMatches =
+    advice.context.domain.length === 0 ||
+    advice.context.domain.some((domain) => profile.domain.includes(domain));
+  return (stageMatches ? 1 : 0) + (domainMatches ? 1 : 0);
+}
+
+/**
+ * Sorts advice so units matching the user's stage/domain ("내 상황") come
+ * first. Ties keep their original relative order (stable sort).
+ */
+export function sortAdviceByProfile(
+  advice: readonly Advice[],
+  profile: Profile,
+): Advice[] {
+  return [...advice].sort(
+    (a, b) => contextMatchScore(b, profile) - contextMatchScore(a, profile),
+  );
 }

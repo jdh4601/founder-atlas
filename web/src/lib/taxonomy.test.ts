@@ -3,6 +3,7 @@ import os from "node:os";
 import path from "node:path";
 import {
   findCategory,
+  findCategoryForKeyword,
   findKeywordTitle,
   loadTaxonomy,
 } from "./taxonomy";
@@ -53,5 +54,17 @@ describe("findCategory / findKeywordTitle", () => {
 
   it("returns undefined for an unknown keyword slug", () => {
     expect(findKeywordTitle(taxonomy, "not-a-keyword")).toBeUndefined();
+  });
+
+  it("finds the category that owns a keyword slug", () => {
+    expect(findCategoryForKeyword(taxonomy, "pricing-strategy")?.slug).toBe(
+      "pricing",
+    );
+  });
+
+  it("returns undefined when no category owns the keyword slug", () => {
+    expect(
+      findCategoryForKeyword(taxonomy, "not-a-keyword"),
+    ).toBeUndefined();
   });
 });
