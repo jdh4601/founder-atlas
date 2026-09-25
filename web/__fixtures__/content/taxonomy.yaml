@@ -1,0 +1,74 @@
+# 8 fixed categories. Max 20 keywords per category. Keyword slugs are globally unique.
+categories:
+  - slug: idea
+    title: 아이디어·문제 발견
+    color: "#E07A5F"
+    keywords:
+      - { slug: problem-validation, title: 문제 검증 }
+      - { slug: market-size, title: 시장 크기 }
+      - { slug: competition, title: 경쟁 분석 }
+      - { slug: founder-market-fit, title: 창업자-시장 적합성 }
+      - { slug: idea-generation, title: 아이디어 발굴 }
+  - slug: product
+    title: 제품·PMF
+    color: "#3D5A80"
+    keywords:
+      - { slug: mvp-scope, title: MVP 범위 }
+      - { slug: product-market-fit, title: PMF 판단 }
+      - { slug: pivot, title: 피벗 }
+      - { slug: user-feedback, title: 사용자 피드백 }
+      - { slug: moat, title: 해자와 방어력 }
+  - slug: sales
+    title: 고객·세일즈
+    color: "#81B29A"
+    keywords:
+      - { slug: first-customers, title: 첫 고객 확보 }
+      - { slug: enterprise-sales, title: 엔터프라이즈 영업 }
+      - { slug: customer-interviews, title: 고객 인터뷰 }
+      - { slug: founder-led-sales, title: 창업자 주도 영업 }
+      - { slug: design-partners, title: 디자인 파트너 }
+  - slug: growth
+    title: 성장·마케팅
+    color: "#F2CC8F"
+    keywords:
+      - { slug: distribution, title: 유통 채널 }
+      - { slug: retention, title: 리텐션 }
+      - { slug: community, title: 커뮤니티 }
+      - { slug: launch, title: 런칭 }
+      - { slug: content-marketing, title: 콘텐츠 마케팅 }
+  - slug: pricing
+    title: 가격·수익 모델
+    color: "#9B5DE5"
+    keywords:
+      - { slug: pricing-strategy, title: 가격 책정 }
+      - { slug: unit-economics, title: Unit economics }
+      - { slug: billing-model, title: 과금 방식 }
+      - { slug: gross-margin, title: 매출 총이익과 AI 비용 }
+      - { slug: revenue-metrics, title: 매출 지표 }
+  - slug: fundraising
+    title: 자금 조달
+    color: "#00A6A6"
+    keywords:
+      - { slug: seed-round, title: 시드 투자 }
+      - { slug: pitch, title: 피치 }
+      - { slug: valuation, title: 밸류에이션 }
+      - { slug: investor-selection, title: 투자자 선택 }
+      - { slug: when-to-raise, title: 투자 유치 시점 }
+  - slug: team
+    title: 팀·채용
+    color: "#EF476F"
+    keywords:
+      - { slug: cofounders, title: 공동창업자 }
+      - { slug: early-hiring, title: 초기 채용 }
+      - { slug: culture, title: 조직 문화 }
+      - { slug: equity, title: 지분 배분 }
+      - { slug: management, title: 초기 매니지먼트 }
+  - slug: founder
+    title: 창업자·의사결정
+    color: "#6C757D"
+    keywords:
+      - { slug: mental-health, title: 멘탈 관리 }
+      - { slug: prioritization, title: 우선순위 }
+      - { slug: time-management, title: 시간 관리 }
+      - { slug: decision-making, title: 의사결정 }
+      - { slug: founder-mindset, title: 창업자 마인드셋 }
