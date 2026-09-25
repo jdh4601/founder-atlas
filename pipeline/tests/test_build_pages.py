@@ -34,17 +34,19 @@ class FakePageWriterClient:
     def __init__(self, pages: dict[str, PageCandidate]) -> None:
         self._pages = pages
         self.calls: list[str] = []
+        self.advice_ids: list[list[str]] = []
 
     def write_page(self, *, keyword_title, category_title, advice_units, related_keywords):
         self.calls.append(keyword_title)
+        self.advice_ids.append([unit.id for unit in advice_units])
         return self._pages[keyword_title]
 
 
-def _source(content_root: Path, source_id: str) -> None:
+def _source(content_root: Path, source_id: str, title_ko: str = "가격 책정 101") -> None:
     meta = SourceMeta(
         id=source_id,
         title="Pricing 101",
-        title_ko="가격 책정 101",
+        title_ko=title_ko,
         url="https://www.youtube.com/watch?v=abc123",
         origin="yc-youtube",
         format="video",
@@ -238,6 +240,42 @@ def test_images_deduplicated_by_source(content_root: Path) -> None:
     assert len(page.images) == 1
 
 
+def test_image_alt_falls_back_to_source_title(content_root: Path) -> None:
+    _source(content_root, "src-a", title_ko="")
+    write_advice(content_root, _advice("src-a", 1, "pricing-strategy"))
+    taxonomy = load_taxonomy(content_root / "taxonomy.yaml")
+    client = FakePageWriterClient(
+        {
+            "가격 책정": PageCandidate(
+                title="가격 책정", summary="요약", body_ko="{{advice:src-a--01}}"
+            )
+        }
+    )
+
+    build_pages(content_root, taxonomy, client, keyword_slug="pricing-strategy")
+
+    assert read_keyword(content_root, "pricing-strategy").images[0].alt == "Pricing 101"
+
+
+def test_large_page_uses_bounded_evidence_from_multiple_sources(content_root: Path) -> None:
+    for source_id in ("src-a", "src-b", "src-c"):
+        _source(content_root, source_id)
+        for index in range(1, 7):
+            write_advice(content_root, _advice(source_id, index, "pricing-strategy"))
+    taxonomy = load_taxonomy(content_root / "taxonomy.yaml")
+    client = FakePageWriterClient(
+        {"가격 책정": PageCandidate(title="가격 책정", summary="요약", body_ko="본문")}
+    )
+
+    build_pages(content_root, taxonomy, client, keyword_slug="pricing-strategy")
+
+    selected = client.advice_ids[0]
+    assert len(selected) == 12
+    assert {advice_id.rsplit("--", 1)[0] for advice_id in selected} == {
+        "src-a", "src-b", "src-c"
+    }
+
+
 @pytest.mark.parametrize("provider", ["codex-cli", "claude-code-cli"])
 def test_cli_page_writer_uses_only_public_advice_material(
     provider: str, monkeypatch: pytest.MonkeyPatch
@@ -264,4 +302,5 @@ def test_cli_page_writer_uses_only_public_advice_material(
     assert "src-a--01" in user_prompt
     assert "quote 1" not in user_prompt
     assert "unit-economics" in user_prompt
+    assert "800~1,500자" in system_prompt
     assert schema["required"] == ["title", "summary", "body_ko"]

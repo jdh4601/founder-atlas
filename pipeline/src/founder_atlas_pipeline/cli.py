@@ -51,7 +51,7 @@ def _require_api_key() -> None:
         )
 
 
-MODEL_PROVIDERS = ("anthropic", "codex-cli", "claude-code-cli")
+MODEL_PROVIDERS = ("anthropic", "codex-cli", "claude-code-cli", "template")
 
 
 def _prepare_provider(provider: str) -> None:
@@ -182,13 +182,22 @@ def _extract_targets(content: Path, source_id: str | None, extract_all: bool) ->
 def build_pages_command(ctx: click.Context, keyword_slug: str | None, force: bool, provider: str) -> None:
     """Write content/keywords/{slug}.md from advice units."""
     _prepare_provider(provider)
-    from founder_atlas_pipeline.build_pages.client import CLIPageWriterClient, ClaudePageWriterClient
+    from founder_atlas_pipeline.build_pages.client import (
+        CLIPageWriterClient,
+        ClaudePageWriterClient,
+        TemplatePageWriterClient,
+    )
     from founder_atlas_pipeline.build_pages.pipeline import build_pages
     from founder_atlas_pipeline.cli_providers import CLIProviderError
 
     content = _content_dir(ctx)
     taxonomy = load_taxonomy(content / "taxonomy.yaml")
-    client = ClaudePageWriterClient() if provider == "anthropic" else CLIPageWriterClient(provider)
+    if provider == "anthropic":
+        client = ClaudePageWriterClient()
+    elif provider == "template":
+        client = TemplatePageWriterClient()
+    else:
+        client = CLIPageWriterClient(provider)
     try:
         stats = build_pages(content, taxonomy, client, keyword_slug=keyword_slug, force=force)
     except CLIProviderError as exc:

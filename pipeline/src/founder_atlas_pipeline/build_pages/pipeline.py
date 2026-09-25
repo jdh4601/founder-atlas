@@ -10,6 +10,7 @@ Two rules from the task brief are enforced here, not left to the LLM:
 from __future__ import annotations
 
 import re
+from math import ceil
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -22,6 +23,7 @@ from founder_atlas_pipeline.sources import read_source
 from founder_atlas_pipeline.taxonomy import Taxonomy
 
 _EVIDENCE_MARKER = re.compile(r"\{\{advice:([\w-]+)\}\}")
+MAX_PAGE_ADVICE = 12
 
 
 @dataclass(frozen=True)
@@ -30,6 +32,7 @@ class BuildPagesStats:
 
     written: list[str] = field(default_factory=list)
     preserved_reviewed: list[str] = field(default_factory=list)
+    preserved_existing: list[str] = field(default_factory=list)
     skipped_no_advice: int = 0
 
 
@@ -39,6 +42,54 @@ def _group_advice_by_keyword(advice_units: list[AdviceUnit]) -> dict[str, list[A
         for keyword_slug in unit.keywords:
             grouped.setdefault(keyword_slug, []).append(unit)
     return grouped
+
+
+def _select_page_advice(
+    advice_units: list[AdviceUnit], keyword_slug: str, category_slug: str
+) -> list[AdviceUnit]:
+    """Keep a page focused while drawing evidence from several sources.
+
+    Directly relevant sources and advice in the keyword's own category rank
+    first. The first pass takes distinct sources; the second can add up to
+    three pieces of evidence from a source. This bounds both model input and
+    the amount of material a person has to review on a keyword page.
+    """
+    if len(advice_units) <= MAX_PAGE_ADVICE:
+        return advice_units
+
+    keyword_tokens = {part for part in keyword_slug.split("-") if len(part) >= 3}
+
+    def rank(unit: AdviceUnit) -> tuple[int, int, int, str]:
+        source_tokens = set(unit.source.split("-"))
+        return (
+            -len(keyword_tokens & source_tokens),
+            -(unit.category == category_slug),
+            -(unit.keywords.index(keyword_slug) == 0),
+            unit.id,
+        )
+
+    ranked = sorted(advice_units, key=rank)
+    selected: list[AdviceUnit] = []
+    used_sources: set[str] = set()
+    for unit in ranked:
+        if unit.source not in used_sources:
+            selected.append(unit)
+            used_sources.add(unit.source)
+            if len(selected) == min(6, MAX_PAGE_ADVICE):
+                break
+
+    per_source = {source: 1 for source in used_sources}
+    source_cap = max(3, ceil(MAX_PAGE_ADVICE / len({unit.source for unit in advice_units})))
+    selected_ids = {unit.id for unit in selected}
+    for unit in ranked:
+        if len(selected) >= MAX_PAGE_ADVICE:
+            break
+        if unit.id in selected_ids or per_source.get(unit.source, 0) >= source_cap:
+            continue
+        selected.append(unit)
+        selected_ids.add(unit.id)
+        per_source[unit.source] = per_source.get(unit.source, 0) + 1
+    return selected
 
 
 def _filter_evidence_markers(body: str, valid_ids: set[str]) -> tuple[str, list[str]]:
@@ -82,7 +133,9 @@ def _collect_images(
         source_meta = read_source(content_root, source_id)
         src = source_meta.thumbnail or (source_meta.images[0] if source_meta.images else None)
         if src is not None:
-            images.append(KeywordImage(src=src, alt=source_meta.title_ko, source=source_id))
+            images.append(
+                KeywordImage(src=src, alt=source_meta.title_ko or source_meta.title, source=source_id)
+            )
     return images
 
 
@@ -92,6 +145,7 @@ def build_pages(
     client: PageWriterClient,
     keyword_slug: str | None = None,
     force: bool = False,
+    missing_only: bool = False,
     today: str | None = None,
 ) -> BuildPagesStats:
     """Build (or rebuild) keyword pages from the advice units that cite them.
@@ -102,6 +156,7 @@ def build_pages(
         client: The `PageWriterClient` to call per keyword.
         keyword_slug: If given, only build this one keyword's page.
         force: If True, regenerate pages even if already `reviewed: true`.
+        missing_only: If True, leave every existing page untouched.
         today: ISO date string for `updated_at`. Defaults to today (UTC).
 
     Returns:
@@ -115,6 +170,7 @@ def build_pages(
 
     written: list[str] = []
     preserved_reviewed: list[str] = []
+    preserved_existing: list[str] = []
     skipped_no_advice = 0
 
     for category in taxonomy.categories:
@@ -127,23 +183,28 @@ def build_pages(
                 skipped_no_advice += 1
                 continue
 
+            if keyword_exists(content_root, keyword.slug) and missing_only:
+                preserved_existing.append(keyword.slug)
+                continue
+
             if keyword_exists(content_root, keyword.slug) and not force:
                 existing = read_keyword(content_root, keyword.slug)
                 if existing.reviewed:
                     preserved_reviewed.append(keyword.slug)
                     continue
 
+            selected_advice = _select_page_advice(advice_units, keyword.slug, category.slug)
             related_keywords = {
                 other.slug: other.title for other in category.keywords if other.slug != keyword.slug
             }
             candidate = client.write_page(
                 keyword_title=keyword.title,
                 category_title=category.title,
-                advice_units=advice_units,
+                advice_units=selected_advice,
                 related_keywords=related_keywords,
             )
 
-            advice_by_id = {unit.id: unit for unit in advice_units}
+            advice_by_id = {unit.id: unit for unit in selected_advice}
             body, used_ids = _filter_evidence_markers(candidate.body_ko, set(advice_by_id))
             images = _collect_images(content_root, used_ids, advice_by_id)
 
@@ -161,9 +222,12 @@ def build_pages(
             write_keyword(content_root, page)
             written.append(keyword.slug)
 
-    if keyword_slug is not None and not written and not preserved_reviewed and skipped_no_advice == 0:
+    if keyword_slug is not None and not written and not preserved_reviewed and not preserved_existing and skipped_no_advice == 0:
         raise KeyError(f"keyword slug '{keyword_slug}' not found in taxonomy")
 
     return BuildPagesStats(
-        written=written, preserved_reviewed=preserved_reviewed, skipped_no_advice=skipped_no_advice
+        written=written,
+        preserved_reviewed=preserved_reviewed,
+        preserved_existing=preserved_existing,
+        skipped_no_advice=skipped_no_advice,
     )

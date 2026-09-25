@@ -27,6 +27,8 @@ _SYSTEM_PROMPT = """\
 - 다른 키워드를 언급할 때는 제공된 "관련 키워드" 목록의 slug만 [[slug]] 형태로 링크할 것.
 - 근거로 삼은 조언은 반드시 {{advice:advice_id}} 형태로 표시할 것 (제공된 조언 id만 사용).
 - 조언 단위에 없는 내용은 지어내지 말 것 - 주어진 조언 claim/body만 재료로 쓸 것.
+- 본문은 핵심 질문에 집중해 한국어 800~1,500자 정도로 간결하게 쓸 것. 소제목은 최대 4개.
+- 제공된 조언을 모두 나열하지 말고, 서로 다른 관점을 묶어 가장 유용한 근거만 인용할 것.
 - 비교, 흐름, 2x2 같은 구조를 설명할 때만 ```mermaid 코드 블록으로 도식을 추가할 것 (선택 사항).
 - summary는 질문 라우팅에 쓰이는 한 줄 요약입니다.
 """
@@ -180,4 +182,31 @@ class CLIPageWriterClient:
         )
         return PageCandidate(
             title=payload["title"], summary=payload["summary"], body_ko=payload["body_ko"]
+        )
+
+
+class TemplatePageWriterClient:
+    """Produce an evidence-led draft without calling a model.
+
+    This copies the extracted claim and explanation verbatim, so the draft
+    never adds an unsupported synthesis. A person must still review it.
+    """
+
+    def write_page(
+        self,
+        *,
+        keyword_title: str,
+        category_title: str,
+        advice_units: list[AdviceUnit],
+        related_keywords: dict[str, str],
+    ) -> PageCandidate:
+        chosen = advice_units[:8]
+        paragraphs = [
+            f"- **{unit.claim}** — {unit.body_ko} {{{{advice:{unit.id}}}}}"
+            for unit in chosen
+        ]
+        return PageCandidate(
+            title=keyword_title,
+            summary=f"{keyword_title}에 관한 원문 근거 조언 {len(chosen)}개를 모았습니다.",
+            body_ko="\n\n".join(paragraphs),
         )

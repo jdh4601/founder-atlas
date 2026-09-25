@@ -36,6 +36,7 @@ uv run atlas build-pages
 uv run atlas build-pages --keyword pricing-strategy
 uv run atlas build-pages --provider codex-cli
 uv run atlas build-pages --provider claude-code-cli
+uv run atlas build-pages --provider template  # offline evidence-led drafts
 
 # 5. Counts + 20-keywords-per-category check (exit 1 on violation)
 uv run atlas stats
