@@ -1,0 +1,18 @@
+# batch01: Paul Graham + a16z (origin inferred from host)
+https://paulgraham.com/ds.html
+https://a16z.com/bottom-up-pricing-packaging-let-the-user-journey-be-your-guide/
+https://a16z.com/surviving-ai-price-wars-without-destroying-your-business/
+https://a16z.com/need-for-speed-in-ai-sales-ai-doesnt-just-change-what-you-sell-it-also-changes-how-you-sell-it/
+https://a16z.com/pricing-packaging-ai-b2b-prosumer/
+https://a16z.com/usage-based-pricing-rule-of-thumb/
+https://a16z.com/customers-want-predictability-in-usage-based-pricing-heres-how-to-help-them-get-it/
+https://a16z.com/overages-problem-usage-based-pricing/
+https://a16z.com/the-price-isnt-right-3-pricing-and-packaging-pitfalls-to-avoid/
+https://a16z.com/you-are-not-a-model-dont-price-per-token/
+https://a16z.com/lighthouse-or-landgrab-how-to-pick-your-ai-sales-strategy/
+https://a16z.com/selling-to-smbs-a-founders-playbook/
+https://a16z.com/go-to-market-boot-camp-for-startups-field-sales/
+https://a16z.com/growth-sales-and-a-new-era-of-b2b/
+https://a16z.com/questioning-margins-is-a-boring-cliche/
+https://a16z.com/moats-before-gross-margins/
+https://a16z.com/revenue-benchmarks-ai-apps/
