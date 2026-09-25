@@ -1,0 +1,50 @@
+# batch03: 38 newly ingested text sources (11 a16z, 27 Paul Graham)
+# Selected from the Paul Graham essay index and a16z post sitemap.
+# Themes match the pre-seed AI/B2B profile; already-ingested URLs and
+# crypto, games, health, and defense topics were excluded.
+
+# Product, customer discovery, and PMF (13)
+https://a16z.com/product-zeitgeist-fit-a-cheat-code-for-spotting-and-building-the-next-big-thing/
+https://a16z.com/the-market-for-user-research-platforms/
+https://a16z.com/aligning-founder-superpowers-with-product-cycles/
+https://a16z.com/how-tech-stacks-up-in-b2b/
+https://paulgraham.com/newideas.html
+https://paulgraham.com/getideas.html
+https://paulgraham.com/startupideas.html
+https://paulgraham.com/ideas.html
+https://paulgraham.com/organic.html
+https://paulgraham.com/schlep.html
+https://paulgraham.com/airbnb.html
+https://paulgraham.com/airbnbs.html
+https://paulgraham.com/users.html
+
+# Growth and B2B sales (6)
+https://a16z.com/a-recipe-for-growth-adding-layers-to-the-cake/
+https://a16z.com/a16z-podcast-growth-in-turbulent-times/
+https://a16z.com/enterprise-startups-advice-on-hiring-firing-scaling-and-selling/
+https://a16z.com/getting-ready-to-move-upmarket/
+https://a16z.com/the-20m-to-500m-question-adding-top-down-sales/
+https://a16z.com/saas-businesses-weather-hard-times-by-focusing-on-efficient-growth/
+
+# Founder decisions and early company operations (11)
+https://a16z.com/thoughts-on-building-weatherproof-companies/
+https://paulgraham.com/before.html
+https://paulgraham.com/foundermode.html
+https://paulgraham.com/founders.html
+https://paulgraham.com/start.html
+https://paulgraham.com/relres.html
+https://paulgraham.com/determination.html
+https://paulgraham.com/ycstart.html
+https://paulgraham.com/13sentences.html
+https://paulgraham.com/startupmistakes.html
+https://paulgraham.com/startuplessons.html
+
+# Fundraising, investors, and runway (8)
+https://paulgraham.com/angelinvesting.html
+https://paulgraham.com/startupfunding.html
+https://paulgraham.com/investors.html
+https://paulgraham.com/venturecapital.html
+https://paulgraham.com/equity.html
+https://paulgraham.com/pinch.html
+https://paulgraham.com/guidetoinvestors.html
+https://paulgraham.com/superangels.html
