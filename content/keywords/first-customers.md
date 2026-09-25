@@ -3,7 +3,7 @@ slug: first-customers
 title: 첫 고객 확보
 category: sales
 summary: 첫 고객 확보에 관한 원문 근거 조언 8개를 모았습니다.
-reviewed: false
+reviewed: true
 advice:
 - yc-youtube-50-founders-share-how-they-got-their-first--01
 - yc-youtube-how-to-earn-customers-for-life--02

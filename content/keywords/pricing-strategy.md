@@ -3,7 +3,7 @@ slug: pricing-strategy
 title: 가격 책정
 category: pricing
 summary: 가격 책정에 관한 원문 근거 조언 8개를 모았습니다.
-reviewed: false
+reviewed: true
 advice:
 - a16z-bottom-up-pricing-packaging-let-the-user-journey--01
 - a16z-customers-want-predictability-in-usage-based-pricing-heres--01

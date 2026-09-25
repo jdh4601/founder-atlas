@@ -3,7 +3,7 @@ slug: product-market-fit
 title: PMF 판단
 category: product
 summary: PMF 판단에 관한 원문 근거 조언 8개를 모았습니다.
-reviewed: false
+reviewed: true
 advice:
 - a16z-12-things-about-product-market-fit--03
 - a16z-a16z-podcast-growth-in-turbulent-times--23
