@@ -52,7 +52,7 @@ export default async function SourcePage({ params }: SourcePageProps) {
           <p className="mt-3 text-sm text-ink-muted">{source.speakers.join(", ")}</p>
         )}
         <p className="mt-5 inline-flex rounded-full bg-focus-soft px-3 py-1.5 text-sm text-ink-muted">
-          한국어 핵심 정리
+          한국어 블로그 정리
         </p>
       </header>
 
@@ -79,24 +79,57 @@ export default async function SourcePage({ params }: SourcePageProps) {
       )}
 
       <section className="mt-10 max-w-[720px]">
-        <h2 className="text-xl font-semibold text-ink">핵심만 읽기</h2>
+        <h2 className="text-xl font-semibold text-ink">이 글에서 얻어갈 것</h2>
         {source.summary && (
           <p className="mt-4 text-[16px] leading-8 text-ink">{source.summary}</p>
         )}
-        {sourceAdvice.length === 0 && !source.summary && (
-          <p className="mt-4 text-[16px] leading-8 text-ink-muted">
-            아직 한국어 요약이 등록되지 않은 콘텐츠입니다. 원문에서 확인할 수 있습니다.
-          </p>
-        )}
         {sourceAdvice.length > 0 && (
-          <div className="mt-6 space-y-5">
-            {sourceAdvice.map((unit, index) => (
-              <section key={unit.id} className="rounded-xl border border-line bg-surface p-5">
-                <p className="text-xs font-medium text-ink-muted">0{index + 1}</p>
-                <h3 className="mt-2 text-lg font-semibold leading-snug text-ink">{unit.claim}</h3>
-                <p className="mt-3 text-[15px] leading-7 text-ink">{unit.body}</p>
-              </section>
-            ))}
+          <>
+            <ol className="mt-5 space-y-2 border-l-2 border-focus-soft pl-5 text-sm text-ink-muted">
+              {sourceAdvice.slice(0, 8).map((unit) => (
+                <li key={unit.id}>{unit.claim}</li>
+              ))}
+            </ol>
+            <div className="mt-10 space-y-10">
+              {sourceAdvice.map((unit, index) => (
+                <div key={unit.id}>
+                  {index > 0 && index % 2 === 0 && images.length > 0 && (
+                    <figure className="mb-8">
+                      <img
+                        src={images[(index / 2) % images.length]}
+                        alt=""
+                        className="aspect-[16/7] w-full rounded-xl border border-line object-cover"
+                      />
+                      <figcaption className="mt-2 text-xs text-ink-muted">
+                        {formatLabels[source.format]}에서 이어지는 장면과 자료
+                      </figcaption>
+                    </figure>
+                  )}
+                  <section>
+                    <p className="text-xs font-medium tracking-[0.14em] text-ink-muted">
+                      {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <h3 className="mt-2 text-[22px] font-semibold leading-snug text-ink">
+                      {unit.claim}
+                    </h3>
+                    <p className="mt-3 text-[16px] leading-8 text-ink">{unit.body}</p>
+                    <a
+                      href={adviceHref(source.url, source.youtubeId, unit.anchor)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-block text-xs text-ink-muted underline underline-offset-4"
+                    >
+                      원문 근거 보기 →
+                    </a>
+                  </section>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+        {sourceAdvice.length === 0 && !source.summary && (
+          <div className="mt-5 rounded-xl border border-line bg-surface p-5 text-[15px] leading-7 text-ink-muted">
+            이 콘텐츠는 원문과 이미지 메타데이터만 수집되어 있어, 한국어 본문을 만들 근거 조언이 아직 없습니다. 한국어 가공이 완료되면 이 자리에서 블로그 형식으로 제공됩니다.
           </div>
         )}
       </section>
@@ -113,4 +146,15 @@ export default async function SourcePage({ params }: SourcePageProps) {
       </footer>
     </article>
   );
+}
+
+function adviceHref(
+  sourceUrl: string,
+  youtubeId: string | null,
+  anchor: { kind: string; start?: number },
+): string {
+  if (anchor.kind === "timestamp" && youtubeId && anchor.start != null) {
+    return `https://www.youtube.com/watch?v=${youtubeId}&t=${anchor.start}s`;
+  }
+  return sourceUrl;
 }
