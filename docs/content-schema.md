@@ -45,7 +45,7 @@ domain: [ai, b2b]         # any of: ai, b2b, b2c, saas, marketplace, devtools, c
 ---
 id: yc-youtube-how-to-price-your-product
 title: How to Price Your Product         # original title
-title_ko: 제품 가격을 정하는 법            # Korean title
+title_ko: 제품 가격을 정하는 법            # Korean title; '' until written (ingest needs no API key), UI falls back to title
 url: https://www.youtube.com/watch?v=XXXXXXXXXXX
 origin: yc-youtube        # yc-youtube | lightcone | paul-graham | a16z
 format: video             # video | essay | blog | podcast

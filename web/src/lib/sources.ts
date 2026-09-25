@@ -8,7 +8,8 @@ import { yamlDateString } from "./yaml";
 const sourceFrontmatterSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
-  title_ko: z.string().min(1),
+  // Empty until a Korean title is written; ingest runs without an API key.
+  title_ko: z.string().default(""),
   url: z.string().min(1),
   origin: z.enum(ORIGINS),
   format: z.enum(SOURCE_FORMATS),
@@ -33,7 +34,7 @@ function parseSourceFile(filePath: string): Source {
   return {
     id: fm.id,
     title: fm.title,
-    titleKo: fm.title_ko,
+    titleKo: fm.title_ko || fm.title,
     url: fm.url,
     origin: fm.origin,
     format: fm.format,

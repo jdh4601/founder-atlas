@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { getSourceById, loadSources } from "./sources";
 
@@ -31,6 +33,39 @@ describe("loadSources", () => {
     expect(essay?.youtubeId).toBeNull();
     expect(essay?.thumbnail).toBeNull();
     expect(essay?.format).toBe("essay");
+  });
+});
+
+describe("loadSources with pipeline output", () => {
+  it("falls back to the original title when title_ko is empty", () => {
+    // The pipeline's ingest step leaves title_ko empty (no API key needed).
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "atlas-sources-"));
+    fs.mkdirSync(path.join(dir, "sources"));
+    fs.writeFileSync(
+      path.join(dir, "sources", "paul-graham-how-to-raise-money.md"),
+      [
+        "---",
+        "id: paul-graham-how-to-raise-money",
+        "title: How to Raise Money",
+        "title_ko: ''",
+        "url: https://paulgraham.com/fr.html",
+        "origin: paul-graham",
+        "format: essay",
+        "published: '2013-09-01'",
+        "speakers:",
+        "- Paul Graham",
+        "thumbnail: null",
+        "images: []",
+        "ingested_at: '2026-09-25'",
+        "---",
+        "",
+      ].join("\n"),
+    );
+
+    const [source] = loadSources(dir);
+
+    expect(source.titleKo).toBe("How to Raise Money");
+    expect(source.summary).toBe("");
   });
 });
 
