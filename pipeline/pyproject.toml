@@ -1,0 +1,37 @@
+[project]
+name = "founder-atlas-pipeline"
+version = "0.1.0"
+description = "Pipeline that turns source URLs into schema-conformant Markdown under content/."
+readme = "README.md"
+authors = [
+    { name = "DongHyun Jung", email = "jdh9490@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=0.69.0",
+    "click>=8.1.0",
+    "pydantic>=2.9.0",
+    "pyyaml>=6.0.2",
+    "rapidfuzz>=3.10.0",
+    "trafilatura>=2.0.0",
+    "youtube-transcript-api>=0.6.3",
+    "yt-dlp>=2024.12.13",
+    "python-dotenv>=1.0.1",
+    "requests>=2.32.0",
+]
+
+[project.scripts]
+atlas = "founder_atlas_pipeline.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-mock>=3.14.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
