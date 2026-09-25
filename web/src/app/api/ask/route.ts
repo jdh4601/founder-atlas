@@ -2,10 +2,12 @@ import { z } from "zod";
 import { loadAdvice } from "../../../lib/advice";
 import { createAnthropicJsonClient } from "../../../lib/anthropicClient";
 import { answerQuestion } from "../../../lib/ask";
+import { buildAskResponse } from "../../../lib/askPresentation";
 import { getContentDir } from "../../../lib/contentDir";
 import { loadRepoRootEnv } from "../../../lib/env";
 import { loadKeywordPages } from "../../../lib/keywords";
 import { appendQuestionLog } from "../../../lib/questionsLog";
+import { loadSources } from "../../../lib/sources";
 
 const requestSchema = z.object({ question: z.string().min(1) });
 
@@ -35,6 +37,7 @@ export async function POST(request: Request): Promise<Response> {
   const contentDir = getContentDir();
   const keywordPages = loadKeywordPages(contentDir);
   const advice = loadAdvice(contentDir);
+  const sources = loadSources(contentDir);
   const client = createAnthropicJsonClient(apiKey);
 
   const result = await answerQuestion(client, question, keywordPages, advice);
@@ -49,7 +52,8 @@ export async function POST(request: Request): Promise<Response> {
     clicked: null,
   });
 
-  return jsonResponse(result, { status: 200 });
+  const response = buildAskResponse(result, keywordPages, advice, sources);
+  return jsonResponse(response, { status: 200 });
 }
 
 function jsonResponse(body: unknown, init: { status: number }): Response {

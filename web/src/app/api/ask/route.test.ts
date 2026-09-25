@@ -63,9 +63,21 @@ describe("POST /api/ask", () => {
     expect(response.status).toBe(200);
     const body = await response.json();
     expect(body.answered).toBe(true);
-    expect(body.matched).toEqual(["pricing-strategy"]);
-    expect(body.citedAdvice).toEqual([
-      "yc-youtube-sample-pricing-lesson--01",
+    expect(body.matchedPages).toEqual([
+      {
+        slug: "pricing-strategy",
+        title: "가격 책정",
+        summary: "초기 제품의 가격을 얼마로, 어떻게 정할지에 대한 조언 모음",
+      },
+    ]);
+    expect(body.evidence).toEqual([
+      {
+        adviceId: "yc-youtube-sample-pricing-lesson--01",
+        claim: "초기 B2B 제품은 가격을 낮추지 말고 높게 시작하라",
+        sourceTitle: "제품 가격을 정하는 법 (샘플)",
+        url: "https://www.youtube.com/watch?v=SAMPLE0001A&t=120s",
+        label: "2:00부터 보기",
+      },
     ]);
 
     const logPath = path.join(contentDir, "questions", "log.jsonl");
