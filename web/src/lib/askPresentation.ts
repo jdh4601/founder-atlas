@@ -1,8 +1,6 @@
 import type { AskResult } from "./ask";
-import { buildEvidenceLink } from "./evidence";
+import { buildEvidenceEntries, type EvidenceEntry } from "./evidence";
 import { getKeywordBySlug } from "./keywords";
-import { getAdviceById } from "./advice";
-import { getSourceById } from "./sources";
 import type { Advice, KeywordPage, Source } from "./types";
 
 export interface MatchedKeywordPage {
@@ -11,19 +9,11 @@ export interface MatchedKeywordPage {
   readonly summary: string;
 }
 
-export interface AskEvidence {
-  readonly adviceId: string;
-  readonly claim: string;
-  readonly sourceTitle: string;
-  readonly url: string;
-  readonly label: string;
-}
-
 export interface AskApiResponse {
   readonly answered: boolean;
   readonly answer: string | null;
   readonly matchedPages: readonly MatchedKeywordPage[];
-  readonly evidence: readonly AskEvidence[];
+  readonly evidence: readonly EvidenceEntry[];
 }
 
 /**
@@ -42,7 +32,7 @@ export function buildAskResponse(
     answered: result.answered,
     answer: result.answer,
     matchedPages: buildMatchedPages(result.matched, keywordPages),
-    evidence: buildEvidence(result.citedAdvice, advice, sources),
+    evidence: buildEvidenceEntries(result.citedAdvice, advice, sources),
   };
 }
 
@@ -54,28 +44,5 @@ function buildMatchedPages(
     const page = getKeywordBySlug(keywordPages, slug);
     if (!page) return [];
     return [{ slug: page.slug, title: page.title, summary: page.summary }];
-  });
-}
-
-function buildEvidence(
-  citedAdviceIds: readonly string[],
-  advice: readonly Advice[],
-  sources: readonly Source[],
-): AskEvidence[] {
-  return citedAdviceIds.flatMap((id) => {
-    const unit = getAdviceById(advice, id);
-    if (!unit) return [];
-    const source = getSourceById(sources, unit.source);
-    if (!source) return [];
-    const link = buildEvidenceLink(unit, source);
-    return [
-      {
-        adviceId: unit.id,
-        claim: unit.claim,
-        sourceTitle: source.titleKo,
-        url: link.url,
-        label: link.label,
-      },
-    ];
   });
 }

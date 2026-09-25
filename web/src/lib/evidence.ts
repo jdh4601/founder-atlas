@@ -1,6 +1,17 @@
+import { getAdviceById } from "./advice";
+import { getSourceById } from "./sources";
 import type { Advice, Source } from "./types";
 
 export interface EvidenceLink {
+  readonly url: string;
+  readonly label: string;
+}
+
+/** A fully denormalized evidence chip: claim + source title + link. */
+export interface EvidenceEntry {
+  readonly adviceId: string;
+  readonly claim: string;
+  readonly sourceTitle: string;
   readonly url: string;
   readonly label: string;
 }
@@ -36,4 +47,31 @@ export function buildEvidenceLink(advice: Advice, source: Source): EvidenceLink 
     return { url: source.url, label };
   }
   return { url: source.url, label: "원문에서 보기" };
+}
+
+/**
+ * Resolves a list of advice ids into fully denormalized evidence entries,
+ * skipping any id whose advice or source can no longer be found.
+ */
+export function buildEvidenceEntries(
+  adviceIds: readonly string[],
+  advice: readonly Advice[],
+  sources: readonly Source[],
+): EvidenceEntry[] {
+  return adviceIds.flatMap((id) => {
+    const unit = getAdviceById(advice, id);
+    if (!unit) return [];
+    const source = getSourceById(sources, unit.source);
+    if (!source) return [];
+    const link = buildEvidenceLink(unit, source);
+    return [
+      {
+        adviceId: unit.id,
+        claim: unit.claim,
+        sourceTitle: source.titleKo,
+        url: link.url,
+        label: link.label,
+      },
+    ];
+  });
 }

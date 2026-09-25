@@ -1,4 +1,4 @@
-import { buildEvidenceLink, formatTimestamp } from "./evidence";
+import { buildEvidenceEntries, buildEvidenceLink, formatTimestamp } from "./evidence";
 import type { Advice, Source } from "./types";
 
 function makeSource(overrides: Partial<Source>): Source {
@@ -75,5 +75,27 @@ describe("buildEvidenceLink", () => {
     const link = buildEvidenceLink(advice, source);
     expect(link.url).toBe("https://example.com/essay");
     expect(link.label).toBe("원문에서 보기");
+  });
+});
+
+describe("buildEvidenceEntries", () => {
+  it("resolves advice ids into full evidence entries", () => {
+    const advice = [makeAdvice({ id: "advice--01" })];
+    const source = makeSource({});
+    const entries = buildEvidenceEntries(["advice--01"], advice, [source]);
+    expect(entries).toEqual([
+      {
+        adviceId: "advice--01",
+        claim: "가격을 높게 시작하라",
+        sourceTitle: "가격을 정하는 법",
+        url: "https://www.youtube.com/watch?v=SAMPLE0001A&t=750s",
+        label: "12:30부터 보기",
+      },
+    ]);
+  });
+
+  it("skips ids whose advice or source can't be found", () => {
+    const entries = buildEvidenceEntries(["does-not-exist"], [], []);
+    expect(entries).toEqual([]);
   });
 });
