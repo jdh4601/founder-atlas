@@ -1,2 +1,1 @@
-def main() -> None:
-    print("Hello from founder-atlas-pipeline!")
+"""Founder Atlas content pipeline."""
