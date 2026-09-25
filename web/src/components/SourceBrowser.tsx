@@ -78,7 +78,7 @@ export function SourceBrowser({ sources }: SourceBrowserProps) {
       {filtered.length === 0 ? (
         <p className="border-t border-line py-16 text-center text-sm text-ink-muted">일치하는 콘텐츠가 없습니다. 검색어나 해시태그를 바꿔보세요.</p>
       ) : (
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
           {filtered.map((source) => (
             <li key={source.id} className="min-w-0">
               <Link
@@ -98,8 +98,8 @@ export function SourceBrowser({ sources }: SourceBrowserProps) {
                   )}
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col p-3.5">
-                  <h2 className="line-clamp-2 text-[15px] font-semibold leading-snug text-ink transition-colors group-hover:text-focus">{source.title}</h2>
-                  <p className="mt-2 text-xs text-ink-muted">
+                  <h2 className="line-clamp-3 text-[14px] font-semibold leading-snug text-ink transition-colors group-hover:text-focus sm:text-[15px]">{source.title}</h2>
+                  <p className="mt-2 line-clamp-2 text-[11px] text-ink-muted sm:text-xs">
                     {source.origin} · {source.format}{source.published ? ` · ${source.published}` : ""}
                   </p>
                   {source.speakers.length > 0 && <p className="mt-1 line-clamp-1 text-xs text-ink-muted">{source.speakers.join(", ")}</p>}
