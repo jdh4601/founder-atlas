@@ -11,6 +11,7 @@ content/
 ├── sources/
 │   ├── {source_id}.md             # metadata + Korean one-paragraph summary
 │   └── {source_id}.transcript.json   # internal raw text, never shown in UI
+├── source_articles/{source_id}.md     # Korean reading article generated from raw source
 ├── advice/{advice_id}.md  # one advice unit
 ├── keywords/{slug}.md     # one keyword page (human-reviewed)
 └── questions/log.jsonl    # one JSON object per question
@@ -70,6 +71,31 @@ ingested_at: 2026-09-25
 ```
 
 Only one of `segments` / `paragraphs` is present.
+
+## source_articles/{source_id}.md
+
+`atlas write-source-articles --all --jobs 4` generates one source-grounded
+Korean article per ingested transcript. It resumes unchanged files using the
+SHA-256 of the raw transcript. Generated articles remain `reviewed: false`
+until a person checks them against the source.
+
+```yaml
+---
+source: yc-youtube-how-to-price-your-product
+title_ko: 제품 가격을 정하는 법
+lead: 한국어 도입 문단
+source_sha256: 64-character hexadecimal digest
+generated_at: 2026-09-27
+reviewed: false
+---
+## 첫 번째 소제목
+
+원문을 한국어로 재구성한 본문.
+```
+
+The web detail page displays this article when present and uses collected
+source `thumbnail`/`images` for its gallery. It otherwise displays the
+existing advice-based view.
 
 ## advice/{advice_id}.md
 

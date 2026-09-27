@@ -37,7 +37,7 @@ describe("loadSources", () => {
 });
 
 describe("loadSources with pipeline output", () => {
-  it("falls back to the original title when title_ko is empty", () => {
+  it("uses a Korean fallback until a source article is available", () => {
     // The pipeline's ingest step leaves title_ko empty (no API key needed).
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), "atlas-sources-"));
     fs.mkdirSync(path.join(dir, "sources"));
@@ -64,8 +64,25 @@ describe("loadSources with pipeline output", () => {
 
     const [source] = loadSources(dir);
 
-    expect(source.titleKo).toBe("How to Raise Money");
+    expect(source.titleKo).toBe("창업 인사이트 핵심 정리");
     expect(source.summary).toBe("");
+
+    fs.mkdirSync(path.join(dir, "source_articles"));
+    fs.writeFileSync(
+      path.join(dir, "source_articles", "paul-graham-how-to-raise-money.md"),
+      [
+        "---",
+        "source: paul-graham-how-to-raise-money",
+        "title_ko: 투자금을 모으는 법",
+        "lead: 소개",
+        `source_sha256: ${"a".repeat(64)}`,
+        "generated_at: '2026-09-27'",
+        "reviewed: false",
+        "---",
+        "## 본문",
+      ].join("\n"),
+    );
+    expect(loadSources(dir)[0].titleKo).toBe("투자금을 모으는 법");
   });
 });
 

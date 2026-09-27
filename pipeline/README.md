@@ -40,6 +40,10 @@ uv run atlas build-pages --provider template  # offline evidence-led drafts
 
 # 5. Counts + 20-keywords-per-category check (exit 1 on violation)
 uv run atlas stats
+
+# 6. Translate and organize every stored source into Korean reading articles
+uv run atlas write-source-articles --all --jobs 4
+uv run atlas write-source-articles <source_id> --force
 ```
 
 Edit a candidates file before ingesting: delete lines you don't want, `#` comments are ignored.

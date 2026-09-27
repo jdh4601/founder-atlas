@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
 import { getContentDir } from "@/lib/contentDir";
 import { getSourceById } from "@/lib/sources";
 import { getSiteData } from "@/lib/site";
+import { loadSourceArticle } from "@/lib/sourceArticles";
 
 interface SourcePageProps {
   readonly params: Promise<{ id: string }>;
@@ -28,9 +30,10 @@ export default async function SourcePage({ params }: SourcePageProps) {
   const { advice, sources } = getSiteData(getContentDir());
   const source = getSourceById(sources, id);
   if (!source) notFound();
+  const article = loadSourceArticle(getContentDir(), id);
 
   const sourceAdvice = advice.filter((unit) => unit.source === source.id);
-  const images = [source.thumbnail, ...source.images].filter(
+  const images = [...new Set([source.thumbnail, ...source.images])].filter(
     (value): value is string => Boolean(value),
   );
 
@@ -46,26 +49,28 @@ export default async function SourcePage({ params }: SourcePageProps) {
           {source.published ? ` · ${source.published}` : ""}
         </p>
         <h1 className="mt-3 max-w-[760px] text-[30px] font-semibold leading-tight text-ink sm:text-[42px]">
-          {source.titleKo}
+          {article?.titleKo ?? source.titleKo}
         </h1>
         {source.speakers.length > 0 && (
           <p className="mt-3 text-sm text-ink-muted">{source.speakers.join(", ")}</p>
         )}
-        <p className="mt-5 inline-flex rounded-full bg-focus-soft px-3 py-1.5 text-sm text-ink-muted">
-          한국어 블로그 정리
-        </p>
+        {article && (
+          <p className="mt-5 inline-flex rounded-full bg-focus-soft px-3 py-1.5 text-sm text-ink-muted">
+            {article.reviewed ? "한국어 번역·정리" : "AI 번역·정리 · 검수 전"}
+          </p>
+        )}
       </header>
 
       {images.length > 0 && (
-        <div className="mt-8 grid gap-3 sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+        <div className={`mt-8 grid gap-3 ${images.length > 1 ? "sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]" : ""}`}>
           <img
             src={images[0]}
-            alt={source.titleKo}
+            alt={article?.titleKo ?? source.titleKo}
             className="aspect-video w-full rounded-xl border border-line object-cover"
           />
           {images.length > 1 && (
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-1">
-              {images.slice(1, 3).map((image) => (
+              {images.slice(1).map((image) => (
                 <img
                   key={image}
                   src={image}
@@ -78,6 +83,23 @@ export default async function SourcePage({ params }: SourcePageProps) {
         </div>
       )}
 
+      {article ? (
+        <section className="mt-10 max-w-[720px]">
+          <p className="border-l-2 border-focus pl-5 text-[18px] leading-8 text-ink">
+            {article.lead}
+          </p>
+          <div className="mt-10 space-y-5 text-[16px] leading-8 text-ink">
+            <ReactMarkdown
+              components={{
+                h2: ({ children }) => <h2 className="mt-12 text-[24px] font-semibold leading-snug">{children}</h2>,
+                p: ({ children }) => <p>{children}</p>,
+              }}
+            >
+              {article.body}
+            </ReactMarkdown>
+          </div>
+        </section>
+      ) : (
       <section className="mt-10 max-w-[720px]">
         <h2 className="text-xl font-semibold text-ink">이 글에서 얻어갈 것</h2>
         {source.summary && (
@@ -93,18 +115,6 @@ export default async function SourcePage({ params }: SourcePageProps) {
             <div className="mt-10 space-y-10">
               {sourceAdvice.map((unit, index) => (
                 <div key={unit.id}>
-                  {index > 0 && index % 2 === 0 && images.length > 0 && (
-                    <figure className="mb-8">
-                      <img
-                        src={images[(index / 2) % images.length]}
-                        alt=""
-                        className="aspect-[16/7] w-full rounded-xl border border-line object-cover"
-                      />
-                      <figcaption className="mt-2 text-xs text-ink-muted">
-                        {formatLabels[source.format]}에서 이어지는 장면과 자료
-                      </figcaption>
-                    </figure>
-                  )}
                   <section>
                     <p className="text-xs font-medium tracking-[0.14em] text-ink-muted">
                       {String(index + 1).padStart(2, "0")}
@@ -133,6 +143,7 @@ export default async function SourcePage({ params }: SourcePageProps) {
           </div>
         )}
       </section>
+      )}
 
       <footer className="mt-12 border-t border-line pt-6">
         <a

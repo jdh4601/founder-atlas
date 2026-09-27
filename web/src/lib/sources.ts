@@ -5,6 +5,7 @@ import { z } from "zod";
 import { ORIGINS, SOURCE_FORMATS, type Source } from "./types";
 import { yamlDateString } from "./yaml";
 import { toKoreanSourceTitle } from "./sourceTitle";
+import { loadSourceArticle } from "./sourceArticles";
 
 const sourceFrontmatterSchema = z.object({
   id: z.string().min(1),
@@ -32,10 +33,11 @@ function parseSourceFile(filePath: string): Source {
     );
   }
   const fm = result.data;
+  const article = loadSourceArticle(path.dirname(path.dirname(filePath)), fm.id);
   return {
     id: fm.id,
     title: fm.title,
-    titleKo: toKoreanSourceTitle(fm.title, fm.title_ko, fm.id),
+    titleKo: article?.titleKo ?? toKoreanSourceTitle(fm.title, fm.title_ko, fm.id),
     url: fm.url,
     origin: fm.origin,
     format: fm.format,

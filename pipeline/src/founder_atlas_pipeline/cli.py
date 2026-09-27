@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import os
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import click
@@ -24,6 +25,7 @@ from founder_atlas_pipeline.ingest.fetchers import (
 from founder_atlas_pipeline.ingest.pipeline import ORIGINS, ingest_many
 from founder_atlas_pipeline.paths import find_repo_root
 from founder_atlas_pipeline.sources import list_source_ids
+from founder_atlas_pipeline.source_articles import CLIArticleWriter, generate_article
 from founder_atlas_pipeline.stats import collect_stats, format_stats
 from founder_atlas_pipeline.taxonomy import load_taxonomy
 
@@ -172,6 +174,45 @@ def _extract_targets(content: Path, source_id: str | None, extract_all: bool) ->
     # Re-extracting a source would append duplicate advice, so --all only
     # picks sources that have none yet.
     return [s for s in list_source_ids(content) if not list_advice_ids(content, s)]
+
+
+@main.command("write-source-articles")
+@click.argument("source_id", required=False)
+@click.option("--all", "write_all", is_flag=True, help="Write every ingested source article.")
+@click.option("--force", is_flag=True, help="Regenerate existing articles.")
+@click.option("--jobs", type=click.IntRange(1, 8), default=1, show_default=True)
+@click.option("--provider", type=click.Choice(("codex-cli", "claude-code-cli")), default="codex-cli")
+@click.pass_context
+def write_source_articles_command(
+    ctx: click.Context, source_id: str | None, write_all: bool, force: bool, jobs: int, provider: str
+) -> None:
+    """Turn raw source text into a grounded Korean reading article."""
+    if not source_id and not write_all:
+        raise click.UsageError("Give a SOURCE_ID or --all.")
+    content = _content_dir(ctx)
+    targets = [source_id] if source_id else list_source_ids(content)
+    writer = CLIArticleWriter(provider)
+    counts = {"written": 0, "skipped": 0, "failed": 0}
+    def run_one(target: str):
+        try:
+            return target, generate_article(content, target, writer, force=force), None
+        except Exception as exc:
+            return target, None, exc
+
+    with ThreadPoolExecutor(max_workers=jobs) as executor:
+        futures = [executor.submit(run_one, target) for target in targets]
+        for future in as_completed(futures):
+            target, result, exc = future.result()
+            if exc is not None:
+                counts["failed"] += 1
+                click.echo(f"[failed] {target}: {exc}", err=True)
+                continue
+            assert result is not None
+            counts[result.status] += 1
+            click.echo(f"[{result.status}] {target}")
+    click.echo(", ".join(f"{status}: {count}" for status, count in counts.items()))
+    if counts["failed"]:
+        sys.exit(1)
 
 
 @main.command("build-pages")

@@ -13,7 +13,7 @@ const topicRules: readonly [RegExp, string][] = [
   [/growth|distribution|retention|launch/i, "스타트업 성장"],
   [/product|pmf|build|software/i, "제품과 시장 적합성"],
   [/hiring|hire|founder|team|culture/i, "창업자와 팀"],
-  [/ai|generative|model/i, "AI 스타트업"],
+  [/\bai\b|generative|\bmodel\b/i, "AI 스타트업"],
   [/idea|problem|market/i, "아이디어와 시장"],
 ];
 
