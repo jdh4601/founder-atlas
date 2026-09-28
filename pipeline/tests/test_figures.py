@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import pytest
+import requests
 
 from founder_atlas_pipeline.figures import (
     Figure,
@@ -307,3 +308,22 @@ def test_choose_best_frame_falls_back_to_the_middle_frame_on_a_bad_pick(tmp_path
     choose_best_frame(candidates, tmp_path / "out.jpg", Picker())
 
     assert (tmp_path / "out.jpg").read_text() == "frame 1"
+
+
+def test_add_figures_falls_back_to_search_when_the_original_page_fails(tmp_path: Path) -> None:
+    content = _write_blog_source(tmp_path, "paul-graham")
+
+    def failing_fetch(url: str) -> str:
+        raise requests.HTTPError("500 Server Error")
+
+    result = add_figures_to_source(
+        content,
+        tmp_path / "public",
+        "paul-graham-essay",
+        FakePlanner({"figures": []}),
+        capture_frame=lambda *args: None,
+        fetch_html=failing_fetch,
+        search_figures=lambda body, count: [Figure(1, f"/f/{i}.jpg", "a", "c") for i in range(count)],
+    )
+
+    assert result.count == 2

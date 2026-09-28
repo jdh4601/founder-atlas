@@ -12,6 +12,7 @@ from __future__ import annotations
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -441,7 +442,12 @@ def add_figures_to_source(
             capture_frame(source.youtube_id, frame.start, public_dir / "figures" / source_id / name)
             figures.append(Figure(frame.after_paragraph, f"/figures/{source_id}/{name}", frame.alt, frame.caption))
     elif fetch_html is not None:
-        images = extract_article_images(fetch_html(source.url))
+        try:
+            images = extract_article_images(fetch_html(source.url))
+        except requests.RequestException as exc:
+            # Essays rarely have images; a flaky original page should not block search.
+            print(f"[warn] {source_id}: original page unavailable, using search only ({exc})", file=sys.stderr)
+            images = []
         credit = _ORIGIN_CREDITS.get(source.origin, source.origin)
         figures = plan_article_figures(body, images, planner, credit=credit)
         missing = target_figure_count(body) if not figures else MIN_FIGURES - len(figures)
