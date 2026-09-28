@@ -203,4 +203,22 @@ describe("answerQuestion", () => {
     expect(result.answered).toBe(false);
     expect(result.answer).toBeNull();
   });
+
+  it("skips keyword routing and answers from the given keyword only when scoped", async () => {
+    const client = mockClient([
+      { answer: "첫 고객은 직접 찾으세요.", citedAdviceIds: ["advice--02", "advice--01"] },
+    ]);
+
+    const result = await answerQuestion(
+      client,
+      "어디서부터 시작하나요?",
+      keywordPages,
+      advice,
+      "first-customers",
+    );
+
+    expect(client.createJson).toHaveBeenCalledTimes(1);
+    expect(result.matched).toEqual(["first-customers"]);
+    expect(result.citedAdvice).toEqual(["advice--02"]);
+  });
 });

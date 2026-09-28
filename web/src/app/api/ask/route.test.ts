@@ -125,6 +125,29 @@ describe("POST /api/ask", () => {
     expect(createAnthropicJsonClient).not.toHaveBeenCalled();
   });
 
+  it("answers within a keyword scope with a single model call", async () => {
+    process.env.ANTHROPIC_API_KEY = "sk-test-key";
+    const createJson = jest.fn().mockResolvedValueOnce({
+      answer: "가격을 높게 시작하세요.",
+      citedAdviceIds: ["yc-youtube-sample-pricing-lesson--01"],
+    });
+    (createAnthropicJsonClient as jest.Mock).mockReturnValue({ createJson });
+
+    const response = await POST(
+      makeRequest({ question: "얼마로?", keyword: "pricing-strategy" }),
+    );
+
+    expect(response.status).toBe(200);
+    expect((await response.json()).answered).toBe(true);
+    expect(createJson).toHaveBeenCalledTimes(1);
+  });
+
+  it("rejects a keyword scope that has no page", async () => {
+    process.env.ANTHROPIC_API_KEY = "sk-test-key";
+    const response = await POST(makeRequest({ question: "얼마로?", keyword: "nope" }));
+    expect(response.status).toBe(400);
+  });
+
   it("rejects unknown providers", async () => {
     const response = await POST(makeRequest({ question: "가격은?", provider: "other" }));
     expect(response.status).toBe(400);

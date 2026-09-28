@@ -15,6 +15,7 @@ export const runtime = "nodejs";
 const requestSchema = z.object({
   question: z.string().min(1),
   provider: z.enum(["anthropic", "codex-cli", "claude-code-cli"]).default("anthropic"),
+  keyword: z.string().min(1).optional(),
 });
 
 /**
@@ -31,7 +32,7 @@ export async function POST(request: Request): Promise<Response> {
     return jsonResponse({ error: "question is required" }, { status: 400 });
   }
   const question = parsed.data.question;
-  const { provider } = parsed.data;
+  const { provider, keyword } = parsed.data;
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (provider === "anthropic" && !apiKey) {
@@ -43,6 +44,9 @@ export async function POST(request: Request): Promise<Response> {
 
   const contentDir = getContentDir();
   const keywordPages = loadKeywordPages(contentDir);
+  if (keyword && !keywordPages.some((page) => page.slug === keyword)) {
+    return jsonResponse({ error: "unknown keyword" }, { status: 400 });
+  }
   const advice = loadAdvice(contentDir);
   const sources = loadSources(contentDir);
   const client = provider === "codex-cli"
@@ -53,7 +57,7 @@ export async function POST(request: Request): Promise<Response> {
 
   let result;
   try {
-    result = await answerQuestion(client, question, keywordPages, advice);
+    result = await answerQuestion(client, question, keywordPages, advice, keyword);
   } catch {
     return jsonResponse(
       { error: `${provider} is unavailable or failed to answer` },

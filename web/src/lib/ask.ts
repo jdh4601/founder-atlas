@@ -36,14 +36,20 @@ citedAdviceIds에 담으세요 (목록에 있는 id만 사용, 지어내지 마�
  * Step 2 (only if step 1 matched something): ask Claude for a short Korean
  * answer grounded only in those pages' advice (claim + body, never
  * `quote`), then drop any cited advice id that doesn't actually exist.
+ *
+ * When `scopeKeyword` is given (a question asked from a keyword page),
+ * step 1 is skipped and only that keyword's advice is used.
  */
 export async function answerQuestion(
   client: AnthropicJsonClient,
   question: string,
   keywordPages: readonly KeywordPage[],
   advice: readonly Advice[],
+  scopeKeyword?: string,
 ): Promise<AskResult> {
-  const matched = await matchKeywords(client, question, keywordPages);
+  const matched = scopeKeyword
+    ? [scopeKeyword]
+    : await matchKeywords(client, question, keywordPages);
   if (matched.length === 0) return emptyResult();
 
   const relevantAdvice = adviceForKeywords(advice, matched);
