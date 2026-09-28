@@ -16,6 +16,14 @@ AI 시대 이전에는 뛰어난 엔터프라이즈 스타트업을 가늠하는
 
 소비자 대상 기업은 전혀 다른 길을 걸었다. 대개 첫해가 훨씬 지난 뒤까지 수익화를 미루고, 수백만 명에서 수천만 명의 사용자를 확보한 다음 광고를 통해 수익을 내는 방식을 택했다. 그러나 최근 18개월간 관찰한 수백 개 기업의 데이터에 따르면, 이제 B2B와 B2C 모두에서 이 기준은 분명히 달라졌다.
 
+![AI 기업의 성장 지표](<https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/06/INLINE-3-The-Path-to-Series-A_-Revenue-Benchmarks-for-B2B-Gen-AI-Startups-1-scaled.png> "최근 18개월간 관찰한 수백 개 기업의 데이터는 AI 시대에 기업용·소비자용 스타트업의 성장 기준이 달라졌음을 보여준다. 출처: a16z")
+
+![AI 스타트업 성장 데이터](<https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/06/INLINE-1-B2B-Generative-AI-Companies-1-scaled.png> "최근 18개월간 관찰한 기업들을 바탕으로, AI 스타트업의 성장 양상을 나타낸 자료다. 출처: a16z")
+
+![달라진 AI 기업 성장 기준](<https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/06/INLINE-4-The-Path-to-Series-A_-Revenue-Benchmarks-for-Consumer-Gen-AI-Startups-1-scaled.png> "과거와 달라진 AI 기업의 성장 기준을 최근 관찰 데이터로 보여준다. 출처: a16z")
+
+![기업용·소비자용 AI 기업 지표](<https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/06/INLINE-2-B2C-Generative-AI-Companies-1-scaled.png> "기업용과 소비자용 AI 기업에서 새롭게 나타난 성장 양상을 보여주는 자료다. 출처: a16z")
+
 ## 더 빠른 매출이 더 빠른 투자로 이어진다
 
 표본에 포함된 엔터프라이즈 기업의 중간값은 첫해에 ARR 200만 달러를 넘어섰다. 이들은 수익화를 시작한 지 불과 9개월 만에 시리즈 A 투자를 유치했다. 과거 최고 수준으로 여겨졌던 ARR 0달러에서 100만 달러까지의 성장세는 이제 관찰되는 성장 범위의 하단에 가까워졌다.
