@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
+import { ArticleBody } from "@/components/ArticleBody";
 import { getContentDir } from "@/lib/contentDir";
 import { getSourceById } from "@/lib/sources";
 import { getSiteData } from "@/lib/site";
@@ -41,8 +41,8 @@ export default async function SourcePage({ params }: SourcePageProps) {
 
   return (
     <article className="mx-auto max-w-[900px] px-5 pb-24 pt-10 sm:pt-14">
-      <Link href="/explore" className="text-sm text-ink-muted hover:text-ink">
-        ← 콘텐츠 탐색으로 돌아가기
+      <Link href="/#contents" className="text-sm text-ink-muted hover:text-ink">
+        ← 콘텐츠 목록으로 돌아가기
       </Link>
 
       <header className="mt-7 border-b border-line pb-8">
@@ -92,15 +92,8 @@ export default async function SourcePage({ params }: SourcePageProps) {
           <p className="border-l-2 border-focus pl-5 text-[18px] leading-8 text-ink">
             {article.lead}
           </p>
-          <div className="mt-10 space-y-5 text-[16px] leading-8 text-ink">
-            <ReactMarkdown
-              components={{
-                h2: ({ children }) => <h2 className="mt-12 text-[24px] font-semibold leading-snug">{children}</h2>,
-                p: ({ children }) => <p>{children}</p>,
-              }}
-            >
-              {article.body}
-            </ReactMarkdown>
+          <div className="mt-10">
+            <ArticleBody markdown={article.body} />
           </div>
         </section>
       ) : (

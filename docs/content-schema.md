@@ -92,6 +92,10 @@ generated_at: 2026-09-27
 원문을 한국어로 재구성한 본문.
 ```
 
+Figures may be placed in the body as `![alt](url "caption")`; the web renders
+each as a captioned figure (the caption should name the original source). They
+are hand-added, so `write-source-articles --force` removes them.
+
 The web detail page displays a one-sentence summary, this article, and two
 related source links when present, and uses collected
 source `thumbnail`/`images` for its gallery. It otherwise displays the
