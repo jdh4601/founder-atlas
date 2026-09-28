@@ -123,12 +123,43 @@ def test_codex_cli_attaches_images(monkeypatch: pytest.MonkeyPatch, tmp_path: Pa
     assert seen["argv"][-3:] == ["-i", str(image), "-"]
 
 
-def test_claude_code_cli_rejects_images(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+def test_claude_code_cli_reads_copied_images_with_scoped_read(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
     monkeypatch.setattr(cli_providers.shutil, "which", lambda name: f"/usr/bin/{name}")
-    with pytest.raises(ValueError):
-        cli_providers.run_structured_cli(
-            "claude-code-cli", system_prompt="s", user_prompt="u", schema=SCHEMA, images=[tmp_path / "a.jpg"]
-        )
+    image = tmp_path / "figure.png"
+    image.write_bytes(b"png")
+    seen = {}
+
+    def fake_run(argv: list[str], prompt: str, cwd: Path) -> tuple[bytes, bytes]:
+        seen.update(argv=argv, prompt=prompt, copied=(cwd / "image-0.png").read_bytes())
+        return b'{"is_error":false,"structured_output":{"answer":"ok"}}', b""
+
+    monkeypatch.setattr(cli_providers, "_communicate_bounded", fake_run)
+    cli_providers.run_structured_cli(
+        "claude-code-cli", system_prompt="s", user_prompt="u", schema=SCHEMA, images=[image]
+    )
+
+    argv = seen["argv"]
+    assert argv[argv.index("--tools") + 1] == "Read"
+    assert argv[argv.index("--allowedTools") + 1] == "Read(./image-*)"
+    assert seen["copied"] == b"png"
+    assert "image-0.png" in seen["prompt"]
+
+
+def test_claude_code_cli_keeps_tools_disabled_without_images(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(cli_providers.shutil, "which", lambda name: f"/usr/bin/{name}")
+    seen = {}
+
+    def fake_run(argv: list[str], prompt: str, cwd: Path) -> tuple[bytes, bytes]:
+        seen["argv"] = argv
+        return b'{"is_error":false,"structured_output":{"answer":"ok"}}', b""
+
+    monkeypatch.setattr(cli_providers, "_communicate_bounded", fake_run)
+    cli_providers.run_structured_cli("claude-code-cli", system_prompt="s", user_prompt="u", schema=SCHEMA)
+
+    assert seen["argv"][seen["argv"].index("--tools") + 1] == ""
+    assert "--allowedTools" not in seen["argv"]
 
 
 def test_validate_accepts_booleans() -> None:

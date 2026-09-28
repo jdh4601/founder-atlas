@@ -110,12 +110,15 @@ class ImageReviewer(Protocol):
     def review(self, paragraph: str, image: Path) -> dict: ...
 
 
-class CodexImageReviewer:
-    """Looks at a downloaded image with Codex CLI (the only provider here that accepts images)."""
+class CLIImageReviewer:
+    """Looks at a downloaded image with a local model CLI that can read images."""
+
+    def __init__(self, provider: str) -> None:
+        self.provider = provider
 
     def review(self, paragraph: str, image: Path) -> dict:
         return run_structured_cli(
-            "codex-cli",
+            self.provider,
             system_prompt=REVIEW_SYSTEM_PROMPT,
             user_prompt=f"한국어 문단:\n{paragraph}",
             schema=REVIEW_SCHEMA,

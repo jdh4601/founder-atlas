@@ -242,7 +242,7 @@ def add_figures_command(
         VIDEO_SCHEMA,
         VIDEO_SYSTEM_PROMPT,
         CLIFigurePlanner,
-        CodexFramePicker,
+        CLIFramePicker,
         FigureResult,
         add_figures_to_source,
         capture_youtube_frame,
@@ -254,7 +254,7 @@ def add_figures_command(
         CHOOSE_SYSTEM_PROMPT,
         PICK_SCHEMA,
         PICK_SYSTEM_PROMPT,
-        CodexImageReviewer,
+        CLIImageReviewer,
         download_image,
         plan_search_figures,
         search_bing_images,
@@ -275,7 +275,7 @@ def add_figures_command(
     choose_planner = CLIFigurePlanner(provider, CHOOSE_SYSTEM_PROMPT, CHOOSE_SCHEMA)
     counts = {"written": 0, "partial": 0, "skipped": 0, "no-figures": 0, "failed": 0}
 
-    frame_picker = CodexFramePicker()
+    frame_picker = CLIFramePicker(provider)
 
     def capture(video_id: str, start: int, output: Path) -> None:
         capture_youtube_frame(video_id, start, output, frame_picker)
@@ -297,7 +297,7 @@ def add_figures_command(
                     body,
                     target,
                     pick_planner,
-                    CodexImageReviewer(),
+                    CLIImageReviewer(provider),
                     chooser=choose_planner,
                     search=search_bing_images,
                     download=download_image,

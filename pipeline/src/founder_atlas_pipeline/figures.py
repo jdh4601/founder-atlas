@@ -312,12 +312,15 @@ class FramePicker(Protocol):
     def pick(self, frames: list[Path]) -> int: ...
 
 
-class CodexFramePicker:
-    """Chooses the clearest of several candidate frames with Codex CLI's image input."""
+class CLIFramePicker:
+    """Chooses the clearest of several candidate frames with a local model CLI."""
+
+    def __init__(self, provider: str) -> None:
+        self.provider = provider
 
     def pick(self, frames: list[Path]) -> int:
         result = run_structured_cli(
-            "codex-cli", system_prompt=FRAME_PICK_PROMPT, user_prompt=f"후보 {len(frames)}장",
+            self.provider, system_prompt=FRAME_PICK_PROMPT, user_prompt=f"후보 {len(frames)}장",
             schema=FRAME_PICK_SCHEMA, images=frames,
         )
         return result["best"]

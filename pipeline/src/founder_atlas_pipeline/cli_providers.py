@@ -151,13 +151,12 @@ def run_structured_cli(
 
     No API key is required by this adapter. Both CLIs receive only the prompt
     supplied here and have no writable project workspace. Claude's tools are
-    disabled; Codex runs with a read-only sandbox in an empty directory.
+    disabled except Read on copied `images`; Codex runs with a read-only sandbox
+    in an empty directory and receives `images` as attachments.
     """
     executable = {"codex-cli": "codex", "claude-code-cli": "claude"}.get(provider)
     if executable is None:
         raise ValueError(f"Unknown CLI provider: {provider}")
-    if images and provider != "codex-cli":
-        raise ValueError("Only codex-cli accepts image attachments")
     if shutil.which(executable) is None:
         raise CLIProviderError(f"{executable} CLI is not installed or not on PATH")
 
@@ -194,14 +193,23 @@ def run_structured_cli(
             _validate(result, schema, provider)
             return result
 
+        # Claude reads images only through its Read tool, so copy them into the
+        # empty workdir and allow Read for exactly those files.
+        image_names = []
+        for index, image in enumerate(images):
+            name = f"image-{index}{image.suffix}"
+            shutil.copyfile(image, workdir / name)
+            image_names.append(name)
+        tool_args = ["--tools", "Read", "--allowedTools", "Read(./image-*)"] if images else ["--tools", ""]
+        if image_names:
+            prompt += f"\n\n첨부 이미지: 현재 폴더의 {', '.join(image_names)} 파일을 Read 도구로 모두 열어 본 뒤 답하세요."
         argv = [
             executable,
             "--print",
             "--safe-mode",
             "--restricted",
             "--strict-mcp-config",
-            "--tools",
-            "",
+            *tool_args,
             "--permission-mode",
             "dontAsk",
             "--permission-prompts",

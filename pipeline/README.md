@@ -46,9 +46,10 @@ uv run atlas write-source-articles --all --jobs 4
 uv run atlas write-source-articles <source_id> --force
 uv run atlas write-source-tldrs  # add one-line takeaways to older articles
 
-# 7. Put 2-5 figures inside each Korean article (needs yt-dlp, ffmpeg, codex CLI)
+# 7. Put 2-5 figures inside each Korean article (needs yt-dlp, ffmpeg, a model CLI)
 uv run atlas add-figures --all --jobs 3
 uv run atlas add-figures <source_id> --force  # replace an article's figures
+uv run atlas add-figures --all --recapture-frames --provider claude-code-cli  # re-pick clearer frames
 ```
 
 Edit a candidates file before ingesting: delete lines you don't want, `#` comments are ignored.
@@ -63,7 +64,7 @@ Edit a candidates file before ingesting: delete lines you don't want, `#` commen
   model-chosen transcript quote (fuzzy match >= 90), saved to
   `web/public/figures/{source_id}/`. Blog posts get every original body image
   (`wp-image-*`). Essays, and posts with fewer than 2 original images, are
-  topped up by Bing image search; Codex CLI looks at each downloaded candidate,
+  topped up by Bing image search; the model CLI looks at each downloaded candidate,
   keeps only relevant ones, and captions what it actually shows. `--all`
   skips articles that already contain figures.
 - `--all` skips sources that already have advice. A direct re-extract skips
