@@ -94,3 +94,45 @@ def test_missing_cli_has_clear_error(monkeypatch: pytest.MonkeyPatch) -> None:
         cli_providers.run_structured_cli(
             "codex-cli", system_prompt="s", user_prompt="u", schema=SCHEMA
         )
+
+
+def test_validate_accepts_integers_but_not_booleans_or_floats() -> None:
+    schema = {"type": "object", "properties": {"n": {"type": "integer"}}, "required": ["n"]}
+    cli_providers._validate({"n": 3}, schema, "codex-cli")
+    for bad in (True, 2.5, "3"):
+        with pytest.raises(cli_providers.CLIProviderError):
+            cli_providers._validate({"n": bad}, schema, "codex-cli")
+
+
+def test_codex_cli_attaches_images(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    monkeypatch.setattr(cli_providers.shutil, "which", lambda name: f"/usr/bin/{name}")
+    image = tmp_path / "figure.jpg"
+    image.write_bytes(b"jpg")
+    seen = {}
+
+    def fake_run(argv: list[str], prompt: str, cwd: Path) -> tuple[bytes, bytes]:
+        seen["argv"] = argv
+        Path(argv[argv.index("--output-last-message") + 1]).write_text('{"answer":"ok"}', encoding="utf-8")
+        return b"", b""
+
+    monkeypatch.setattr(cli_providers, "_communicate_bounded", fake_run)
+    cli_providers.run_structured_cli(
+        "codex-cli", system_prompt="s", user_prompt="u", schema=SCHEMA, images=[image]
+    )
+
+    assert seen["argv"][-3:] == ["-i", str(image), "-"]
+
+
+def test_claude_code_cli_rejects_images(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    monkeypatch.setattr(cli_providers.shutil, "which", lambda name: f"/usr/bin/{name}")
+    with pytest.raises(ValueError):
+        cli_providers.run_structured_cli(
+            "claude-code-cli", system_prompt="s", user_prompt="u", schema=SCHEMA, images=[tmp_path / "a.jpg"]
+        )
+
+
+def test_validate_accepts_booleans() -> None:
+    schema = {"type": "object", "properties": {"ok": {"type": "boolean"}}, "required": ["ok"]}
+    cli_providers._validate({"ok": False}, schema, "codex-cli")
+    with pytest.raises(cli_providers.CLIProviderError):
+        cli_providers._validate({"ok": "no"}, schema, "codex-cli")

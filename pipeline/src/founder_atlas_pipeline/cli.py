@@ -216,6 +216,116 @@ def write_source_articles_command(
         sys.exit(1)
 
 
+@main.command("add-figures")
+@click.argument("source_id", required=False)
+@click.option("--all", "add_all", is_flag=True, help="Add figures to every source article.")
+@click.option("--force", is_flag=True, help="Replace figures an article already has.")
+@click.option(
+    "--recapture-frames", is_flag=True, help="Only re-capture existing video frames at the same timestamps."
+)
+@click.option("--jobs", type=click.IntRange(1, 8), default=1, show_default=True)
+@click.option("--provider", type=click.Choice(("codex-cli", "claude-code-cli")), default="codex-cli")
+@click.pass_context
+def add_figures_command(
+    ctx: click.Context,
+    source_id: str | None,
+    add_all: bool,
+    force: bool,
+    recapture_frames: bool,
+    jobs: int,
+    provider: str,
+) -> None:
+    """Place video frames or original post images inside Korean source articles."""
+    from founder_atlas_pipeline.figures import (
+        ARTICLE_SCHEMA,
+        ARTICLE_SYSTEM_PROMPT,
+        VIDEO_SCHEMA,
+        VIDEO_SYSTEM_PROMPT,
+        CLIFigurePlanner,
+        CodexFramePicker,
+        FigureResult,
+        add_figures_to_source,
+        capture_youtube_frame,
+        fetch_page_html,
+    )
+    from founder_atlas_pipeline.figures import recapture_frames as recapture
+    from founder_atlas_pipeline.figure_search import (
+        CHOOSE_SCHEMA,
+        CHOOSE_SYSTEM_PROMPT,
+        PICK_SCHEMA,
+        PICK_SYSTEM_PROMPT,
+        CodexImageReviewer,
+        download_image,
+        plan_search_figures,
+        search_bing_images,
+    )
+    from founder_atlas_pipeline.source_articles import article_path
+    from founder_atlas_pipeline.sources import read_source
+
+    if not source_id and not add_all:
+        raise click.UsageError("Give a SOURCE_ID or --all.")
+    content = _content_dir(ctx)
+    public_dir = content.parent / "web" / "public"
+    targets = [source_id] if source_id else [
+        target for target in list_source_ids(content) if article_path(content, target).is_file()
+    ]
+    video_planner = CLIFigurePlanner(provider, VIDEO_SYSTEM_PROMPT, VIDEO_SCHEMA)
+    article_planner = CLIFigurePlanner(provider, ARTICLE_SYSTEM_PROMPT, ARTICLE_SCHEMA)
+    pick_planner = CLIFigurePlanner(provider, PICK_SYSTEM_PROMPT, PICK_SCHEMA)
+    choose_planner = CLIFigurePlanner(provider, CHOOSE_SYSTEM_PROMPT, CHOOSE_SCHEMA)
+    counts = {"written": 0, "partial": 0, "skipped": 0, "no-figures": 0, "failed": 0}
+
+    frame_picker = CodexFramePicker()
+
+    def capture(video_id: str, start: int, output: Path) -> None:
+        capture_youtube_frame(video_id, start, output, frame_picker)
+
+    def run_one(target: str):
+        try:
+            is_video = read_source(content, target).format == "video"
+            if recapture_frames:
+                count = recapture(content, public_dir, target, capture) if is_video else 0
+                return target, FigureResult(target, "written" if count else "skipped", count), None
+            result = add_figures_to_source(
+                content,
+                public_dir,
+                target,
+                video_planner if is_video else article_planner,
+                capture_frame=capture,
+                fetch_html=fetch_page_html,
+                search_figures=lambda body, count: plan_search_figures(
+                    body,
+                    target,
+                    pick_planner,
+                    CodexImageReviewer(),
+                    chooser=choose_planner,
+                    search=search_bing_images,
+                    download=download_image,
+                    public_dir=public_dir,
+                    count=count,
+                ),
+                force=force,
+            )
+            return target, result, None
+        except Exception as exc:
+            return target, None, exc
+
+    with ThreadPoolExecutor(max_workers=jobs) as executor:
+        futures = [executor.submit(run_one, target) for target in targets]
+        for future in as_completed(futures):
+            target, result, exc = future.result()
+            if exc is not None:
+                counts["failed"] += 1
+                click.echo(f"[failed] {target}: {exc}", err=True)
+                continue
+            assert result is not None
+            counts[result.status] += 1
+            click.echo(f"[{result.status}] {target} ({result.count})")
+    click.echo(", ".join(f"{status}: {count}" for status, count in counts.items()))
+    if counts["failed"]:
+        sys.exit(1)
+
+
 @main.command("write-source-tldrs")
 @click.option("--jobs", type=click.IntRange(1, 4), default=2, show_default=True)
 @click.option("--provider", type=click.Choice(("codex-cli", "claude-code-cli")), default="codex-cli")

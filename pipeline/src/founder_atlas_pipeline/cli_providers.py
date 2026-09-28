@@ -14,6 +14,7 @@ import shutil
 import subprocess
 import tempfile
 import time
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
@@ -118,6 +119,8 @@ def _validate(value: Any, schema: dict[str, Any], provider: str) -> None:
         ("object" in kinds and isinstance(value, dict))
         or ("array" in kinds and isinstance(value, list))
         or ("string" in kinds and isinstance(value, str))
+        or ("integer" in kinds and isinstance(value, int) and not isinstance(value, bool))
+        or ("boolean" in kinds and isinstance(value, bool))
         or ("null" in kinds and value is None)
     )
     if not matching:
@@ -137,7 +140,12 @@ def _validate(value: Any, schema: dict[str, Any], provider: str) -> None:
 
 
 def run_structured_cli(
-    provider: str, *, system_prompt: str, user_prompt: str, schema: dict
+    provider: str,
+    *,
+    system_prompt: str,
+    user_prompt: str,
+    schema: dict,
+    images: Sequence[Path] = (),
 ) -> dict[str, Any]:
     """Return a JSON object from Codex or Claude Code's existing local login.
 
@@ -148,6 +156,8 @@ def run_structured_cli(
     executable = {"codex-cli": "codex", "claude-code-cli": "claude"}.get(provider)
     if executable is None:
         raise ValueError(f"Unknown CLI provider: {provider}")
+    if images and provider != "codex-cli":
+        raise ValueError("Only codex-cli accepts image attachments")
     if shutil.which(executable) is None:
         raise CLIProviderError(f"{executable} CLI is not installed or not on PATH")
 
@@ -171,6 +181,7 @@ def run_structured_cli(
                 str(schema_file),
                 "--output-last-message",
                 str(result_file),
+                *[arg for image in images for arg in ("-i", str(image))],
                 "-",
             ]
             _communicate_bounded(argv, prompt, workdir)

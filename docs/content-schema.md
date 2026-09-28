@@ -92,9 +92,13 @@ generated_at: 2026-09-27
 원문을 한국어로 재구성한 본문.
 ```
 
-Figures may be placed in the body as `![alt](url "caption")`; the web renders
-each as a captioned figure (the caption should name the original source). They
-are hand-added, so `write-source-articles --force` removes them.
+Figures are placed in the body as `![alt](<url> "caption")` after a paragraph;
+the web renders each as a captioned figure and every caption ends with its
+source. `atlas add-figures` writes them (2-5 per article; all original images
+for blog posts). Video frames and downloaded search images live in
+`web/public/figures/{source_id}/` and are referenced as `/figures/...`.
+Video frame timestamps come from code (transcript quote match), never the model.
+`write-source-articles --force` rewrites the body, so run `add-figures` again after it.
 
 The web detail page displays a one-sentence summary, this article, and two
 related source links when present, and uses collected
