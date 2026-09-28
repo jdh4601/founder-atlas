@@ -159,8 +159,8 @@ updated_at: 2026-09-25
 
 ## Content explore (computed by web, not stored)
 
-- `/explore` lists source metadata from `sources/{source_id}.md`.
+- The home page content grid (`/#contents`) lists source metadata from `sources/{source_id}.md`.
 - Hashtags are derived from each source's origin and format, plus literal matches
   from a fixed vocabulary against its title. They are view filters, not stored
   source metadata or model-generated claims.
-- The former `/map` route redirects to `/explore`.
+- The former `/explore` and `/map` routes redirect to `/#contents`.

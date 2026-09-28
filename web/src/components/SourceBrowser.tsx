@@ -32,10 +32,9 @@ export function SourceBrowser({ sources }: SourceBrowserProps) {
 
   return (
     <div>
-      <div className="flex flex-col gap-4 border-b border-line pb-5 sm:flex-row sm:items-end sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.16em] text-ink-muted">Explore</p>
-          <h1 className="mt-2 text-[30px] font-semibold tracking-tight text-ink sm:text-[36px]">콘텐츠 탐색</h1>
+          <h2 className="text-[18px] font-semibold tracking-tight text-ink">원문 콘텐츠</h2>
           <p className="mt-1 text-sm text-ink-muted">수집한 영상과 글 {sources.length}개</p>
         </div>
         <label className="block w-full sm:max-w-[290px]">
@@ -50,7 +49,7 @@ export function SourceBrowser({ sources }: SourceBrowserProps) {
         </label>
       </div>
 
-      <div className="-mx-5 overflow-x-auto border-b border-line px-5 py-4 sm:mx-0 sm:px-0" aria-label="해시태그 필터">
+      <div className="no-scrollbar -mx-5 mt-4 overflow-x-auto border-b border-line px-5 pb-4 sm:mx-0 sm:px-0" aria-label="해시태그 필터">
         <div className="flex w-max gap-2">
           <button
             type="button"

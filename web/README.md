@@ -10,11 +10,10 @@ covers `web/`.
 
 | Route | What it does |
 |---|---|
-| `/` | Input-first home: a large "지금 어떤 문제에 부딪혔나요?" question box, plus the 8 taxonomy categories showing only the keywords that already have a page. Asking calls `/api/ask` and renders a short answer, matched keyword pages, and evidence chips (or a "아직 정리되지 않은 주제예요" message when nothing matched). |
-| `/k/[slug]` | One keyword page: category chip, an "AI 정리 · 검수 전" badge while `reviewed: false`, source thumbnails, the Markdown body (wikilinks, inline evidence chips, client-rendered Mermaid diagrams), a profile-sorted "근거 모아보기" evidence list, and "이 페이지를 언급한 페이지" backlinks. |
-| `/explore` | A list of collected source videos and articles with thumbnail, source, date, title search, and hashtag filters. Hashtags come from source origin, format, and literal terms in the source title. |
-| `/map` | Redirects existing links to `/explore`. |
-| `POST /api/ask` | Two-step answer flow: (1) match the question to 0–3 real keyword slugs, (2) if matched, draft a 2–3 sentence Korean answer grounded only in those keywords' advice (never the hidden `quote` field), citing advice ids. The request can select Anthropic API, Codex CLI, or Claude Code CLI. Every successfully processed question is appended to `content/questions/log.jsonl`. |
+| `/` | Input-first home, top to bottom: the "지금 어떤 문제에 부딪혔나요?" question box, category tabs (`#keywords`, 8 taxonomy categories → keyword chips that have a page), and the source content grid (`#contents`, title search + hashtag filters). Asking calls `/api/ask`; while a question is active, the category and content sections are hidden and replaced by the answer (short answer, matched keyword pages, evidence chips, or "아직 정리되지 않은 주제예요"). "← 둘러보기로 돌아가기" or the header 키워드/콘텐츠 links bring them back. |
+| `/k/[slug]` | One keyword page: category chip, an "AI 정리 · 검수 전" badge while `reviewed: false`, source thumbnails, the Markdown body (wikilinks, inline evidence chips, client-rendered Mermaid diagrams), a profile-sorted "근거 모아보기" evidence list, and "이 페이지를 언급한 페이지" backlinks, and a "이 주제로 더 묻기" box that answers only from this keyword's advice. |
+| `/explore`, `/map` | Redirect to `/#contents` (the content grid now lives on the home page). Hashtags come from source origin, format, and literal terms in the source title. |
+| `POST /api/ask` | Two-step answer flow: (1) match the question to 0–3 real keyword slugs, (2) if matched, draft a 2–3 sentence Korean answer grounded only in those keywords' advice (never the hidden `quote` field), citing advice ids. The request can select Anthropic API, Codex CLI, or Claude Code CLI (chosen in the header ⚙ settings menu), and may pass `keyword` to skip step 1 and answer only from that keyword page's advice. Every successfully processed question is appended to `content/questions/log.jsonl`. |
 
 ## Setup
 
@@ -45,22 +44,27 @@ If a selected CLI is unavailable or fails, `/api/ask` returns `503`.
 ```
 src/
 ├── app/
-│   ├── page.tsx            /  (AskPanel + CategoryExplorer)
+│   ├── layout.tsx          Header (BrowseNavLink ×2 + SettingsMenu) + theme boot script
+│   ├── page.tsx            /  (AskPanel wrapping CategoryExplorer + SourceBrowser)
 │   ├── k/[slug]/page.tsx   /k/[slug]
-│   ├── explore/page.tsx    /explore (source browser)
-│   ├── map/page.tsx        /map → /explore
+│   ├── explore/page.tsx    /explore → /#contents
+│   ├── map/page.tsx        /map → /#contents
 │   └── api/ask/route.ts    POST /api/ask
 ├── components/              One component per file, PascalCase.
-│   ├── AskPanel.tsx          Client: question input + fetch + results
+│   ├── AskPanel.tsx          Client: question input + answer view; hides its children while active
+│   ├── BrowseNavLink.tsx     Client: header link that leaves the answer view and scrolls to a home section
+│   ├── SettingsMenu.tsx      Client: ⚙ menu — theme (system/light/dark) + answer model
 │   ├── AskResults.tsx        Answer + matched pages + evidence
 │   ├── MarkdownBody.tsx      react-markdown + custom renderers
 │   ├── MermaidDiagram.tsx    Client: mermaid.render() for ```mermaid
 │   ├── SourceBrowser.tsx     Client: title search + hashtag filters + source list
 │   ├── EvidenceChip.tsx / InlineEvidenceLink.tsx
-│   ├── CategoryChip.tsx / CategoryExplorer.tsx
+│   ├── CategoryChip.tsx / CategoryExplorer.tsx (client: category tabs → keyword chips)
 │   ├── ReviewBadge.tsx / SourceThumbnails.tsx / BacklinksList.tsx
 └── lib/                      Data layer — pure functions, no React.
     ├── contentDir.ts         Resolves CONTENT_DIR
+    ├── preferenceKeys.ts / preferences.ts
+    │                         localStorage keys + theme boot script / client hooks (theme, answer model)
     ├── yaml.ts, types.ts     Shared types + YAML date coercion
     ├── taxonomy.ts / profile.ts / sources.ts / advice.ts / keywords.ts
     │                         Load + validate (zod) each content/ collection

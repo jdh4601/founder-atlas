@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function MapPage() {
-  redirect("/explore");
+  redirect("/#contents");
 }

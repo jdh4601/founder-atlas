@@ -61,3 +61,17 @@ export function findCategoryForKeyword(
     category.keywords.some((k) => k.slug === keywordSlug),
   );
 }
+
+/** Categories trimmed to keywords that have a page; empty categories are dropped. */
+export function categoriesWithPages(
+  taxonomy: Taxonomy,
+  keywordPages: readonly { readonly slug: string }[],
+): TaxonomyCategory[] {
+  const pageSlugs = new Set(keywordPages.map((page) => page.slug));
+  return taxonomy.categories
+    .map((category) => ({
+      ...category,
+      keywords: category.keywords.filter((k) => pageSlugs.has(k.slug)),
+    }))
+    .filter((category) => category.keywords.length > 0);
+}

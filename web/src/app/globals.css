@@ -19,10 +19,12 @@
   --caution-bg: #fff4d6;
   --caution-ink: #7a5200;
   --caution-line: #eddca0;
+  color-scheme: light;
 }
 
+/* Theme: follows the OS unless the settings menu pinned light or dark. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --paper: #14171a;
     --surface: #1c2024;
     --ink: #e8e6e2;
@@ -33,7 +35,22 @@
     --caution-bg: #3a2e12;
     --caution-ink: #e0b84d;
     --caution-line: #4d3d1a;
+    color-scheme: dark;
   }
+}
+
+:root[data-theme="dark"] {
+  --paper: #14171a;
+  --surface: #1c2024;
+  --ink: #e8e6e2;
+  --ink-muted: #9aa0a6;
+  --line: #2a2e33;
+  --focus: #90a8cc;
+  --focus-soft: #26374d;
+  --caution-bg: #3a2e12;
+  --caution-ink: #e0b84d;
+  --caution-line: #4d3d1a;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -79,5 +96,13 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Horizontally scrolling chip rows stay swipeable without a visible bar. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

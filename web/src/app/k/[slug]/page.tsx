@@ -6,6 +6,7 @@ import { buildEvidenceEntries } from "@/lib/evidence";
 import { getKeywordBySlug } from "@/lib/keywords";
 import { findCategory, findKeywordTitle } from "@/lib/taxonomy";
 import { getSiteData } from "@/lib/site";
+import { AskPanel } from "@/components/AskPanel";
 import { BacklinksList } from "@/components/BacklinksList";
 import { CategoryChip } from "@/components/CategoryChip";
 import { EvidenceChip } from "@/components/EvidenceChip";
@@ -79,6 +80,16 @@ export default async function KeywordPage({ params }: KeywordPageProps) {
           </div>
         </section>
       )}
+
+      <section className="mt-10 border-t border-line pt-6">
+        <h2 className="text-[15px] font-semibold text-ink">이 주제로 더 묻기</h2>
+        <p className="mt-1 text-[13px] text-ink-muted">
+          이 페이지의 조언만 근거로 답해요.
+        </p>
+        <div className="mt-3">
+          <AskPanel keyword={page.slug} placeholder={`${page.title}에 대해 궁금한 점`} />
+        </div>
+      </section>
 
       <BacklinksList pages={backlinks} />
     </div>
