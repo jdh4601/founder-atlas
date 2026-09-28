@@ -8,7 +8,7 @@ format: essay
 published: '2013-07-25'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-do-things-that-don-t-scale.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

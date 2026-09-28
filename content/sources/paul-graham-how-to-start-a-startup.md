@@ -8,7 +8,7 @@ format: essay
 published: '2005-10-21'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-how-to-start-a-startup.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

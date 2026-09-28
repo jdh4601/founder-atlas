@@ -8,7 +8,7 @@ format: essay
 published: '2020-10-18'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-the-18-mistakes-that-kill-startups.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

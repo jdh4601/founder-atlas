@@ -8,7 +8,7 @@ format: essay
 published: '2006-04-30'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-ramen-profitable.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

@@ -8,7 +8,7 @@ format: essay
 published: '2014-01-01'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-before-the-startup.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

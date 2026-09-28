@@ -8,7 +8,7 @@ format: essay
 published: '2020-03-01'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-how-to-fund-a-startup.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

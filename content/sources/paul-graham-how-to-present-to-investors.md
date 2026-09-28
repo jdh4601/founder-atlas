@@ -8,7 +8,7 @@ format: essay
 published: '2007-01-30'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-how-to-present-to-investors.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

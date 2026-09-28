@@ -8,7 +8,7 @@ format: essay
 published: '2007-02-01'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-the-hacker-s-guide-to-investors.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

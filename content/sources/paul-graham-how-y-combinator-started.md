@@ -8,7 +8,7 @@ format: essay
 published: '2005-03-11'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-how-y-combinator-started.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

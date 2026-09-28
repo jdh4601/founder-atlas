@@ -8,7 +8,7 @@ format: essay
 published: '2007-02-14'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-a-unified-theory-of-vc-suckage.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

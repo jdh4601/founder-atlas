@@ -8,7 +8,7 @@ format: essay
 published: '2008-08-01'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-a-fundraising-survival-guide.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

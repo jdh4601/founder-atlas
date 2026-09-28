@@ -8,7 +8,7 @@ format: essay
 published: '1995-01-01'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-how-to-get-startup-ideas.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

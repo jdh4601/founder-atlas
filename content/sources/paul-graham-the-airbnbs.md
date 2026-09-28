@@ -8,7 +8,7 @@ format: essay
 published: '2008-01-01'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-the-airbnbs.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

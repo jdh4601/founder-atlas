@@ -8,7 +8,7 @@ format: essay
 published: '2009-05-13'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-startups-in-13-sentences.jpg
 images: []
 ingested_at: '2026-09-25'
 ---

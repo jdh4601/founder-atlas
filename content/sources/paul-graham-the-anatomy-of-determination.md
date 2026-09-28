@@ -8,7 +8,7 @@ format: essay
 published: '2009-09-01'
 speakers:
 - Paul Graham
-thumbnail: null
+thumbnail: /thumbnails/paul-graham-the-anatomy-of-determination.jpg
 images: []
 ingested_at: '2026-09-25'
 ---
