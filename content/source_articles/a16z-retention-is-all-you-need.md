@@ -14,7 +14,7 @@ generated_at: '2026-09-27'
 
 상위 AI 기업 수십 곳의 리텐션 수치를 총매출 리텐션 기준으로 표준화해 살펴보니, 코호트별 매출 리텐션은 뚜렷한 세 구간으로 나뉘었다. M0부터 M3까지는 고객 획득, M3부터 M6~M9까지는 유지, M9 이후는 확장 구간이었다.
 
-![고객 획득, 유지, 확장의 세 구간으로 나뉜 AI 매출 리텐션 곡선](https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/09/Illustrative-AI-retention-scaled.jpg "AI 제품의 코호트 매출 리텐션은 고객 획득(M0~M3), 유지(M3~M6), 확장(M6 이후) 구간으로 나뉜다. 곡선은 M3 전후로 평평해진 뒤 완만하게 다시 올라간다. 출처: a16z")
+![AI 리텐션 곡선 예시](<https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/09/Illustrative-AI-retention-scaled.jpg> "AI 기업의 코호트별 매출 리텐션을 보여 주는 예시 곡선으로, 고객 획득(M0~M3), 유지(M3~M6~M9), 확장(M9 이후) 구간으로 나뉜다. 출처: a16z")
 
 제품이 계속 발전하고 서비스 업무에서 발생하는 가치까지 흡수한다면, 선도적인 AI 기업의 장기 리텐션은 언젠가 기존 SaaS나 소비자 인터넷 기업보다 더 좋아질 가능성도 있다. 이를 이해하려면 먼저 각 구간에서 곡선이 어떻게 움직이는지 살펴봐야 한다.
 
@@ -34,7 +34,7 @@ generated_at: '2026-09-27'
 
 AI 네이티브 기업에서는 기존 시장에서 보기 드물었던 ‘미소 짓는’ 고객 리텐션 곡선도 나타난다. 이탈했거나 사용량이 적었던 고객이 제품 기능의 향상에 따라 돌아오거나 더 자주 사용하면서 곡선이 다시 상승하는 현상이다. ChatGPT의 리텐션 곡선이 대표적인 사례이며, 앱 사용량까지 반영한다면 상승세가 더욱 뚜렷하게 보일 가능성이 있다.
 
-![분기별 코호트별 ChatGPT 월간 웹 사용 리텐션 곡선](https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/09/ChatGPT-monthly-usage-retention-monthly-web-activity-scaled.jpg "ChatGPT의 월간 웹 사용 리텐션. 첫 달에 40% 안팎으로 떨어진 뒤, 오래된 코호트일수록 시간이 지나며 다시 올라가는 '미소 곡선'을 그린다. 출처: Yipit Data, a16z 분석")
+![ChatGPT 월간 사용 리텐션 곡선](<https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/09/ChatGPT-monthly-usage-retention-monthly-web-activity-scaled.jpg> "월간 웹 활동 기준 ChatGPT의 사용 리텐션으로, 이탈했거나 사용량이 적었던 사용자가 돌아오면서 곡선이 다시 상승하는 ‘미소 짓는’ 모양을 보여 준다. 출처: a16z")
 
 ## 새로운 기준, M12를 M3로 나누기
 
@@ -42,9 +42,11 @@ M3는 AI 관광객이 빠져나간 뒤 남은 ‘진짜’ 고객 기반을 나�
 
 분석 대상 가운데 연간 반복 매출이 100만 달러를 넘는 AI 기업 수십 곳을 기준으로 보면, 업계를 선도하는 셀프서비스 또는 월 단위 결제 기업은 이 지표에서 이미 강한 성과를 내고 있다. 이는 장기 순달러 리텐션(NDR)이 100%를 넘을 수 있다는 선행 신호다.
 
-![M12를 M3로 나눈 AI 리텐션 벤치마크 표](https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/09/AI-retention-benchmarks-based-on-M12-scaled.jpg "연간 반복 매출 100만 달러 이상 AI 기업 기준 M12/M3 벤치마크. 중앙값 85%, 상위 25% 95%, 상위 10%는 100% 이상이다. 출처: a16z")
+![M12 기준 AI 리텐션 벤치마크](<https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/09/AI-retention-benchmarks-based-on-M12-scaled.jpg> "연간 반복 매출이 100만 달러를 넘는 AI 기업 수십 곳의 데이터를 바탕으로 한 M12 기준 리텐션 벤치마크다. 출처: a16z")
 
 리텐션 곡선이 평평해진 뒤 초기에 확장 조짐까지 보인다면 M12 이후를 추정했을 때 보고되는 NDR은 시간이 흐를수록 오래된 코호트의 성과에 가까워진다. 초기 이탈이 계속 발생하더라도 확장 단계에 깊이 들어간 기존 코호트의 비중이 커지면서 전체 평균은 100% 이상으로 향할 수 있다. 이는 과거 SaaS 기준으로 보더라도 매력적인 수준이다.
+
+![성숙 코호트 리텐션에 수렴하는 장기 NDR](<https://d1lamhf6l6yk6d.cloudfront.net/uploads/2025/09/Long-term-NDR-approaches-mature-cohort-retention-rates-scaled.jpg> "M12 이후를 추정하면 보고되는 장기 NDR은 시간이 흐를수록 오래된 코호트의 리텐션 수준에 가까워진다. 초기 이탈이 계속되더라도 전체 평균은 100% 이상으로 향할 수 있다. 출처: a16z")
 
 예를 들어 매출 리텐션 곡선이 안정된 뒤 M12부터 확장되기 시작한다고 가정하면, 장기 리텐션은 소셜미디어 X에서 흔히 거론되는 전망보다 훨씬 좋을 수 있다. 사업에서 확장 단계의 오래된 코호트가 차지하는 비중이 커질수록 외부에 보고되는 전체 NDR도 크게 개선된다.
 

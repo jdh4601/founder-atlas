@@ -34,7 +34,9 @@ generated_at: '2026-09-27'
 
 효과적인 방식 가운데 하나는 약정 규모가 커질수록 할인도 점진적으로 커지는 단계별 가격제다. 고객은 사용한 만큼 결제하거나, 사용량을 미리 구매한 뒤 더 낮은 단가로 크레딧을 차감해 나갈 수 있다. 중요한 점은 어떤 방식으로 소비할지를 고객이 결정하게 하는 것이다.
 
-![약정 규모별 할인 단가를 보여 주는 단계별 가격표](<https://a16z.com/wp-content/uploads/2023/12/Sample-tiered-pricing-chart-with-commit-discount-schedule-2-scaled.jpg> "약정 규모가 커질수록 할인 폭과 단위당 가격 혜택이 커지는 단계별 가격제의 예시다. 고객은 종량제로 결제하거나 사용량을 미리 구매해 더 낮은 단가를 적용받을 수 있다. 출처: a16z")
+![약정 할인 일정이 포함된 단계별 가격표 예시](<https://a16z.com/wp-content/uploads/2023/12/Sample-tiered-pricing-chart-with-commit-discount-schedule-2-scaled.jpg> "약정 규모가 커질수록 할인이 점진적으로 커지는 단계별 가격표 예시다. 고객은 사용한 만큼 결제하거나, 사용량을 미리 구매해 더 낮은 단가로 차감해 나갈 수 있다. 출처: a16z")
+
+![사용량 구간별 단가가 낮아지는 단계별 가격제 계단형 차트](</figures/a16z-overages-the-overlooked-problem-in-usage-based-pricing/web-1.jpg> "사용량이 0~200이면 단위당 6달러, 200~400이면 4달러, 400~600이면 2달러로 단가가 계단식으로 낮아지는 단계별 사용량 가격 모델입니다. 사용 규모가 커질수록 할인이 점진적으로 커지는 구조를 보여 줍니다. 출처: ordwaylabs.com")
 
 ## 약정량을 소진한 뒤에도 할인은 이어질 수 있다
 
