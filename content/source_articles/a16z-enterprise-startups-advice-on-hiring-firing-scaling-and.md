@@ -1,12 +1,12 @@
 ---
 source: a16z-enterprise-startups-advice-on-hiring-firing-scaling-and
 title_ko: 엔터프라이즈 스타트업이 사람을 뽑고, 내보내고, 확장하고, 판매하는 법
+tldr: 엔터프라이즈 스타트업은 뛰어난 인재와 현장형 영업 리더를 확보하고 고객 수요가 검증된 뒤 조직과 시장 투자를 확대해야 한다.
 lead: a16z는 초기 스타트업 CEO들을 초대해 작은 조직을 성장 단계의 대기업이나 상장사로 키운 창업자·경영진의 경험을 들었다. Databricks,
   Cloudflare, Gong, CrowdStrike, Yubico의 리더들이 수십 년간 기업용 사업을 운영하며 얻은 교훈 가운데, 채용과 해고,
   조직 확장, 초기 영업과 마케팅에 관한 핵심 내용을 정리했다.
 source_sha256: e774489c4c5713c2f56b587a77fd84206141fe402559f7ab687631efde36fe36
 generated_at: '2026-09-27'
-reviewed: false
 ---
 ## 큰 회사 안에서 다시 ‘0에서 1’을 만드는 법
 

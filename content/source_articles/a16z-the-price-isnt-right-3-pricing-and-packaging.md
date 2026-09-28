@@ -1,11 +1,11 @@
 ---
 source: a16z-the-price-isnt-right-3-pricing-and-packaging
 title_ko: '가격이 잘못됐다: 피해야 할 가격·패키징 전략의 세 가지 함정'
+tldr: 성장기에는 무료 요금제, 구매자별 패키지, 고액 고객 의존도를 점검하고 시장에 맞게 가격과 제품 구성을 다시 설계해야 한다.
 lead: 초기 고객 유입을 이끌었던 수익화 전략이 성장 단계에서도 통하리라는 보장은 없다. Freshworks, PagerDuty, Atlassian에서
   가격 전략을 다뤄온 경험을 바탕으로, 후기 단계 기업의 가격·패키징 전략이 제대로 작동하지 않는다는 세 가지 신호와 이를 바로잡을 방법을 살펴본다.
 source_sha256: b6aedb5c538d07fb277ff821f6d1011a0c2425284bd3b8950eef0afce62897ec
 generated_at: '2026-09-27'
-reviewed: false
 ---
 ## 초기의 성공 방정식은 성장기에 달라진다
 

@@ -1,12 +1,12 @@
 ---
 source: yc-youtube-startup-experts-reveal-their-favorite-pivot-stories
 title_ko: '성공한 스타트업은 어떻게 방향을 틀었나: YC가 꼽은 최고의 피벗 이야기'
+tldr: 한 아이디어를 충분히 검증하되 실제 지불 의사와 핵심 지표가 약하다면 문제와 시장을 과감히 바꿔라.
 lead: 피벗은 실패한 스타트업이 어쩔 수 없이 선택하는 수단처럼 보이지만, 현실은 정반대다. 오늘날 가장 성공한 스타트업 가운데 상당수도 처음에는
   엉뚱한 문제를 풀고 있었다. Y Combinator 파트너들이 Brex, GOAT, GoCardless, Clipboard Health를 비롯한
   여러 기업의 사례를 통해, 창업자가 잘못된 아이디어를 버리고 진짜 시장을 발견하는 과정을 들려준다.
 source_sha256: 1cc059560aca421203ac2c77b40bae7ac63312476acd6e2d3377315aceca7d1b
 generated_at: '2026-09-27'
-reviewed: false
 ---
 ## 피벗은 실패가 아니라 아이디어를 바꾸는 일이다
 

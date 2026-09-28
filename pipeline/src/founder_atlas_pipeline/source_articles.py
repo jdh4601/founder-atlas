@@ -17,7 +17,7 @@ from founder_atlas_pipeline.sources import read_source, source_transcript_path
 SYSTEM_PROMPT = """당신은 영어 원문을 한국어로 옮겨 읽기 좋은 스타트업 블로그 글을 쓰는 편집자입니다.
 제공된 원문 전체를 읽고 논지와 중요한 사례를 빠뜨리지 않도록 한국어 글로 재구성하세요.
 자막의 반복, 구어체 군더더기, 광고만 덜어내고 원문의 주장 순서와 맥락을 지키세요.
-제목, 도입, 원문 길이에 맞는 소제목과 문단을 작성하세요.
+제목, 핵심을 압축한 한국어 한 문장 요약(tldr), 도입, 원문 길이에 맞는 소제목과 문단을 작성하세요.
 각 문단은 자연스러운 완결된 한국어 문장으로 쓰고, 핵심 수치·인물·사례를 정확히 옮기세요.
 원문에 없는 사례, 인용, 수치, 결론을 추가하지 마세요. 불확실하면 단정하지 마세요.
 직역문이나 조언 목록 대신 원문을 읽는 느낌의 에세이·블로그 본문으로 쓰세요.
@@ -29,6 +29,7 @@ ARTICLE_SCHEMA = {
     "type": "object",
     "properties": {
         "title_ko": {"type": "string"},
+        "tldr": {"type": "string"},
         "lead": {"type": "string"},
         "sections": {
             "type": "array",
@@ -43,7 +44,7 @@ ARTICLE_SCHEMA = {
             },
         },
     },
-    "required": ["title_ko", "lead", "sections"],
+    "required": ["title_ko", "tldr", "lead", "sections"],
     "additionalProperties": False,
 }
 
@@ -87,13 +88,16 @@ def _source_text(payload: dict) -> str:
     raise ValueError("Unknown transcript kind")
 
 
-def _validated_article(data: dict, source_length: int) -> tuple[str, str, str]:
+def _validated_article(data: dict, source_length: int) -> tuple[str, str, str, str]:
     title = data["title_ko"].strip()
+    tldr = data["tldr"].strip()
     lead = data["lead"].strip()
     sections = data["sections"]
     minimum_sections = 1 if source_length < 2500 else 2 if source_length < 7000 else 4
     if not title or not lead or not minimum_sections <= len(sections) <= 12:
         raise ValueError(f"Article needs a title, lead, and at least {minimum_sections} sections")
+    if not 15 <= len(tldr) <= 180 or not any("가" <= char <= "힣" for char in tldr):
+        raise ValueError("Article needs a concise Korean tldr")
     if not any("가" <= char <= "힣" for char in title + lead):
         raise ValueError("Article title and lead must be in Korean")
     body_parts: list[str] = []
@@ -107,7 +111,7 @@ def _validated_article(data: dict, source_length: int) -> tuple[str, str, str]:
     minimum_body = max(180, min(1000, source_length // 7))
     if len(body) < minimum_body:
         raise ValueError("Article is too short to cover the source")
-    return title, lead, body
+    return title, tldr, lead, body
 
 
 def generate_article(
@@ -120,7 +124,7 @@ def generate_article(
     output = article_path(content_root, source_id)
     if output.exists() and not force:
         prior = parse(output.read_text(encoding="utf-8"))
-        if prior.frontmatter.get("source_sha256") == fingerprint:
+        if prior.frontmatter.get("source_sha256") == fingerprint and prior.frontmatter.get("tldr"):
             return ArticleResult(source_id, "skipped", output)
     source_text = _source_text(json.loads(raw))
     if not source_text.strip():
@@ -132,14 +136,14 @@ def generate_article(
         f"원문 길이에 맞게 소제목 {section_guidance}를 쓰세요. 짧은 원문을 억지로 늘리지 마세요.\n\n"
         f"원문 전체:\n{source_text}"
     )
-    title, lead, body = _validated_article(writer.write(prompt), len(source_text))
+    title, tldr, lead, body = _validated_article(writer.write(prompt), len(source_text))
     frontmatter = {
         "source": source_id,
         "title_ko": title,
+        "tldr": tldr,
         "lead": lead,
         "source_sha256": fingerprint,
         "generated_at": date.today().isoformat(),
-        "reviewed": False,
     }
     output.parent.mkdir(parents=True, exist_ok=True)
     temporary = output.with_suffix(".md.tmp")

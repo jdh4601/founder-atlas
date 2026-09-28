@@ -26,6 +26,7 @@ from founder_atlas_pipeline.ingest.pipeline import ORIGINS, ingest_many
 from founder_atlas_pipeline.paths import find_repo_root
 from founder_atlas_pipeline.sources import list_source_ids
 from founder_atlas_pipeline.source_articles import CLIArticleWriter, generate_article
+from founder_atlas_pipeline.source_tldrs import missing_tldr_paths, write_tldr_batch
 from founder_atlas_pipeline.stats import collect_stats, format_stats
 from founder_atlas_pipeline.taxonomy import load_taxonomy
 
@@ -212,6 +213,31 @@ def write_source_articles_command(
             click.echo(f"[{result.status}] {target}")
     click.echo(", ".join(f"{status}: {count}" for status, count in counts.items()))
     if counts["failed"]:
+        sys.exit(1)
+
+
+@main.command("write-source-tldrs")
+@click.option("--jobs", type=click.IntRange(1, 4), default=2, show_default=True)
+@click.option("--provider", type=click.Choice(("codex-cli", "claude-code-cli")), default="codex-cli")
+@click.pass_context
+def write_source_tldrs_command(ctx: click.Context, jobs: int, provider: str) -> None:
+    """Add one-sentence takeaways to existing source articles."""
+    paths = missing_tldr_paths(_content_dir(ctx))
+    batches = [paths[index : index + 10] for index in range(0, len(paths), 10)]
+    failures = 0
+    with ThreadPoolExecutor(max_workers=jobs) as executor:
+        futures = {executor.submit(write_tldr_batch, batch, provider): batch for batch in batches}
+        for future in as_completed(futures):
+            batch = futures[future]
+            try:
+                completed = future.result()
+            except Exception as exc:
+                failures += len(batch)
+                click.echo(f"[failed] {batch[0].stem}…{batch[-1].stem}: {exc}", err=True)
+            else:
+                click.echo(f"[written] {len(completed)} one-line summaries")
+    click.echo(f"written: {len(paths) - failures}, failed: {failures}")
+    if failures:
         sys.exit(1)
 
 

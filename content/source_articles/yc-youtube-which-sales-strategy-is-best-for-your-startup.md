@@ -1,11 +1,11 @@
 ---
 source: yc-youtube-which-sales-strategy-is-best-for-your-startup
 title_ko: 우리 스타트업에 맞는 영업 전략은 무엇일까?
+tldr: 제품이 조직 내 누구의 문제를 해결하는지에 따라 의사결정권자 중심의 톱다운과 사용자 중심의 보텀업 영업을 선택해야 한다.
 lead: YC 방문 그룹 파트너이자 옵티마이즐리(Optimizely)의 공동 창업자·전 CTO인 피트가 대기업에 제품을 판매하는 두 가지 방식,
   톱다운과 보텀업 영업을 비교한다. 어느 한쪽이 항상 우월한 것은 아니다. 제품이 조직 안에서 누구의 문제를 해결하는지에 따라 적합한 전략이 달라진다.
 source_sha256: 9021a5d86687cc5930be364990623985c84ea56df55cac45caaa6aedf89b5859
 generated_at: '2026-09-28'
-reviewed: false
 ---
 ## 의사결정권자에게서 시작하는 톱다운 영업
 

@@ -1,11 +1,11 @@
 ---
 source: yc-youtube-how-to-cold-email-investors-michael-seibel
 title_ko: 투자자에게 콜드 이메일을 보내는 법
+tldr: 투자자에게는 회사의 핵심 사실을 이해하기 쉬운 언어로 짧게 제시하고 부담 없는 대화를 요청해야 한다.
 lead: 창업자들은 투자 유치를 준비할 때 투자자에게 어떻게 콜드 이메일을 보내야 하는지 자주 묻는다. 나 역시 창업자들로부터 많은 이메일을 받고
   가능한 한 모두 답하려고 한다. 그 경험을 바탕으로, 투자자의 답장을 이끌어내기 위해 해야 할 일과 피해야 할 일을 정리해보려 한다.
 source_sha256: 26be4fbe12e4f3f476ad9ff198cc292ad1673bdac4bd5e88d24cbb95c4968294
 generated_at: '2026-09-28'
-reviewed: false
 ---
 ## 60초 안에 읽을 수 있을 만큼 짧게 써라
 

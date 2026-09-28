@@ -1,11 +1,11 @@
 ---
 source: paul-graham-ramen-profitable
 title_ko: 라면 수익성
+tldr: 창업자의 생활비를 감당할 만큼 수익을 내 투자자의 시간표에서 벗어나 회사의 생존력을 높여라.
 lead: 2009년 7월. 이제 ‘라면 수익성(ramen profitable)’이라는 표현이 널리 쓰이게 되었으니, 이 개념이 정확히 무엇을 뜻하는지
   설명할 필요가 있다.
 source_sha256: 3c2642f274dd33bc4383e8e921a849e59d9f6738a77703af3e514484277a57eb
 generated_at: '2026-09-27'
-reviewed: false
 ---
 ## 창업자의 생활비를 감당하는 수익성
 

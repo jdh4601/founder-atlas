@@ -6,17 +6,17 @@ import { z } from "zod";
 const articleSchema = z.object({
   source: z.string().min(1),
   title_ko: z.string().min(1),
+  tldr: z.string().default(""),
   lead: z.string().min(1),
   source_sha256: z.string().length(64),
   generated_at: z.string().min(1),
-  reviewed: z.boolean(),
 });
 
 export interface SourceArticle {
   readonly titleKo: string;
+  readonly tldr: string;
   readonly lead: string;
   readonly body: string;
-  readonly reviewed: boolean;
 }
 
 export function loadSourceArticle(contentDir: string, sourceId: string): SourceArticle | null {
@@ -30,8 +30,8 @@ export function loadSourceArticle(contentDir: string, sourceId: string): SourceA
   }
   return {
     titleKo: parsed.data.title_ko,
+    tldr: parsed.data.tldr,
     lead: parsed.data.lead,
     body: content.trim(),
-    reviewed: parsed.data.reviewed,
   };
 }

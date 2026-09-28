@@ -44,6 +44,7 @@ uv run atlas stats
 # 6. Translate and organize every stored source into Korean reading articles
 uv run atlas write-source-articles --all --jobs 4
 uv run atlas write-source-articles <source_id> --force
+uv run atlas write-source-tldrs  # add one-line takeaways to older articles
 ```
 
 Edit a candidates file before ingesting: delete lines you don't want, `#` comments are ignored.

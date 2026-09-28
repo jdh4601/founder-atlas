@@ -88,8 +88,8 @@ describe("buildEvidenceEntries", () => {
         adviceId: "advice--01",
         claim: "가격을 높게 시작하라",
         sourceTitle: "가격을 정하는 법",
-        url: "https://www.youtube.com/watch?v=SAMPLE0001A&t=750s",
-        label: "12:30부터 보기",
+        url: "/source/yc-youtube-sample-pricing-lesson",
+        label: "근거 보기",
       },
     ]);
   });

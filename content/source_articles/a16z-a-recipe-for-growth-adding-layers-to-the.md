@@ -1,11 +1,11 @@
 ---
 source: a16z-a-recipe-for-growth-adding-layers-to-the
 title_ko: '성장의 레시피: 케이크 위에 새로운 층을 쌓아라'
+tldr: 기업은 핵심 사업 위에 새로운 제품과 거래 방식을 꾸준히 실험해 성장 동력을 여러 층으로 쌓아야 한다.
 lead: 기업은 저절로 성장하지 않는다. CEO가 맡아야 할 가장 중요한 일 가운데 하나는 회사의 성장 의제를 적극적으로 정하고 밀어붙이는 것이다.
   성장은 일반적으로 기업의 경쟁력을 높이고 규모의 경제와 레버리지를 키우며, 투자자 역시 성장하는 기업을 분명하게 높이 평가한다.
 source_sha256: fc3d783bfda0ad0ef0feb4c9e4cc24dcc5cf49ee6b44cf3e5c1330258d49bb77
 generated_at: '2026-09-27'
-reviewed: false
 ---
 ## 성장을 끌어내리는 ‘중력’
 

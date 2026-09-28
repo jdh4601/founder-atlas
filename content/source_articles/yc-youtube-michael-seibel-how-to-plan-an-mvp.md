@@ -1,12 +1,12 @@
 ---
 source: yc-youtube-michael-seibel-how-to-plan-an-mvp
 title_ko: 'MVP를 계획하는 법: 형편없더라도 빠르게 출시하라'
+tldr: 문제를 겪는 소수의 사용자를 찾아 최소한의 가치를 주는 제품만 빠르게 출시하고, 대화와 반복으로 개선하라.
 lead: Y Combinator에서 액셀러레이터 운영을 돕는 마이클 사이벨은 2007년과 2012년에 두 차례 YC 스타트업을 창업했다. 그가 말하는
   최소 기능 제품, 즉 MVP는 거창한 개념이 아니다. 가장 먼저 공략하려는 소수의 사용자에게 건네고, 조금이라도 가치를 제공할 수 있는지 확인하는
   지극히 단순한 첫 제품이다.
 source_sha256: ee3bf0c6165618e26395d9231931dbcbd2714ad5208555cb6352dd7ab6c7d6d7
 generated_at: '2026-09-27'
-reviewed: false
 ---
 ## 먼저 문제를 가진 사람을 찾아라
 

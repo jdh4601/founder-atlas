@@ -1,12 +1,12 @@
 ---
 source: a16z-why-do-investors-care-so-much-about-ltv
 title_ko: 투자자들은 왜 LTV:CAC를 그토록 중요하게 볼까
+tldr: LTV:CAC를 높이면 고객 획득에 더 많이 재투자하면서도 마진을 키울 수 있어 기업의 재무 건전성과 가치평가가 함께 개선된다.
 lead: 요약하면 관계는 단순하다. LTV:CAC가 높을수록 마진이 커지고, 마진이 커질수록 기업가치도 높아진다. 특히 LTV:CAC가 2배에서
   3배로 개선되면 기업가치가 거의 세 배로 뛸 수 있다. 이 글은 미국 상장 소비자 인터넷 기업 60여 곳에 대한 증권사 애널리스트의 장기 전망치를
   바탕으로, 이 지표가 수익성과 기업가치로 이어지는 과정을 살펴본다.
 source_sha256: 63f327bff667adf5ddaa953fb903a707fb592c5c08595d94ce745ef6c7b12a54
 generated_at: '2026-09-27'
-reviewed: false
 ---
 ## 소비자 기업의 재무 건전성을 보여주는 기준
 

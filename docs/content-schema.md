@@ -76,24 +76,24 @@ Only one of `segments` / `paragraphs` is present.
 
 `atlas write-source-articles --all --jobs 4` generates one source-grounded
 Korean article per ingested transcript. It resumes unchanged files using the
-SHA-256 of the raw transcript. Generated articles remain `reviewed: false`
-until a person checks them against the source.
+SHA-256 of the raw transcript.
 
 ```yaml
 ---
 source: yc-youtube-how-to-price-your-product
 title_ko: 제품 가격을 정하는 법
+tldr: 가격은 고객이 이해하는 가치 단위에 맞춰 정한다.
 lead: 한국어 도입 문단
 source_sha256: 64-character hexadecimal digest
 generated_at: 2026-09-27
-reviewed: false
 ---
 ## 첫 번째 소제목
 
 원문을 한국어로 재구성한 본문.
 ```
 
-The web detail page displays this article when present and uses collected
+The web detail page displays a one-sentence summary, this article, and two
+related source links when present, and uses collected
 source `thumbnail`/`images` for its gallery. It otherwise displays the
 existing advice-based view.
 
@@ -122,7 +122,7 @@ match_score: 96.5                   # rapidfuzz score, must be >= 90
 한국어 본문: 조언 설명 2~4문장 + 원문에 나온 사례.
 ```
 
-Evidence link the UI renders:
+Original evidence links available from the source page:
 - timestamp → `https://www.youtube.com/watch?v={youtube_id}&t={start}s`
 - paragraph → source `url` (text fragment optional)
 
@@ -144,7 +144,7 @@ updated_at: 2026-09-25
 ---
 자유 형식의 한국어 본문 (가벼운 말투 + 사례).
 - 다른 키워드는 [[unit-economics]] 처럼 링크한다.
-- 근거는 {{advice:advice_id}} 로 표시한다 → UI가 타임스탬프 링크 칩으로 렌더링한다.
+- 근거는 {{advice:advice_id}} 로 표시한다 → UI가 해당 콘텐츠의 한국어 정리 페이지로 연결한다.
 - 도식은 ```mermaid 코드 블록으로 넣는다.
 ```
 

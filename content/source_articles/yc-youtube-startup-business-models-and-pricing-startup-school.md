@@ -1,12 +1,12 @@
 ---
 source: yc-youtube-startup-business-models-and-pricing-startup-school
 title_ko: 유니콘을 만드는 비즈니스 모델과 가격 책정의 원칙
+tldr: 반복 매출과 방어력을 갖춘 검증된 모델을 선택하고, 가격은 고객이 느끼는 가치를 학습하며 단순하게 조정하라.
 lead: YC 그룹 파트너 아론 엡스타인은 거의 모든 10억 달러 기업이 소수의 검증된 비즈니스 모델을 따른다고 말한다. YC 상위 100개 기업을
   분석하면 SaaS·거래형·마켓플레이스 모델의 강점이 뚜렷하게 드러난다. 가격 역시 처음부터 완벽하게 정해야 하는 숫자가 아니라, 고객이 제품에서
   느끼는 가치와 시장의 반응을 빠르게 배우기 위한 도구다.
 source_sha256: f9872a06dd86cbb0c62581477efea12805db1c3dfcae5b6bc11f4b3b67a338d1
 generated_at: '2026-09-27'
-reviewed: false
 ---
 ## 거대한 기업을 만든 아홉 가지 비즈니스 모델
 

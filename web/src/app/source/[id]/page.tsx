@@ -6,6 +6,7 @@ import { getContentDir } from "@/lib/contentDir";
 import { getSourceById } from "@/lib/sources";
 import { getSiteData } from "@/lib/site";
 import { loadSourceArticle } from "@/lib/sourceArticles";
+import { relatedSources } from "@/lib/relatedSources";
 
 interface SourcePageProps {
   readonly params: Promise<{ id: string }>;
@@ -33,6 +34,7 @@ export default async function SourcePage({ params }: SourcePageProps) {
   const article = loadSourceArticle(getContentDir(), id);
 
   const sourceAdvice = advice.filter((unit) => unit.source === source.id);
+  const related = relatedSources(source, sources, advice);
   const images = [...new Set([source.thumbnail, ...source.images])].filter(
     (value): value is string => Boolean(value),
   );
@@ -54,12 +56,14 @@ export default async function SourcePage({ params }: SourcePageProps) {
         {source.speakers.length > 0 && (
           <p className="mt-3 text-sm text-ink-muted">{source.speakers.join(", ")}</p>
         )}
-        {article && (
-          <p className="mt-5 inline-flex rounded-full bg-focus-soft px-3 py-1.5 text-sm text-ink-muted">
-            {article.reviewed ? "한국어 번역·정리" : "AI 번역·정리 · 검수 전"}
-          </p>
-        )}
       </header>
+
+      {article?.tldr && (
+        <div className="mt-8 max-w-[760px] rounded-xl border border-line bg-surface px-5 py-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">한 줄 요약</p>
+          <p className="mt-2 text-[17px] font-medium leading-7 text-ink">{article.tldr}</p>
+        </div>
+      )}
 
       {images.length > 0 && (
         <div className={`mt-8 grid gap-3 ${images.length > 1 ? "sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]" : ""}`}>
@@ -155,6 +159,27 @@ export default async function SourcePage({ params }: SourcePageProps) {
           원문 열기 →
         </a>
       </footer>
+
+      {related.length > 0 && (
+        <section className="mt-12 border-t border-line pt-8" aria-labelledby="related-heading">
+          <h2 id="related-heading" className="text-xl font-semibold text-ink">관련 콘텐츠</h2>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {related.map((item) => (
+              <Link
+                key={item.id}
+                href={`/source/${item.id}`}
+                className="rounded-xl border border-line bg-surface p-5 transition-colors hover:border-focus"
+              >
+                <p className="text-xs text-ink-muted">{item.origin} · {item.format}</p>
+                <h3 className="mt-2 text-[17px] font-semibold leading-snug text-ink">{item.title}</h3>
+                {item.tags.length > 0 && (
+                  <p className="mt-3 text-xs text-ink-muted">{item.tags.slice(0, 3).map((tag) => `#${tag}`).join("  ")}</p>
+                )}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </article>
   );
 }

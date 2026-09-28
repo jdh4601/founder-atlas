@@ -1,12 +1,12 @@
 ---
 source: paul-graham-schlep-blindness
 title_ko: 고된 일을 보지 못하는 창업자의 맹점
+tldr: 남들이 피하는 지루하고 고된 일을 직시하고 감당하면 숨겨진 미충족 수요와 사업 기회를 발견할 수 있다.
 lead: 우리 눈앞에는 아직 아무도 손대지 않은 훌륭한 스타트업 아이디어가 널려 있다. 그런데도 이를 알아보지 못하는 이유 중 하나는 내가 ‘슐렙
   맹점(schlep blindness)’이라고 부르는 현상이다. ‘슐렙’은 원래 이디시어에서 유래해 미국에서 널리 쓰이게 된 말로, 지루하고 불쾌하며
   고된 일을 뜻한다.
 source_sha256: 8a64c9c3dd333e19a2afdaabeac4268277ed3eb5e5a43c91a333d9479f54b9bd
 generated_at: '2026-09-28'
-reviewed: false
 ---
 ## 사업은 결국 어떤 고된 일을 감당하느냐로 결정된다
 

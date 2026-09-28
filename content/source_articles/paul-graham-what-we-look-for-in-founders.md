@@ -1,11 +1,11 @@
 ---
 source: paul-graham-what-we-look-for-in-founders
 title_ko: 우리가 창업자에게서 찾는 것
+tldr: 좋은 창업팀은 결단력 있게 전진하면서도 방향을 유연하게 바꾸고, 상상력과 장난기, 깊은 우정으로 압력을 견딘다.
 lead: 2010년 10월, 포브스의 요청을 받아 Y Combinator가 창업자에게서 중요하게 보는 자질을 정리했다. 잡지에는 지면이 부족해 마지막
   항목이 실리지 못했지만, 실제로 우리가 살펴보는 자질은 결단력, 유연성, 상상력, 장난기, 그리고 우정이다.
 source_sha256: 0ee7d46e5808d35bad121b4fa0f30f11822d8bc68bb2f6fe5651ddb9af9837c1
 generated_at: '2026-09-28'
-reviewed: false
 ---
 ## 지능보다 중요한 결단력
 

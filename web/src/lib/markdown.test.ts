@@ -50,9 +50,9 @@ describe("resolveWikilinks", () => {
 });
 
 describe("resolveAdviceMarkers", () => {
-  it("turns {{advice:id}} into a markdown link with an advice:// href", () => {
+  it("turns {{advice:id}} into a same-origin markdown link", () => {
     const result = resolveAdviceMarkers("근거: {{advice:some-source--01}}.");
-    expect(result).toContain("(advice://some-source--01)");
+    expect(result).toContain("(/evidence/some-source--01)");
     expect(result).not.toContain("{{advice:");
   });
 
@@ -60,14 +60,14 @@ describe("resolveAdviceMarkers", () => {
     const result = resolveAdviceMarkers(
       "{{advice:a--01}} 그리고 {{advice:b--02}}",
     );
-    expect(result).toContain("(advice://a--01)");
-    expect(result).toContain("(advice://b--02)");
+    expect(result).toContain("(/evidence/a--01)");
+    expect(result).toContain("(/evidence/b--02)");
   });
 });
 
 describe("parseAdviceHref", () => {
-  it("extracts the advice id from an advice:// href", () => {
-    expect(parseAdviceHref("advice://some-source--01")).toBe(
+  it("extracts the advice id from an evidence marker href", () => {
+    expect(parseAdviceHref("/evidence/some-source--01")).toBe(
       "some-source--01",
     );
   });
@@ -84,7 +84,7 @@ describe("transformKeywordMarkdown", () => {
     const input = "[[pricing]] 참고. {{advice:x--01}}";
     const result = transformKeywordMarkdown(input, titleFor);
     expect(result).toContain("[가격 책정](/k/pricing)");
-    expect(result).toContain("(advice://x--01)");
+    expect(result).toContain("(/evidence/x--01)");
   });
 
   it("leaves mermaid code fences untouched", () => {

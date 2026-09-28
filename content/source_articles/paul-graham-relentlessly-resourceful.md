@@ -1,11 +1,11 @@
 ---
 source: paul-graham-relentlessly-resourceful
 title_ko: 끈질기게 방법을 찾아내는 사람
+tldr: 상황에 휘둘리지 말고 끈질김과 기지를 함께 발휘해 목표를 이룰 방법을 계속 찾아내라.
 lead: 2009년 3월. 며칠 전, 나는 마침내 좋은 스타트업 창업자의 자질을 두 단어로 압축했다. ‘끈질기게 방법을 찾아내는 것(relentlessly
   resourceful)’이다.
 source_sha256: 002a8d8cba0f81243c3a97dc222b4ece39a56cdf70ba9a941d553071547f1372
 generated_at: '2026-09-28'
-reviewed: false
 ---
 ## 상황에 휘둘리는 사람의 반대편
 

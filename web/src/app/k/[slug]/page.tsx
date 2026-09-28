@@ -10,7 +10,6 @@ import { BacklinksList } from "@/components/BacklinksList";
 import { CategoryChip } from "@/components/CategoryChip";
 import { EvidenceChip } from "@/components/EvidenceChip";
 import { MarkdownBody } from "@/components/MarkdownBody";
-import { ReviewBadge } from "@/components/ReviewBadge";
 import { SourceThumbnails } from "@/components/SourceThumbnails";
 
 interface KeywordPageProps {
@@ -40,7 +39,6 @@ export default async function KeywordPage({ params }: KeywordPageProps) {
     <div className="mx-auto max-w-[720px] px-5 pb-24 pt-12">
       <div className="flex flex-wrap items-center gap-3">
         {category && <CategoryChip title={category.title} color={category.color} />}
-        {!page.reviewed && <ReviewBadge />}
       </div>
       <h1 className="mt-2 text-[26px] font-semibold leading-snug text-ink">
         {page.title}

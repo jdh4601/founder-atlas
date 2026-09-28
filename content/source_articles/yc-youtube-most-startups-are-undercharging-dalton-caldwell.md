@@ -1,11 +1,11 @@
 ---
 source: yc-youtube-most-startups-are-undercharging-dalton-caldwell
 title_ko: 대부분의 스타트업은 가격을 너무 낮게 책정한다
+tldr: 무료나 지나치게 싼 가격에 기대지 말고 고객의 지불 의사를 확인할 수 있는 가격으로 제품의 실제 수요를 검증하라.
 lead: 스타트업은 흔히 제품을 무료로 제공하거나, 받을 수 있는 금액보다 터무니없이 낮은 가격을 매긴다. 하지만 지나치게 싼 가격은 사업의 성공
   가능성을 떨어뜨릴 뿐 아니라, 고객이 정말 제품을 원하는지 판단하는 일까지 방해한다.
 source_sha256: 4d90962c6247febf1d6f52754b6130925463293dd22421d75a854dbfa6b8d839
 generated_at: '2026-09-27'
-reviewed: false
 ---
 ## 받아야 할 가격의 100분의 1만 받는 회사들
 

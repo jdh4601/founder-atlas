@@ -1,11 +1,11 @@
 ---
 source: paul-graham-subject-airbnb
 title_ko: '제목: 에어비앤비'
+tldr: 초기 아이디어가 낯설고 작아 보여도 끝까지 실행할 뛰어난 팀과 시장이 확장될 가능성을 먼저 살펴라.
 lead: 2009년 초, 에어비앤비가 아직 ‘AirBedAndBreakfast’로 불리던 시절 폴 그레이엄은 투자자 프레드 윌슨에게 창업자들을 소개했다.
   다음은 이 사업이 얼마나 커질 수 있는지를 두고 두 사람이 주고받은 이메일이다.
 source_sha256: 7d4d13621a5bbab683f2dc50dfa7c64f64c43c8af03e09efa848c7801a5e9634
 generated_at: '2026-09-28'
-reviewed: false
 ---
 ## “이 팀이라면 해낼 수 있다”
 

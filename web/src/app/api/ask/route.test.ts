@@ -80,8 +80,8 @@ describe("POST /api/ask", () => {
         adviceId: "yc-youtube-sample-pricing-lesson--01",
         claim: "초기 B2B 제품은 가격을 낮추지 말고 높게 시작하라",
         sourceTitle: "제품 가격을 정하는 법 (샘플)",
-        url: "https://www.youtube.com/watch?v=SAMPLE0001A&t=120s",
-        label: "2:00부터 보기",
+        url: "/source/yc-youtube-sample-pricing-lesson",
+        label: "근거 보기",
       },
     ]);
 

@@ -32,10 +32,8 @@ export function formatTimestamp(totalSeconds: number): string {
 }
 
 /**
- * Builds the evidence link the UI renders for one advice unit, per
- * `docs/content-schema.md`: a timestamp anchor points at the exact second
- * on YouTube; a paragraph anchor (or a timestamp advice missing a
- * `youtube_id`) falls back to the source's own URL.
+ * Builds an original-source link for a specific advice unit. The UI's
+ * "근거 보기" link opens the Korean source page instead (see buildEvidenceEntries).
  */
 export function buildEvidenceLink(advice: Advice, source: Source): EvidenceLink {
   if (advice.anchor.kind === "timestamp") {
@@ -63,14 +61,13 @@ export function buildEvidenceEntries(
     if (!unit) return [];
     const source = getSourceById(sources, unit.source);
     if (!source) return [];
-    const link = buildEvidenceLink(unit, source);
     return [
       {
         adviceId: unit.id,
         claim: unit.claim,
         sourceTitle: source.titleKo,
-        url: link.url,
-        label: link.label,
+        url: `/source/${source.id}`,
+        label: "근거 보기",
       },
     ];
   });

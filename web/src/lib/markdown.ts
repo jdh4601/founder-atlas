@@ -1,6 +1,6 @@
 /**
  * Pure text transforms for keyword page bodies. Kept dependency-free (no
- * remark/unified) so they are trivially unit-testable and so `advice://`
+ * remark/unified) so they are trivially unit-testable and so advice marker
  * links stay valid CommonMark that any markdown renderer parses as a plain
  * link node — `MarkdownBody` then swaps that link for an `EvidenceChip`.
  */
@@ -23,14 +23,14 @@ export function resolveWikilinks(
 }
 
 /**
- * Replaces `{{advice:id}}` with a markdown link using a custom `advice://`
- * scheme. The visible label is never shown as-is — the `a` renderer in
- * `MarkdownBody` recognizes the scheme and renders an `EvidenceChip`
+ * Replaces `{{advice:id}}` with a same-origin markdown link. ReactMarkdown
+ * strips custom URL schemes, so this must use a normal path. The `a` renderer in
+ * `MarkdownBody` recognizes the path and renders an `InlineEvidenceLink`
  * instead, so the label only matters as a no-JS/plaintext fallback.
  */
 export function resolveAdviceMarkers(markdown: string): string {
   return markdown.replace(ADVICE_MARKER_PATTERN, (_match, id: string) => {
-    return `[근거 보기](advice://${id})`;
+    return `[근거 보기](/evidence/${id})`;
   });
 }
 
@@ -43,9 +43,9 @@ export function extractWikilinkSlugs(markdown: string): string[] {
   return [...slugs];
 }
 
-/** Extracts the advice id from an `advice://id` href, or null if not one. */
+/** Extracts the advice id from an evidence marker href, or null if not one. */
 export function parseAdviceHref(href: string): string | null {
-  const match = /^advice:\/\/(.+)$/.exec(href);
+  const match = /^\/evidence\/([a-zA-Z0-9._-]+)$/.exec(href);
   return match ? match[1] : null;
 }
 

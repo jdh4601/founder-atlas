@@ -1,12 +1,12 @@
 ---
 source: yc-youtube-understanding-investor-terms-incentives-rookie-mistakes-with-dalton
 title_ko: '높은 기업가치보다 중요한 것: 투자 조건과 투자자의 인센티브 읽기'
+tldr: 투자 제안을 평가할 때 기업가치와 조달액뿐 아니라 계약 조건, 권리, 투자자의 인센티브와 협상 경험까지 살펴야 한다.
 lead: 창업자는 투자 유치를 마치고 사업으로 돌아가고 싶지만, 투자자는 여러 회사를 상대로 매일 같은 협상을 반복한다. 따라서 창업자는 기업가치와
   조달 금액뿐 아니라 계약에 포함된 권리와 조건, 그리고 상대방이 무엇을 위해 움직이는지도 이해해야 한다. 겉으로는 호의적인 제안이나 조언처럼 보여도
   실제 의미는 전혀 다를 수 있다.
 source_sha256: c6b0f2d8518ee7909907ef75bb91757a70c64c9cf537f335a1d78afa1d4b224e
 generated_at: '2026-09-28'
-reviewed: false
 ---
 ## 기업가치와 조달 금액만 보면 안 되는 이유
 

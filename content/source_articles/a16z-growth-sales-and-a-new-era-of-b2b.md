@@ -1,13 +1,13 @@
 ---
 source: a16z-growth-sales-and-a-new-era-of-b2b
 title_ko: 성장과 영업의 결합이 여는 B2B의 새로운 시대
+tldr: 단순한 제품으로 사용자를 모으는 상향식 성장에 전통적 영업을 결합해 B2B 시장점유율과 수익성을 함께 키워라.
 lead: 소비자 기업은 바이럴과 네트워크 효과로 성장하고, 엔터프라이즈 기업은 영업을 통해 한 건씩 고객을 확보한다는 구분이 오랫동안 통용됐다.
   하지만 Dropbox, Twilio, Atlassian, SurveyMonkey, GitHub 같은 기업들은 이 경계가 무너지고 있음을 보여준다.
   이들은 단순한 제품으로 사용자를 먼저 모은 뒤 영업 조직을 결합하는 방식으로 시장에 진입했다. a16z의 마틴 카사도는 이 ‘상향식 성장과 전통적
   영업의 결합’이 앞으로 10년간 B2B 시장을 바꿀 핵심 흐름이라고 본다.
 source_sha256: 1efee13a2b6d8925d3dd560ce28cfad0049271453dbd89ebf7e70bb766b9d06c
 generated_at: '2026-09-27'
-reviewed: false
 ---
 ## B2B의 가장 큰 변화는 기술이 아니라 시장 진입 방식이다
 

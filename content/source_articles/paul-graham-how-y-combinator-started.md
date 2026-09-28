@@ -1,11 +1,11 @@
 ---
 source: paul-graham-how-y-combinator-started
 title_ko: Y Combinator는 어떻게 시작되었나
+tldr: Y Combinator는 초기 창업 경험에서 얻은 교훈과 우연히 발견한 동시 선발 방식을 발전시키며 케임브리지에서 실리콘밸리로 확장됐다.
 lead: 2012년 3월 11일은 Y Combinator가 일곱 살이 되는 날이었다. 하지만 우리는 늘 그렇듯 너무 바빠서 며칠이 지나고서야 그
   사실을 알아차렸다. 지금까지 창립 기념일을 바로 그날 기억해 낸 적은 한 번도 없는 것 같다.
 source_sha256: cdbd0a167d7cda84ec41f9091907b137147549a29ded67d2147566d0237ecfcb
 generated_at: '2026-09-27'
-reviewed: false
 ---
 ## 하버드 스퀘어에서 시작된 투자사 구상
 

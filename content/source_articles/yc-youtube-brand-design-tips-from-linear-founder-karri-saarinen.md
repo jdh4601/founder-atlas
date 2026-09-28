@@ -1,13 +1,13 @@
 ---
 source: yc-youtube-brand-design-tips-from-linear-founder-karri-saarinen
 title_ko: Linear 창업자 카리 사리넨이 말하는 기억에 남는 스타트업 브랜드
+tldr: 스타트업의 현재 모습을 정직하게 드러내고, 명확한 메시지와 시각적 개성, 다음 행동을 균형 있게 설계하라.
 lead: 스타트업 웹사이트를 만드는 일은 어느 때보다 쉬워졌지만, 남들과 구별되는 브랜드를 만드는 일은 여전히 어렵다. Coinbase의 첫 디자이너이자
   Airbnb의 리드 디자이너를 거쳐 Linear를 공동 창업한 카리 사리넨은 좋은 브랜드란 회사의 현재 단계와 고객에게 솔직해야 한다고 말한다.
   그는 Linear 웹사이트의 변천을 돌아본 뒤 Sprites AI, Giga ML, Unreal Milk, Confident AI, Dropback의
   사이트를 살펴보며 명확한 메시지와 시각적 개성, 전환 설계 사이에서 균형을 잡는 법을 설명한다.
 source_sha256: b4272cefff3695899108e4f03e920f5f76fb303eac49db2f655d085f0dd9b120
 generated_at: '2026-09-28'
-reviewed: false
 ---
 ## 큰 회사처럼 보이기 전에, 지금의 회사를 정직하게 보여줘야 한다
 
