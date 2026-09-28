@@ -7,6 +7,12 @@ build_dir="$repo_dir/dist"
 app_dir="$build_dir/$app_name"
 resource_dir="$app_dir/Contents/Resources"
 node_binary="${NODE_BINARY:-$(command -v node)}"
+# The bundle copies only the node executable, so it must not link a shared libnode
+# (Homebrew's node does); point NODE_BINARY at a standalone build such as nvm's.
+if otool -L "$(readlink -f "$node_binary")" | grep -q libnode; then
+  echo "error: $node_binary links libnode and will not run inside the app; set NODE_BINARY" >&2
+  exit 1
+fi
 
 cd "$repo_dir/web"
 npm run build
