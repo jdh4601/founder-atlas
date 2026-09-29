@@ -29,13 +29,13 @@ const formatLabels = {
 
 export default async function SourcePage({ params }: SourcePageProps) {
   const { id } = await params;
-  const { advice, sources } = getSiteData(getContentDir());
+  const { advice, sources, taxonomy } = getSiteData(getContentDir());
   const source = getSourceById(sources, id);
   if (!source) notFound();
   const article = loadSourceArticle(getContentDir(), id);
 
   const sourceAdvice = advice.filter((unit) => unit.source === source.id);
-  const related = relatedSources(source, sources, advice);
+  const related = relatedSources(source, sources, advice, taxonomy);
   const images = [...new Set([source.thumbnail, ...source.images])].filter(
     (value): value is string => Boolean(value),
   );
@@ -169,7 +169,7 @@ export default async function SourcePage({ params }: SourcePageProps) {
                 <p className="text-xs text-ink-muted">{item.origin} · {item.format}</p>
                 <h3 className="mt-2 text-[17px] font-semibold leading-snug text-ink">{item.title}</h3>
                 {item.tags.length > 0 && (
-                  <p className="mt-3 text-xs text-ink-muted">{item.tags.slice(0, 3).map((tag) => `#${tag}`).join("  ")}</p>
+                  <p className="mt-3 text-xs text-ink-muted">{item.tags.slice(0, 3).map((tag) => `#${tag.title}`).join("  ")}</p>
                 )}
               </Link>
             ))}

@@ -28,6 +28,7 @@ from founder_atlas_pipeline.sources import list_source_ids
 from founder_atlas_pipeline.source_articles import CLIArticleWriter, generate_article
 from founder_atlas_pipeline.source_tldrs import missing_tldr_paths, write_tldr_batch
 from founder_atlas_pipeline.stats import collect_stats, format_stats
+from founder_atlas_pipeline.tagging import CLITagger, tag_article
 from founder_atlas_pipeline.taxonomy import load_taxonomy
 
 
@@ -239,6 +240,8 @@ def import_insights_command(
     content = _content_dir(ctx)
     notes = sorted((vault_dir / folder).glob("*.md"))
     writer = CLIInsightWriter(provider)
+    taxonomy = load_taxonomy(content / "taxonomy.yaml")
+    tagger = CLITagger(provider)
     transcripts = AnyLanguageTranscripts()
     counts = {"written": 0, "skipped": 0, "failed": 0}
 
@@ -248,6 +251,8 @@ def import_insights_command(
                 content, vault_dir, note, writer, youtube=transcripts,
                 thumbnail_for=youtube_thumbnail, source_id=source_id, force=force,
             )
+            if result.status == "written":
+                tag_article(content, result.source_id, taxonomy, tagger, force=True)
             return note, result, None
         except Exception as exc:
             return note, None, exc
@@ -263,6 +268,47 @@ def import_insights_command(
             assert result is not None
             counts[result.status] += 1
             click.echo(f"[{result.status}] {result.source_id} <- {note.name}")
+    click.echo(", ".join(f"{status}: {count}" for status, count in counts.items()))
+    if counts["failed"]:
+        sys.exit(1)
+
+
+@main.command("tag-articles")
+@click.argument("source_id", required=False)
+@click.option("--all", "tag_all", is_flag=True, help="Tag every source article.")
+@click.option("--force", is_flag=True, help="Retag articles that already have keyword tags.")
+@click.option("--jobs", type=click.IntRange(1, 8), default=1, show_default=True)
+@click.option("--provider", type=click.Choice(("codex-cli", "claude-code-cli")), default="claude-code-cli")
+@click.pass_context
+def tag_articles_command(
+    ctx: click.Context, source_id: str | None, tag_all: bool, force: bool, jobs: int, provider: str
+) -> None:
+    """Set each article's `tags` to the taxonomy keyword slugs it covers."""
+    if not source_id and not tag_all:
+        raise click.UsageError("Give a SOURCE_ID or --all.")
+    content = _content_dir(ctx)
+    taxonomy = load_taxonomy(content / "taxonomy.yaml")
+    targets = [source_id] if source_id else sorted(p.stem for p in (content / "source_articles").glob("*.md"))
+    tagger = CLITagger(provider)
+    counts = {"tagged": 0, "skipped": 0, "failed": 0}
+
+    def run_one(target: str):
+        try:
+            return target, tag_article(content, target, taxonomy, tagger, force=force), None
+        except Exception as exc:
+            return target, None, exc
+
+    with ThreadPoolExecutor(max_workers=jobs) as executor:
+        futures = [executor.submit(run_one, target) for target in targets]
+        for future in as_completed(futures):
+            target, result, exc = future.result()
+            if exc is not None:
+                counts["failed"] += 1
+                click.echo(f"[failed] {target}: {exc}", err=True)
+                continue
+            assert result is not None
+            counts[result.status] += 1
+            click.echo(f"[{result.status}] {target}: {', '.join(result.tags)}")
     click.echo(", ".join(f"{status}: {count}" for status, count in counts.items()))
     if counts["failed"]:
         sys.exit(1)

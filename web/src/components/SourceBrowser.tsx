@@ -2,82 +2,70 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import type { BrowseSource } from "@/lib/sourceBrowse";
+import { sortByPublished, type BrowseSource, type PublishedOrder } from "@/lib/sourceBrowse";
 
 interface SourceBrowserProps {
+  /** Contents already narrowed by the category and keyword selection. */
   readonly sources: readonly BrowseSource[];
+  readonly total: number;
+  /** The selected keyword or category title, shown next to the heading. */
+  readonly filterLabel: string | null;
 }
 
-export function SourceBrowser({ sources }: SourceBrowserProps) {
-  const [tag, setTag] = useState<string | null>(null);
+export function SourceBrowser({ sources, total, filterLabel }: SourceBrowserProps) {
   const [query, setQuery] = useState("");
-  const tags = useMemo(() => {
-    const counts = new Map<string, number>();
-    sources.forEach((source) =>
-      source.tags.forEach((value) => counts.set(value, (counts.get(value) ?? 0) + 1)),
-    );
-    return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-  }, [sources]);
+  const [order, setOrder] = useState<PublishedOrder>("newest");
   const filtered = useMemo(() => {
     const normalizedQuery = query.trim().toLocaleLowerCase();
-    return sources.filter(
+    const matching = sources.filter(
       (source) =>
-        (!tag || source.tags.includes(tag)) &&
-        (!normalizedQuery ||
-          `${source.title} ${source.origin} ${source.speakers.join(" ")}`
-            .toLocaleLowerCase()
-            .includes(normalizedQuery)),
+        !normalizedQuery ||
+        `${source.title} ${source.origin} ${source.speakers.join(" ")}`
+          .toLocaleLowerCase()
+          .includes(normalizedQuery),
     );
-  }, [sources, tag, query]);
+    return sortByPublished(matching, order);
+  }, [sources, query, order]);
 
   return (
     <div>
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div className="flex flex-col gap-3 border-b border-line pb-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h2 className="text-[18px] font-semibold tracking-tight text-ink">원문 콘텐츠</h2>
-          <p className="mt-1 text-sm text-ink-muted">수집한 영상과 글 {sources.length}개</p>
+          <h2 className="text-[18px] font-semibold tracking-tight text-ink">
+            원문 콘텐츠{filterLabel && <span className="ml-2 font-normal text-ink-muted">#{filterLabel}</span>}
+          </h2>
+          <p className="mt-1 text-sm text-ink-muted">수집한 영상과 글 {total}개</p>
         </div>
-        <label className="block w-full sm:max-w-[290px]">
-          <span className="sr-only">콘텐츠 검색</span>
-          <input
-            type="search"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="제목이나 출처 검색"
-            className="w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-muted focus:border-focus focus:outline-none"
-          />
-        </label>
-      </div>
-
-      <div className="no-scrollbar -mx-5 mt-4 overflow-x-auto border-b border-line px-5 pb-4 sm:mx-0 sm:px-0" aria-label="해시태그 필터">
-        <div className="flex w-max gap-2">
-          <button
-            type="button"
-            aria-pressed={tag === null}
-            onClick={() => setTag(null)}
-            className={`rounded-full px-3.5 py-2 text-sm transition-colors ${tag === null ? "bg-ink text-paper" : "bg-surface text-ink hover:bg-focus-soft"}`}
-          >
-            전체
-          </button>
-          {tags.map(([value, count]) => (
-            <button
-              key={value}
-              type="button"
-              aria-pressed={tag === value}
-              onClick={() => setTag(value === tag ? null : value)}
-              className={`rounded-full px-3.5 py-2 text-sm transition-colors ${tag === value ? "bg-ink text-paper" : "bg-surface text-ink hover:bg-focus-soft"}`}
+        <div className="flex w-full gap-2 sm:max-w-[400px]">
+          <label className="block min-w-0 flex-1">
+            <span className="sr-only">콘텐츠 검색</span>
+            <input
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="제목이나 출처 검색"
+              className="w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-muted focus:border-focus focus:outline-none"
+            />
+          </label>
+          <label className="block shrink-0">
+            <span className="sr-only">정렬</span>
+            <select
+              value={order}
+              onChange={(event) => setOrder(event.target.value as PublishedOrder)}
+              className="h-full rounded-lg border border-line bg-surface px-3 py-2.5 text-sm text-ink focus:border-focus focus:outline-none"
             >
-              #{value} <span className="ml-1 opacity-60">{count}</span>
-            </button>
-          ))}
+              <option value="newest">최신순</option>
+              <option value="oldest">오래된순</option>
+            </select>
+          </label>
         </div>
       </div>
 
       <p className="py-5 text-sm text-ink-muted" aria-live="polite">{filtered.length}개 콘텐츠</p>
       {filtered.length === 0 ? (
-        <p className="border-t border-line py-16 text-center text-sm text-ink-muted">일치하는 콘텐츠가 없습니다. 검색어나 해시태그를 바꿔보세요.</p>
+        <p className="border-t border-line py-16 text-center text-sm text-ink-muted">일치하는 콘텐츠가 없습니다. 검색어나 키워드를 바꿔보세요.</p>
       ) : (
-        <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+        <ul aria-label="콘텐츠 목록" className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
           {filtered.map((source) => (
             <li key={source.id} className="min-w-0">
               <Link
@@ -103,8 +91,8 @@ export function SourceBrowser({ sources }: SourceBrowserProps) {
                   </p>
                   {source.speakers.length > 0 && <p className="mt-1 line-clamp-1 text-xs text-ink-muted">{source.speakers.join(", ")}</p>}
                   <div className="mt-auto flex flex-wrap gap-1.5 pt-3">
-                    {source.tags.map((value) => (
-                      <span key={value} className="rounded-full bg-focus-soft px-2 py-1 text-xs text-ink-muted">#{value}</span>
+                    {source.tags.slice(0, 3).map((tag) => (
+                      <span key={tag.slug} className="rounded-full bg-focus-soft px-2 py-1 text-xs text-ink-muted">#{tag.title}</span>
                     ))}
                   </div>
                 </div>

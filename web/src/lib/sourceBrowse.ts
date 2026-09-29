@@ -1,4 +1,9 @@
-import type { Source } from "./types";
+import type { Source, Taxonomy } from "./types";
+
+export interface BrowseTag {
+  readonly slug: string;
+  readonly title: string;
+}
 
 export interface BrowseSource {
   readonly id: string;
@@ -9,8 +14,25 @@ export interface BrowseSource {
   readonly format: string;
   readonly published: string | null;
   readonly speakers: readonly string[];
-  readonly tags: readonly string[];
+  /** Taxonomy keywords the article covers, most central first. */
+  readonly tags: readonly BrowseTag[];
 }
+
+export interface BrowseKeyword extends BrowseTag {
+  readonly count: number;
+  readonly hasPage: boolean;
+}
+
+export interface BrowseCategory {
+  readonly slug: string;
+  readonly title: string;
+  readonly color: string;
+  /** Contents tagged with at least one keyword of this category. */
+  readonly count: number;
+  readonly keywords: readonly BrowseKeyword[];
+}
+
+export type PublishedOrder = "newest" | "oldest";
 
 const originLabels: Record<Source["origin"], string> = {
   "yc-youtube": "YC",
@@ -27,42 +49,68 @@ const formatLabels: Record<Source["format"], string> = {
   podcast: "팟캐스트",
 };
 
-// Topic tags are assigned only when these words appear in the source title.
-// This makes unprocessed sources browseable without pretending their content
-// has already been classified by the advice extraction pipeline.
-const titleTopics: readonly { tag: string; pattern: RegExp }[] = [
-  { tag: "가격", pattern: /\b(pric(?:e|es|ing)|undercharg(?:e|ing)|packaging)\b/i },
-  { tag: "고객", pattern: /\b(customer|customers|users?)\b/i },
-  { tag: "영업", pattern: /\b(sales|sell|selling)\b/i },
-  { tag: "성장", pattern: /\b(growth|distribution|retention)\b/i },
-  { tag: "제품", pattern: /\b(product|products|pmf)\b/i },
-  { tag: "투자", pattern: /\b(fundrais(?:e|ing)|funding|investors?|venture capital|vc)\b/i },
-  { tag: "채용", pattern: /\b(hiring|hire|recruiting)\b/i },
-  { tag: "아이디어", pattern: /\b(ideas?|problem validation)\b/i },
-  { tag: "AI", pattern: /\bai\b|artificial intelligence|generative/i },
-];
+function keywordTitles(taxonomy: Taxonomy): Map<string, string> {
+  return new Map(
+    taxonomy.categories.flatMap((category) =>
+      category.keywords.map((keyword) => [keyword.slug, keyword.title] as const),
+    ),
+  );
+}
 
-export function toBrowseSources(sources: readonly Source[]): BrowseSource[] {
-  return sources
-    .map((source) => ({
-      id: source.id,
-      title: source.titleKo,
-      url: source.url,
-      thumbnail: source.thumbnail,
-      origin: originLabels[source.origin],
-      format: formatLabels[source.format],
-      published: source.published,
-      speakers: source.speakers,
-      // Filters stay focused on founder topics. Source and format are shown
-      // as metadata on each card, but are not useful content facets.
-      tags: source.tags?.length
-        ? source.tags
-        : titleTopics
-            .filter(({ pattern }) => pattern.test(`${source.title} ${source.titleKo}`))
-            .map(({ tag }) => tag),
-    }))
-    .sort((a, b) =>
-      (b.published ?? "").localeCompare(a.published ?? "") ||
-      a.title.localeCompare(b.title),
-    );
+/** Tags are the article's keyword slugs; slugs missing from the taxonomy are dropped. */
+export function toBrowseSources(sources: readonly Source[], taxonomy: Taxonomy): BrowseSource[] {
+  const titles = keywordTitles(taxonomy);
+  const browse = sources.map((source) => ({
+    id: source.id,
+    title: source.titleKo,
+    url: source.url,
+    thumbnail: source.thumbnail,
+    origin: originLabels[source.origin],
+    format: formatLabels[source.format],
+    published: source.published,
+    speakers: source.speakers,
+    tags: (source.tags ?? []).flatMap((slug) => {
+      const title = titles.get(slug);
+      return title ? [{ slug, title }] : [];
+    }),
+  }));
+  return sortByPublished(browse, "newest");
+}
+
+/** Sorts by publish date; undated sources always come last, then by title. */
+export function sortByPublished(sources: readonly BrowseSource[], order: PublishedOrder): BrowseSource[] {
+  const direction = order === "newest" ? -1 : 1;
+  return [...sources].sort((a, b) => {
+    if (a.published && b.published && a.published !== b.published) {
+      return direction * a.published.localeCompare(b.published);
+    }
+    if (Boolean(a.published) !== Boolean(b.published)) return a.published ? -1 : 1;
+    return a.title.localeCompare(b.title);
+  });
+}
+
+/** Taxonomy with per-keyword content counts; keywords and categories with no contents are hidden. */
+export function browseCategories(
+  taxonomy: Taxonomy,
+  sources: readonly BrowseSource[],
+  pageSlugs: ReadonlySet<string>,
+): BrowseCategory[] {
+  const counts = new Map<string, number>();
+  for (const source of sources) {
+    for (const tag of source.tags) counts.set(tag.slug, (counts.get(tag.slug) ?? 0) + 1);
+  }
+  return taxonomy.categories.flatMap((category) => {
+    const slugs = new Set(category.keywords.map((keyword) => keyword.slug));
+    const keywords = category.keywords
+      .map((keyword) => ({
+        slug: keyword.slug,
+        title: keyword.title,
+        count: counts.get(keyword.slug) ?? 0,
+        hasPage: pageSlugs.has(keyword.slug),
+      }))
+      .filter((keyword) => keyword.count > 0);
+    if (keywords.length === 0) return [];
+    const count = sources.filter((source) => source.tags.some((tag) => slugs.has(tag.slug))).length;
+    return [{ slug: category.slug, title: category.title, color: category.color, count, keywords }];
+  });
 }

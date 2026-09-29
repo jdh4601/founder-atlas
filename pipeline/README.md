@@ -51,6 +51,7 @@ uv run atlas import-insights ~/Obsidian-vault --jobs 3
 
 # 8. Put 2-5 figures inside each Korean article (needs yt-dlp, ffmpeg, a model CLI)
 uv run atlas add-figures --all --jobs 3
+uv run atlas tag-articles --all --jobs 4  # tags = taxonomy keyword slugs
 uv run atlas add-figures <source_id> --force  # replace an article's figures
 uv run atlas add-figures --all --recapture-frames --provider claude-code-cli  # re-pick clearer frames
 ```

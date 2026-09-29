@@ -1,15 +1,16 @@
 import { toBrowseSources, type BrowseSource } from "./sourceBrowse";
-import type { Advice, Source } from "./types";
+import type { Advice, Source, Taxonomy } from "./types";
 
-/** Rank real source pages by shared advice keywords, then browse tags. */
+/** Rank real source pages by shared advice keywords, then shared keyword tags. */
 export function relatedSources(
   current: Source,
   sources: readonly Source[],
   advice: readonly Advice[],
+  taxonomy: Taxonomy,
 ): BrowseSource[] {
-  const browse = toBrowseSources(sources);
+  const browse = toBrowseSources(sources, taxonomy);
   const currentBrowse = browse.find((source) => source.id === current.id);
-  const currentTags = new Set(currentBrowse?.tags ?? []);
+  const currentTags = new Set(currentBrowse?.tags.map((tag) => tag.slug) ?? []);
   const keywordsBySource = new Map<string, Set<string>>();
   for (const unit of advice) {
     const keywords = keywordsBySource.get(unit.source) ?? new Set<string>();
@@ -23,7 +24,7 @@ export function relatedSources(
     .map((candidate) => {
       const sharedKeywords = [...(keywordsBySource.get(candidate.id) ?? [])]
         .filter((keyword) => currentKeywords.has(keyword)).length;
-      const sharedTags = candidate.tags.filter((tag) => currentTags.has(tag)).length;
+      const sharedTags = candidate.tags.filter((tag) => currentTags.has(tag.slug)).length;
       return {
         candidate,
         score: sharedKeywords * 10 + sharedTags * 4

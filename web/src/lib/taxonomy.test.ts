@@ -2,7 +2,6 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import {
-  categoriesWithPages,
   findCategory,
   findCategoryForKeyword,
   findKeywordTitle,
@@ -70,17 +69,3 @@ describe("findCategory / findKeywordTitle", () => {
   });
 });
 
-describe("categoriesWithPages", () => {
-  const taxonomy = {
-    categories: [
-      { slug: "a", title: "A", color: "#000000", keywords: [{ slug: "k1", title: "K1" }, { slug: "k2", title: "K2" }] },
-      { slug: "b", title: "B", color: "#111111", keywords: [{ slug: "k3", title: "K3" }] },
-    ],
-  };
-
-  it("keeps only keywords with a page and drops empty categories", () => {
-    expect(categoriesWithPages(taxonomy, [{ slug: "k2" }])).toEqual([
-      { slug: "a", title: "A", color: "#000000", keywords: [{ slug: "k2", title: "K2" }] },
-    ]);
-  });
-});

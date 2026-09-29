@@ -4,7 +4,8 @@ Each note already is a Korean summary, so its numbered insight sections become
 the article body as-is. Personal sections (why it matters to me, linked notes,
 to-dos, the original backlink) are dropped, and `[[wikilinks]]` become plain
 text. A model writes only the founder-facing title, one-line summary, lead,
-and topic tags, from the cleaned body alone.
+from the cleaned body alone. Tags are keyword slugs added afterwards by
+`tagging.tag_article`.
 """
 
 from __future__ import annotations
@@ -30,7 +31,6 @@ from founder_atlas_pipeline.source_articles import article_path
 from founder_atlas_pipeline.sources import write_source
 
 ORIGIN = "insights"
-TOPIC_TAGS = ("고객", "투자", "AI", "성장", "제품", "영업", "가격", "아이디어", "채용")
 _PERSONAL_HEADING = re.compile(
     r"유효한가|왜 유용한가|연결되는 인사이트|관련 노트|원문|원본|적용할|할 것|바꿀 것|실행 메모|자기평가|더 공부"
 )
@@ -43,7 +43,6 @@ SYSTEM_PROMPT = """당신은 창업가를 위한 아카이브의 편집자입니
 "누구누구 인터뷰", "OO 강연"처럼 사람이나 형식을 내세우지 말고, 노트의 가장 중요한 교훈을
 실행 가능한 주장으로 40자 이내에 쓰세요(예: "매출보다 IP가 쌓이는 사업을 남겨라").
 tldr은 핵심을 압축한 한 문장, lead는 글을 여는 1~2문장 도입입니다.
-tags는 다음 목록에서 노트 주제와 직접 관련된 것만 0~3개 고르세요: 고객, 투자, AI, 성장, 제품, 영업, 가격, 아이디어, 채용.
 노트에 없는 사실이나 수치를 지어내지 마세요."""
 
 SCHEMA = {
@@ -52,9 +51,8 @@ SCHEMA = {
         "title_ko": {"type": "string"},
         "tldr": {"type": "string"},
         "lead": {"type": "string"},
-        "tags": {"type": "array", "items": {"type": "string"}},
     },
-    "required": ["title_ko", "tldr", "lead", "tags"],
+    "required": ["title_ko", "tldr", "lead"],
     "additionalProperties": False,
 }
 
@@ -234,13 +232,12 @@ def import_insight_note(
     write_source(content_root, meta, transcript)
 
     written = writer.write(f"노트 제목: {meta.title}\n\n노트 본문:\n{body}")
-    tags = [tag for tag in written.get("tags", []) if tag in TOPIC_TAGS][:3]
     frontmatter = {
         "source": source_id,
         "title_ko": written["title_ko"].strip(),
         "tldr": written["tldr"].strip(),
         "lead": written["lead"].strip(),
-        "tags": tags,
+        "tags": [],
         "source_sha256": hashlib.sha256(note.read_bytes()).hexdigest(),
         "generated_at": date.today().isoformat(),
     }

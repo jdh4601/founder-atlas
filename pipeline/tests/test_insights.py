@@ -71,7 +71,6 @@ class FakeWriter:
             "title_ko": "매출보다 IP가 쌓이는 사업을 남겨라",
             "tldr": "매출 규모보다 회사에 자산이 쌓이는 사업을 골라야 한다.",
             "lead": "런웨이 4개월의 적자 스타트업을 살린 결정들을 정리했다.",
-            "tags": ["채용", "가격", "없는태그"],
         }
 
 
@@ -152,7 +151,7 @@ def test_import_insight_note_writes_source_transcript_and_article(tmp_path: Path
     assert read_transcript(content, "insights-055").segments[0].text == "런웨이가 4개월 남았을 때"
     article = parse((content / "source_articles" / "insights-055.md").read_text(encoding="utf-8"))
     assert article.frontmatter["title_ko"] == "매출보다 IP가 쌓이는 사업을 남겨라"
-    assert article.frontmatter["tags"] == ["채용", "가격"]
+    assert article.frontmatter["tags"] == []
     assert "D.ONE" not in article.body and "D.ONE" not in writer.prompts[0]
 
     again = import_insight_note(

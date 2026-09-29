@@ -78,8 +78,8 @@ Only one of `segments` / `paragraphs` is present.
 as `insights-{NNN}` sources. The article body is the note's numbered insight
 sections; personal sections (why it matters to me, linked notes, to-dos, the
 original backlink) are dropped and wikilinks become plain text. A model writes
-only `title_ko` (a founder-facing claim, not "X interview"), `tldr`, `lead`, and
-`tags`. YouTube notes use the video thumbnail and Korean/English captions as the
+only `title_ko` (a founder-facing claim, not "X interview"), `tldr`, and `lead`;
+`tags` are then set by `tag-articles` (below). YouTube notes use the video thumbnail and Korean/English captions as the
 transcript; others keep the note paragraphs as the transcript.
 Notes listed in `content/insights-exclude.txt` (one source id per line, `#` comments)
 are skipped, so deleted off-topic notes are not imported again.
@@ -180,8 +180,12 @@ updated_at: 2026-09-25
 ## Content explore (computed by web, not stored)
 
 - The home page content grid (`/#contents`) lists source metadata from `sources/{source_id}.md`.
-- Hashtags are literal matches from a fixed vocabulary against the title. An
-  article may instead list `tags` (subset of the same 9 hashtags) in its
-  frontmatter; `insights` articles do, since their Korean titles don't match
-  the English vocabulary.
+- Each article's frontmatter `tags` lists 1–4 keyword slugs from `taxonomy.yaml`,
+  most central first. `atlas tag-articles --all` sets them: a model reads the
+  article and picks keywords; code drops unknown slugs and keeps at most 4.
+  Articles already tagged only with known slugs are skipped unless `--force`.
+- The home category tabs and keyword chips filter the grid by these tags
+  (a category shows contents tagged with any of its keywords). Keywords with no
+  tagged contents are hidden. Cards show keyword titles as hashtags. The grid
+  sorts by `published`, newest or oldest first; undated sources come last.
 - The former `/explore` and `/map` routes redirect to `/#contents`.
