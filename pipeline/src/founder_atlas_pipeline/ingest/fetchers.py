@@ -9,6 +9,7 @@ module stays importable (and tests stay fast) without touching those libs.
 from __future__ import annotations
 
 import re
+import subprocess
 from dataclasses import dataclass, field
 from typing import Any, Protocol
 
@@ -137,6 +138,27 @@ class YtDlpYouTubeFetcher:
         ]
 
 
+_BROWSER_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"
+}
+
+
+def _browser_get(url: str) -> str | None:
+    """Download with curl and a browser UA.
+
+    Greylock and Medium answer Python HTTP clients with 403 (bot checks on the
+    TLS fingerprint) but serve curl, so this is the fallback for trafilatura.
+    """
+    try:
+        result = subprocess.run(
+            ["curl", "-sL", "--fail", "--max-time", "30", "-A", _BROWSER_HEADERS["User-Agent"], url],
+            capture_output=True, text=True, timeout=40,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    return result.stdout if result.returncode == 0 and result.stdout else None
+
+
 class TrafilaturaWebFetcher:
     """Real `WebFetcher` using trafilatura for main-text extraction."""
 
@@ -154,7 +176,7 @@ class TrafilaturaWebFetcher:
         """
         import trafilatura
 
-        html = trafilatura.fetch_url(url)
+        html = trafilatura.fetch_url(url) or _browser_get(url)
         if not html:
             raise FetchError(f"could not download {url}")
         text = trafilatura.extract(html, include_comments=False, include_tables=False)

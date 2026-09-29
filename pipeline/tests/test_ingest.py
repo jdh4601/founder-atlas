@@ -257,3 +257,28 @@ def test_ingest_founder_blog_sets_speaker_and_skips_unusable_images(content_root
     assert source.speakers == ["Elad Gil"]
     assert source.thumbnail == "https://cdn.example.com/cover.jpg"
     assert source.images == ["https://cdn.example.com/cover.jpg"]
+
+
+def test_web_fetcher_falls_back_to_a_browser_request_when_trafilatura_cannot_download(monkeypatch) -> None:
+    import trafilatura
+
+    from founder_atlas_pipeline.ingest import fetchers
+
+    page = "<html><head><title>Choosing Bad Competition</title></head><body><article>" + (
+        "<p>Pick a market where incumbents are slow to respond to a new approach.</p>" * 20
+    ) + "</article></body></html>"
+
+    class Completed:
+        returncode = 0
+        stdout = page
+
+    calls: list[list[str]] = []
+    monkeypatch.setattr(trafilatura, "fetch_url", lambda url: None)
+    monkeypatch.setattr(fetchers.subprocess, "run", lambda args, **kwargs: calls.append(args) or Completed())
+
+    article = fetchers.TrafilaturaWebFetcher().fetch_article("https://greylock.com/greymatter/choosing-bad-competition/")
+
+    assert article.title == "Choosing Bad Competition"
+    assert "incumbents are slow" in article.paragraphs[0]
+    assert calls[0][0] == "curl"
+    assert any("Mozilla" in arg for arg in calls[0])
