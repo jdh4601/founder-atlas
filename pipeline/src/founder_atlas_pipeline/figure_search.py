@@ -230,13 +230,16 @@ def plan_search_figures(
         ranked = [n for n in choice.get("candidates", []) if isinstance(n, int) and 0 <= n < len(candidates[index])]
         paragraph_number = wanted[index]["paragraph"]
         output = public_dir / "figures" / source_id / f"web-{len(figures) + 1}.jpg"
+        # Candidates land beside the final name so a rejected one never replaces a figure in use.
+        trial = output.with_name(f"candidate-{output.name}")
         for number in ranked[:MAX_TRIES_PER_FIGURE]:
             candidate = candidates[index][number]
-            if not download(candidate.image_url, output):
+            if not download(candidate.image_url, trial):
                 continue
-            verdict = reviewer.review(paragraphs[paragraph_number - 1], output)
+            verdict = reviewer.review(paragraphs[paragraph_number - 1], trial)
             if not verdict.get("relevant"):
                 continue
+            trial.replace(output)
             figures.append(
                 Figure(
                     after_paragraph=paragraph_number,
@@ -246,6 +249,5 @@ def plan_search_figures(
                 )
             )
             break
-        else:
-            output.unlink(missing_ok=True)
+        trial.unlink(missing_ok=True)
     return figures

@@ -449,6 +449,9 @@ def add_figures_to_source(
         # Videos without captions (or unmatched quotes) are topped up with search images.
         if search_figures is not None and len(figures) < MIN_FIGURES:
             figures = [*figures, *search_figures(body, MIN_FIGURES - len(figures))]
+    elif not source.url:
+        # Memos with no public original can only be illustrated by search.
+        figures = search_figures(body, target_figure_count(body)) if search_figures else []
     elif fetch_html is not None:
         try:
             images = extract_article_images(fetch_html(source.url))

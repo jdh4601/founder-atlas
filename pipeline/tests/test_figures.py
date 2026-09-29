@@ -354,3 +354,20 @@ def test_add_figures_tops_up_video_frames_with_search(tmp_path: Path) -> None:
 
     assert requested == [2]
     assert result.count == 2
+
+
+def test_add_figures_searches_directly_when_a_memo_has_no_url(tmp_path: Path) -> None:
+    content = _write_blog_source(tmp_path, "insights")
+    source_md = content / "sources" / "insights-essay.md"
+    source_md.write_text(source_md.read_text().replace("url: https://example.com/essay", "url: ''"))
+
+    def fetch(url: str) -> str:
+        raise AssertionError("must not fetch an empty URL")
+
+    result = add_figures_to_source(
+        content, tmp_path / "public", "insights-essay", FakePlanner({"figures": []}),
+        capture_frame=lambda *args: None, fetch_html=fetch,
+        search_figures=lambda body, count: [Figure(1, f"/f/{i}.jpg", "a", "c") for i in range(count)],
+    )
+
+    assert result.count == 2

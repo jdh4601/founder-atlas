@@ -120,3 +120,22 @@ def test_plan_search_figures_skips_candidates_that_fail_to_download(tmp_path: Pa
     )
 
     assert figures == []
+
+
+def test_rejected_candidates_never_touch_an_existing_figure_file(tmp_path: Path) -> None:
+    existing = tmp_path / "figures" / "s" / "web-1.jpg"
+    existing.parent.mkdir(parents=True)
+    existing.write_text("figure already in the article")
+    planner = QueuePlanner(
+        {"figures": [{"paragraph": 1, "query": "ramen", "alt": "a", "caption": "c"}]},
+        {"choices": [{"figure": 0, "candidates": [0, 1]}]},
+    )
+
+    figures = plan_search_figures(
+        BODY, "s", planner, FakeReviewer({"ramen-0.jpg": False, "ramen-1.jpg": False}),
+        search=_search, download=_download, public_dir=tmp_path, count=2,
+    )
+
+    assert figures == []
+    assert existing.read_text() == "figure already in the article"
+    assert sorted(p.name for p in existing.parent.iterdir()) == ["web-1.jpg"]
