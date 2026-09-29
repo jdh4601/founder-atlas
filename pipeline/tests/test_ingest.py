@@ -282,3 +282,4 @@ def test_web_fetcher_falls_back_to_a_browser_request_when_trafilatura_cannot_dow
     assert "incumbents are slow" in article.paragraphs[0]
     assert calls[0][0] == "curl"
     assert any("Mozilla" in arg for arg in calls[0])
+    assert calls[0][-2:] == ["--", "https://greylock.com/greymatter/choosing-bad-competition/"]

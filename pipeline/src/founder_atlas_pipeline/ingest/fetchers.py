@@ -151,7 +151,7 @@ def _browser_get(url: str) -> str | None:
     """
     try:
         result = subprocess.run(
-            ["curl", "-sL", "--fail", "--max-time", "30", "-A", _BROWSER_HEADERS["User-Agent"], url],
+            ["curl", "-sL", "--fail", "--max-time", "30", "-A", _BROWSER_HEADERS["User-Agent"], "--", url],
             capture_output=True, text=True, timeout=40,
         )
     except (OSError, subprocess.TimeoutExpired):
