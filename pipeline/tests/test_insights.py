@@ -12,6 +12,8 @@ from founder_atlas_pipeline.insights import (
     find_source_url,
     import_insight_note,
     insight_source_id,
+    load_excluded_ids,
+    note_ids,
     youtube_id_from_url,
 )
 from founder_atlas_pipeline.models import TranscriptSegment
@@ -199,3 +201,19 @@ def test_import_insight_note_accepts_notes_without_frontmatter(tmp_path: Path) -
     assert source.format == "blog" and source.url == ""
     article = parse((content / "source_articles" / f"{result.source_id}.md").read_text(encoding="utf-8"))
     assert article.body.startswith("단순 업무에 AI를 도입하는 것이 아니다.")
+
+
+def test_excluded_ids_are_read_from_content_and_ignore_comments(tmp_path: Path) -> None:
+    (tmp_path / "insights-exclude.txt").write_text(
+        "# not about startups\ninsights-015  # storytelling\n\ninsights-038\n", encoding="utf-8"
+    )
+    assert load_excluded_ids(tmp_path) == {"insights-015", "insights-038"}
+    assert load_excluded_ids(tmp_path / "missing") == set()
+
+
+def test_note_ids_keep_duplicate_suffixes_stable_when_notes_are_excluded() -> None:
+    notes = [Path("035_a.md"), Path("035_b.md"), Path("036_c.md")]
+    assert note_ids(notes, excluded={"insights-035"}) == [
+        (Path("035_b.md"), "insights-035-2"),
+        (Path("036_c.md"), "insights-036"),
+    ]

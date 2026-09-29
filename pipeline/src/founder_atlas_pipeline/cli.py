@@ -231,6 +231,7 @@ def import_insights_command(
         AnyLanguageTranscripts,
         CLIInsightWriter,
         import_insight_note,
+        load_excluded_ids,
         note_ids,
         youtube_thumbnail,
     )
@@ -252,7 +253,7 @@ def import_insights_command(
             return note, None, exc
 
     with ThreadPoolExecutor(max_workers=jobs) as executor:
-        futures = [executor.submit(run_one, note, source_id) for note, source_id in note_ids(notes)]
+        futures = [executor.submit(run_one, note, source_id) for note, source_id in note_ids(notes, load_excluded_ids(content))]
         for future in as_completed(futures):
             note, result, exc = future.result()
             if exc is not None:

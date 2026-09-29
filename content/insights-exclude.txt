@@ -1,0 +1,8 @@
+# Insight notes kept out of Founder Atlas (not about startups).
+# `atlas import-insights` skips these source ids.
+insights-015  # 스토리텔링 마스터하는 법
+insights-016  # 스토리를 5줄로 정리하는 법
+insights-017  # AI로 릴스 편집하는 법
+insights-026  # Claude 5세대 모델 컨텍스트 엔지니어링
+insights-038  # Alo Yoga 케이스 스터디
+insights-053  # Andrew Ng 인터뷰

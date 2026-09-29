@@ -250,12 +250,29 @@ def import_insight_note(
     return InsightResult(source_id, "written", note.name)
 
 
-def note_ids(notes: Iterable[Path]) -> list[tuple[Path, str]]:
-    """Stable ids for notes in filename order, so duplicates keep the same suffix."""
+EXCLUDE_FILE = "insights-exclude.txt"
+
+
+def load_excluded_ids(content_root: Path) -> set[str]:
+    """Source ids listed in `content/insights-exclude.txt`, one per line; `#` starts a comment."""
+    path = content_root / EXCLUDE_FILE
+    if not path.is_file():
+        return set()
+    lines = (line.split("#", 1)[0].strip() for line in path.read_text(encoding="utf-8").splitlines())
+    return {line for line in lines if line}
+
+
+def note_ids(notes: Iterable[Path], excluded: set[str] | frozenset[str] = frozenset()) -> list[tuple[Path, str]]:
+    """Stable ids for notes in filename order, so duplicates keep the same suffix.
+
+    Excluded ids are dropped after numbering, so excluding one note never
+    shifts the id of another.
+    """
     taken: set[str] = set()
     pairs = []
     for note in sorted(notes, key=lambda p: p.name):
         source_id = insight_source_id(note.name, taken)
         taken.add(source_id)
-        pairs.append((note, source_id))
+        if source_id not in excluded:
+            pairs.append((note, source_id))
     return pairs

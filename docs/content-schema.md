@@ -81,6 +81,8 @@ original backlink) are dropped and wikilinks become plain text. A model writes
 only `title_ko` (a founder-facing claim, not "X interview"), `tldr`, `lead`, and
 `tags`. YouTube notes use the video thumbnail and Korean/English captions as the
 transcript; others keep the note paragraphs as the transcript.
+Notes listed in `content/insights-exclude.txt` (one source id per line, `#` comments)
+are skipped, so deleted off-topic notes are not imported again.
 
 ## source_articles/{source_id}.md
 
