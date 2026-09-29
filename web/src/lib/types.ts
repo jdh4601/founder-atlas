@@ -30,6 +30,14 @@ export const ORIGINS = [
   "lightcone",
   "paul-graham",
   "a16z",
+  "elad-gil",
+  "reid-hoffman",
+  "andrew-chen",
+  "justin-kan",
+  "sarah-guo",
+  "li-jin",
+  "amjad-masad",
+  "alexandr-wang",
   "insights",
 ] as const;
 export type Origin = (typeof ORIGINS)[number];

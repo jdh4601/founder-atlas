@@ -25,6 +25,7 @@ import requests
 
 from founder_atlas_pipeline.cli_providers import run_structured_cli
 from founder_atlas_pipeline.frontmatter import dump, parse
+from founder_atlas_pipeline.ingest.pipeline import FOUNDER_BLOG_SPEAKERS
 from founder_atlas_pipeline.models import Transcript
 from founder_atlas_pipeline.source_articles import article_path
 from founder_atlas_pipeline.sources import read_source, read_transcript
@@ -35,7 +36,9 @@ MIN_FRAME_GAP_SECONDS = 15
 MIN_FIGURES = 2
 _FIGURE_BLOCK = re.compile(r"^!\[[^\]]*\]\(.*\)$", re.DOTALL)
 _BLOCK_SPLIT = re.compile(r"\n\s*\n")
-_ORIGIN_CREDITS = {"a16z": "a16z", "paul-graham": "Paul Graham", "yc-youtube": "YC", "lightcone": "YC"}
+_ORIGIN_CREDITS = {
+    "a16z": "a16z", "paul-graham": "Paul Graham", "yc-youtube": "YC", "lightcone": "YC", **FOUNDER_BLOG_SPEAKERS
+}
 
 VIDEO_SYSTEM_PROMPT = """당신은 스타트업 영상 요약 글에 영상 장면 캡처를 배치하는 편집자입니다.
 번호가 붙은 한국어 문단과 타임스탬프가 달린 영어 자막이 주어집니다.

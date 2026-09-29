@@ -23,14 +23,37 @@ from founder_atlas_pipeline.models import SourceMeta, Transcript
 from founder_atlas_pipeline.slugs import make_source_id
 from founder_atlas_pipeline.sources import source_exists, write_source
 
-ORIGINS = ("yc-youtube", "lightcone", "paul-graham", "a16z")
+# Founder and investor blogs: origin -> the person who writes it.
+FOUNDER_BLOG_SPEAKERS = {
+    "elad-gil": "Elad Gil",
+    "reid-hoffman": "Reid Hoffman",
+    "andrew-chen": "Andrew Chen",
+    "justin-kan": "Justin Kan",
+    "sarah-guo": "Sarah Guo",
+    "li-jin": "Li Jin",
+    "amjad-masad": "Amjad Masad",
+    "alexandr-wang": "Alexandr Wang",
+}
+ORIGINS = ("yc-youtube", "lightcone", "paul-graham", "a16z", *FOUNDER_BLOG_SPEAKERS)
 _YOUTUBE_ORIGINS = {"yc-youtube", "lightcone"}
 _YOUTUBE_HOSTS = {"youtube.com", "www.youtube.com", "m.youtube.com", "youtu.be"}
 _VIDEO_ID = re.compile(r"^[A-Za-z0-9_-]{11}$")
-_TEXT_ORIGIN_BY_HOST = {"paulgraham.com": "paul-graham", "a16z.com": "a16z"}
-_FORMAT_BY_TEXT_ORIGIN = {"paul-graham": "essay", "a16z": "blog"}
+_TEXT_ORIGIN_BY_HOST = {
+    "paulgraham.com": "paul-graham",
+    "a16z.com": "a16z",
+    "blog.eladgil.com": "elad-gil",
+    "andrewchen.substack.com": "andrew-chen",
+    "thequestpod.substack.com": "justin-kan",
+    "saranormous.substack.com": "sarah-guo",
+    "lisnewsletter.com": "li-jin",
+    "amasad.me": "amjad-masad",
+    "alexw.substack.com": "alexandr-wang",
+}
+_SPEAKERS_BY_ORIGIN = {"paul-graham": "Paul Graham", **FOUNDER_BLOG_SPEAKERS}
+# Site chrome that trafilatura reports as the lead image, not a real cover.
+_UNUSABLE_IMAGE_HOSTS = {"static.licdn.com"}
 _SITE_NAME_SUFFIX = re.compile(
-    r"\s+[|\-–]\s+(andreessen horowitz|a16z|paul graham)\s*$", re.IGNORECASE
+    r"\s+[|\-–]\s+(andreessen horowitz|a16z|paul graham|greylock|linkedin)\s*$", re.IGNORECASE
 )
 
 
@@ -39,7 +62,7 @@ class IngestError(Exception):
 
 
 class UnsupportedSourceError(IngestError):
-    """Raised when a URL doesn't belong to one of the four supported origins."""
+    """Raised when a URL doesn't belong to a supported origin."""
 
 
 @dataclass(frozen=True)
@@ -82,14 +105,15 @@ def parse_youtube_id(url: str) -> str | None:
 
 
 def infer_origin(url: str, override: str | None) -> str:
-    """Decide which of the four origins a URL belongs to.
+    """Decide which origin a URL belongs to.
 
     YouTube can't tell YC from Lightcone by URL, so `override` decides
     (default `yc-youtube`). Text origins are decided by host.
 
     Args:
         url: The source URL.
-        override: Explicit origin for YouTube URLs (`--origin`).
+        override: Explicit origin (`--origin`): YC vs Lightcone for YouTube, or
+            a founder blog whose writing is hosted elsewhere.
 
     Returns:
         One of `ORIGINS`.
@@ -103,6 +127,11 @@ def infer_origin(url: str, override: str | None) -> str:
         if origin not in _YOUTUBE_ORIGINS:
             raise UnsupportedSourceError(f"origin '{origin}' is not a YouTube origin: {url}")
         return origin
+    # Some writing lives on shared hosts (LinkedIn, Greylock), so the author is given explicitly.
+    if override in FOUNDER_BLOG_SPEAKERS:
+        return override
+    if override is not None:
+        raise UnsupportedSourceError(f"origin '{override}' can't be forced for a text URL: {url}")
     origin = _TEXT_ORIGIN_BY_HOST.get(_host(url))
     if origin is None:
         raise UnsupportedSourceError(f"unsupported source host: {url}")
@@ -156,17 +185,22 @@ def _fetch_text(
 ) -> tuple[SourceMeta, Transcript]:
     article = web.fetch_article(url)
     title = clean_title(article.title)
+    images = [
+        image
+        for image in article.images
+        if urlparse(image).scheme in ("http", "https") and urlparse(image).hostname not in _UNUSABLE_IMAGE_HOSTS
+    ]
     meta = SourceMeta(
         id=make_source_id(origin, title),
         title=title,
         title_ko="",
         url=url,
         origin=origin,
-        format=_FORMAT_BY_TEXT_ORIGIN[origin],
+        format="essay" if origin == "paul-graham" else "blog",
         published=article.published,
-        speakers=["Paul Graham"] if origin == "paul-graham" else [],
-        thumbnail=article.images[0] if article.images else None,
-        images=list(article.images),
+        speakers=[_SPEAKERS_BY_ORIGIN[origin]] if origin in _SPEAKERS_BY_ORIGIN else [],
+        thumbnail=images[0] if images else None,
+        images=images,
         ingested_at=today,
         summary_ko="",
     )

@@ -49,12 +49,15 @@ class FakeYouTube:
 
 
 class FakeWeb:
+    def __init__(self, images: list[str] | None = None) -> None:
+        self.images = images if images is not None else ["https://paulgraham.com/og.png"]
+
     def fetch_article(self, url: str) -> Article:
         return Article(
             title="Do Things that Don't Scale",
             published="2013-07-01",
             paragraphs=["One of the most common types of advice...", "Recruit users manually."],
-            images=["https://paulgraham.com/og.png"],
+            images=list(self.images),
         )
 
 
@@ -175,6 +178,7 @@ def test_split_paragraphs_merges_short_heading_into_next_block() -> None:
         ("Pricing 101 - a16z", "Pricing 101"),
         ("Do Things that Don't Scale", "Do Things that Don't Scale"),
         ("Build vs. Buy - Part 2", "Build vs. Buy - Part 2"),
+        ("Choosing Bad Competition | Greylock", "Choosing Bad Competition"),
     ],
 )
 def test_clean_title_drops_trailing_site_name(raw: str, expected: str) -> None:
@@ -218,3 +222,38 @@ def test_ingest_many_stops_youtube_requests_after_rate_limit(content_root: Path)
     assert [o.status for o in outcomes] == ["failed", "failed", "written"]
     assert "blocking" in (outcomes[0].error or "")
     assert "skipped after YouTube rate limit" in (outcomes[1].error or "")
+
+
+@pytest.mark.parametrize(
+    ("url", "expected"),
+    [
+        ("https://blog.eladgil.com/p/fear-of-sales", "elad-gil"),
+        ("https://andrewchen.substack.com/p/anti-pitch", "andrew-chen"),
+        ("https://thequestpod.substack.com/p/when-to-quit", "justin-kan"),
+        ("https://saranormous.substack.com/p/pace", "sarah-guo"),
+        ("https://www.lisnewsletter.com/p/love-vs-fame", "li-jin"),
+        ("https://amasad.me/meta", "amjad-masad"),
+        ("https://alexw.substack.com/p/do-too-much", "alexandr-wang"),
+    ],
+)
+def test_infer_origin_knows_founder_blog_hosts(url: str, expected: str) -> None:
+    assert infer_origin(url, None) == expected
+
+
+def test_infer_origin_accepts_text_override_for_writing_hosted_elsewhere() -> None:
+    url = "https://www.linkedin.com/pulse/why-you-need-raise-more-money-reid-hoffman"
+    assert infer_origin(url, "reid-hoffman") == "reid-hoffman"
+    with pytest.raises(UnsupportedSourceError):
+        infer_origin(url, "lightcone")
+
+
+def test_ingest_founder_blog_sets_speaker_and_skips_unusable_images(content_root: Path) -> None:
+    web = FakeWeb(images=["/public/pic.png", "https://static.licdn.com/logos/linkedin-bug.png", "https://cdn.example.com/cover.jpg"])
+    result = ingest_url(content_root, "https://blog.eladgil.com/p/fear-of-sales", youtube=FakeYouTube(), web=web)
+
+    source = read_source(content_root, result.source_id)
+    assert source.origin == "elad-gil"
+    assert source.format == "blog"
+    assert source.speakers == ["Elad Gil"]
+    assert source.thumbnail == "https://cdn.example.com/cover.jpg"
+    assert source.images == ["https://cdn.example.com/cover.jpg"]

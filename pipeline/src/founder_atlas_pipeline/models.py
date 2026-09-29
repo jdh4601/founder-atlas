@@ -46,7 +46,7 @@ class SourceMeta:
     title: str
     title_ko: str
     url: str
-    origin: str  # yc-youtube | lightcone | paul-graham | a16z
+    origin: str  # one of ingest.pipeline.ORIGINS, or insights
     format: str  # video | essay | blog | podcast
     published: str | None
     speakers: list[str]

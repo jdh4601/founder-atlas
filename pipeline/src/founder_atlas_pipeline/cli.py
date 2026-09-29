@@ -108,7 +108,7 @@ def _read_url_file(path: Path) -> list[str]:
 @click.argument("url", required=False)
 @click.option("--from-file", type=click.Path(dir_okay=False, exists=True, path_type=Path))
 @click.option("--limit", type=int, default=None, help="Max URLs to take from --from-file.")
-@click.option("--origin", type=click.Choice(ORIGINS), default=None, help="Origin for YouTube URLs.")
+@click.option("--origin", type=click.Choice(ORIGINS), default=None, help="YC vs Lightcone for YouTube URLs, or the author of writing hosted elsewhere (e.g. reid-hoffman).")
 @click.option("--force", is_flag=True, help="Overwrite already-ingested sources.")
 @click.pass_context
 def ingest_command(

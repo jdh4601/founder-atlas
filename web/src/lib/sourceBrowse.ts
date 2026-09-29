@@ -39,6 +39,14 @@ const originLabels: Record<Source["origin"], string> = {
   lightcone: "Lightcone",
   "paul-graham": "PaulGraham",
   a16z: "a16z",
+  "elad-gil": "Elad Gil",
+  "reid-hoffman": "Reid Hoffman",
+  "andrew-chen": "Andrew Chen",
+  "justin-kan": "Justin Kan",
+  "sarah-guo": "Sarah Guo",
+  "li-jin": "Li Jin",
+  "amjad-masad": "Amjad Masad",
+  "alexandr-wang": "Alexandr Wang",
   insights: "인사이트",
 };
 
