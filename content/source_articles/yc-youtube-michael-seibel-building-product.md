@@ -8,6 +8,11 @@ lead: 마이클 세이벨은 justin.tv와 Twitch, Socialcam을 만들며 제품 
   실제 사용을 측정하며, 짧은 주기로 해결책을 바꿔야 한다.
 source_sha256: e0a9d14a84a30f172b96a1105b0a7caddd56dd51114f11f0b1f461a31d16afb0
 generated_at: '2026-09-27'
+tags:
+- problem-validation
+- mvp-scope
+- user-feedback
+- product-market-fit
 ---
 ## 회사를 살린 세 가지 조건
 

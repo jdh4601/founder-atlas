@@ -5,7 +5,9 @@ tldr: 사업의 가치는 SaaS·AI 같은 장르나 커뮤니티 속 서열이 �
 lead: 스타트업 씬에는 글로벌 SaaS에서 로컬 비즈니스까지 보이지 않는 서열이 있지만, 이 서열은 사업의 본질과 항상 일치하지 않습니다. 남이
   만든 기준과 소속감에 매달리는 순간 사업의 기준은 고객에서 타인의 시선으로 바뀝니다.
 tags:
-- 고객
+- founder-mindset
+- problem-validation
+- community
 source_sha256: 9f9d95ac9da7e2f94438a00bcf2b9697ad48761cadf0f44f7b78031d818584f4
 generated_at: '2026-09-29'
 ---

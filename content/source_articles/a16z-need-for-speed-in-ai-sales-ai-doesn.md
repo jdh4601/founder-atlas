@@ -8,6 +8,10 @@ lead: 기업용 소프트웨어 영업에는 오랫동안 정해진 공식이 �
   기업의 영업 리더가 경험한 현장의 변화와 대응법을 정리했다.
 source_sha256: f16b3a93c997747ff41b942e446d49a89e5803ce129b3219feb8e69505314071
 generated_at: '2026-09-27'
+tags:
+- enterprise-sales
+- billing-model
+- early-hiring
 ---
 ## 모든 기업이 AI를 찾지만, 기회는 오래 열려 있지 않다
 

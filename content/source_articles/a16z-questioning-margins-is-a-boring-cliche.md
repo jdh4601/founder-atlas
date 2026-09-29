@@ -9,6 +9,11 @@ lead: 컴퓨팅의 새로운 시대가 열릴 때마다 선도 기업은 낮은 
   기업으로 확산되면서 순매출이 빠르게 증가하기 때문이다.
 source_sha256: d708a2f8d1f6e68c67422c467967c56094b541cb20e33afcde978e846fa726c4
 generated_at: '2026-09-27'
+tags:
+- gross-margin
+- billing-model
+- moat
+- retention
 ---
 ## 월정액 AI 앱은 영원히 저마진일 수밖에 있는가
 

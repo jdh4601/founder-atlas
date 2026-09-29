@@ -6,9 +6,10 @@ tldr: 힘들여 한 번 해낸 일은 마크다운·코드·테스트로 skillif
 lead: 코드가 더 이상 귀하지 않은 시대에는 무엇을 만들지 아는 판단력과 그 판단을 파일로 굳히는 습관이 경쟁력이 됩니다. 2~3명이 수백 개의
   스킬 파일로 4개월 만에 ARR 1500만 달러에 도달한 회사들이 이미 나오고 있습니다.
 tags:
-- AI
-- 성장
-- 아이디어
+- decision-making
+- management
+- billing-model
+- moat
 source_sha256: f6b7089c4934e6037c1ba03cc95b47bcfd8f52a2c3244df68b8d448c645ff5cf
 generated_at: '2026-09-29'
 ---

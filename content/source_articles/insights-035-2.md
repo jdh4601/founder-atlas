@@ -6,9 +6,10 @@ tldr: 생산 비용이 0에 가까워지면 병목은 유통으로 넘어가므�
 lead: '"만들면 온다"는 말은 이제 통하지 않는다. 뭐든 만들 수 있어도 사람 하나 데려오기 어려운 지금, 초기 창업가는 무엇을 버리고 어디에
   집중해야 하는지 정리했다.'
 tags:
-- 성장
-- 제품
-- 고객
+- distribution
+- user-feedback
+- mvp-scope
+- first-customers
 source_sha256: 5034d2a43af0954bc150b735d271e8bc7f7b13144c77a9094ac8f02cb9303caf
 generated_at: '2026-09-29'
 ---

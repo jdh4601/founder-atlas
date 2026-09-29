@@ -7,6 +7,10 @@ lead: 창업자는 투자 유치를 마치고 사업으로 돌아가고 싶지�
   실제 의미는 전혀 다를 수 있다.
 source_sha256: c6b0f2d8518ee7909907ef75bb91757a70c64c9cf537f335a1d78afa1d4b224e
 generated_at: '2026-09-28'
+tags:
+- investor-selection
+- valuation
+- decision-making
 ---
 ## 기업가치와 조달 금액만 보면 안 되는 이유
 

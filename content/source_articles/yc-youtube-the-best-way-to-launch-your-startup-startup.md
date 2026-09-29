@@ -8,6 +8,11 @@ lead: 많은 창업자는 첫 출시를 지나치게 무겁게 받아들인다. 
   개선한 뒤 다시 출시하는 일이다.
 source_sha256: 45d6ffacc6ce00a8c5d26e12a71431f4f03e4022f3fa6cb9fa299d9a5a8d3914
 generated_at: '2026-09-28'
+tags:
+- launch
+- distribution
+- user-feedback
+- community
 ---
 ## 출시해야 할 때는 바로 지금이다
 

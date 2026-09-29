@@ -9,6 +9,11 @@ lead: YC 그룹 파트너 브래드 플로라는 투자 유치를 ‘사람들�
   차례로 살펴본다.
 source_sha256: 517bab79e690544ae07bd5821ce481a2fae7cac277a1e1dda8ad1fa316147476
 generated_at: '2026-09-28'
+tags:
+- pitch
+- seed-round
+- when-to-raise
+- founder-mindset
 ---
 ## 투자 유치는 화려한 무대가 아니라 반복되는 대화다
 

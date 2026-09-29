@@ -7,6 +7,10 @@ lead: 좋은 제품을 만들었다고 고객이 저절로 찾아오는 것은 �
   고객부터 공략해야 하는지, 목표에서 거꾸로 영업 퍼널을 설계하는 방법은 무엇인지 설명한다.
 source_sha256: c9d8669e8213ab758c88bd78756c1ecaf4d10039c7e4a86b96625e35a959eaa9
 generated_at: '2026-09-28'
+tags:
+- first-customers
+- founder-led-sales
+- pricing-strategy
 ---
 ## 스타트업은 저절로 성장하지 않는다
 

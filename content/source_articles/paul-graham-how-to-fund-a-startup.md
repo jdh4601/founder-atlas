@@ -7,6 +7,9 @@ lead: 스타트업의 자금 조달은 자동차의 기어를 바꾸는 일과 �
   3단 기어로 출발하려는 자동차처럼 처음부터 지나치게 많은 돈을 받는다.
 source_sha256: 292b372eb24fcc379f3bdb05ffa44e0ee9adbee230f7eb644d0d84bf85904962
 generated_at: '2026-09-27'
+tags:
+- investor-selection
+- seed-round
 ---
 ## 경쟁자보다 다루기 어려웠던 투자자
 

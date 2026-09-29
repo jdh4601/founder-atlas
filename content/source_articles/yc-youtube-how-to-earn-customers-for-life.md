@@ -7,6 +7,11 @@ lead: 초기 스타트업은 새로운 고객을 얻으려 애쓰다가 종종 �
   선의가 아니라, 대기업이 쉽게 따라 할 수 없는 스타트업의 강력한 경쟁 우위다.
 source_sha256: bc80ee74f234873e9cf89e03702f7ee8d392d6338cd4dc3d6773207e0c6f8d7f
 generated_at: '2026-09-28'
+tags:
+- founder-led-sales
+- moat
+- founder-mindset
+- user-feedback
 ---
 ## 고객에게 제품을 억지로 밀어 넣고 있지는 않은가
 

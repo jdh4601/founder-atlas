@@ -6,6 +6,10 @@ lead: 스타트업 아이디어를 찾는 가장 좋은 방법은 자신에게 �
   거대한 시장을 억지로 상상하는 데서보다, 창업자 자신의 일상에서 불편하거나 망가진 부분을 발견하는 데서 시작되는 경우가 많다.
 source_sha256: 366ce9ad80fcdccc87d665d517c9590ab2f441cc390e032cccf2403eb7293a40
 generated_at: '2026-09-27'
+tags:
+- idea-generation
+- founder-market-fit
+- problem-validation
 ---
 ## 애플형 아이디어와 비아웹형 아이디어
 

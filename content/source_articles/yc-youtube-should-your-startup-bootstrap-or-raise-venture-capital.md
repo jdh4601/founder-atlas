@@ -7,6 +7,9 @@ lead: 부트스트랩과 벤처캐피털 투자를 둘러싼 논쟁은 생각보
   문제다.
 source_sha256: f66805235c3cff722a1283f335280656ccf57cafdc6b183e99addb271a432742
 generated_at: '2026-09-27'
+tags:
+- when-to-raise
+- founder-mindset
 ---
 ## 벤처 투자는 극소수의 사업을 위한 선택이다
 

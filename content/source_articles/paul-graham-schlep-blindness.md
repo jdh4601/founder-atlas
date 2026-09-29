@@ -7,6 +7,10 @@ lead: 우리 눈앞에는 아직 아무도 손대지 않은 훌륭한 스타트�
   고된 일을 뜻한다.
 source_sha256: 8a64c9c3dd333e19a2afdaabeac4268277ed3eb5e5a43c91a333d9479f54b9bd
 generated_at: '2026-09-28'
+tags:
+- idea-generation
+- founder-mindset
+- competition
 ---
 ## 사업은 결국 어떤 고된 일을 감당하느냐로 결정된다
 

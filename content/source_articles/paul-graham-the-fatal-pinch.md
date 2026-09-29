@@ -7,6 +7,11 @@ lead: 많은 스타트업은 문을 닫기 몇 달 전, 통장에는 아직 상�
   투자를 받으면 위기를 피할 수 있다고 기대한다. 바로 그 마지막 생각이 치명적이다.
 source_sha256: e849820c2d9a5b92c2b448a5fffaa8c26d3aab5fbc69d73ef3c516ad7508a4d8
 generated_at: '2026-09-28'
+tags:
+- when-to-raise
+- early-hiring
+- founder-led-sales
+- prioritization
 ---
 ## 후속 투자를 낙관하게 만드는 세 가지 착각
 

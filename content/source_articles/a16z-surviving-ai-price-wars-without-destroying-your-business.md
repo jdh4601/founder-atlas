@@ -9,6 +9,11 @@ lead: AI 애플리케이션 업계에서는 성과 기반 가격제가 화제지
   제공하는 편이 훨씬 중요하다.
 source_sha256: 7913b4f183cf72b5e39f1cdfeb661eac3d052a2be7a055d04d6772c4c3f4624c
 generated_at: '2026-09-27'
+tags:
+- pricing-strategy
+- billing-model
+- moat
+- enterprise-sales
 ---
 ## 1. 예산은 이미 있다
 

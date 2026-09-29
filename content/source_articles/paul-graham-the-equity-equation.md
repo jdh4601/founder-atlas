@@ -6,6 +6,10 @@ lead: 2007년 7월. 투자자가 스타트업의 일정 지분을 받는 조건�
   그에게는 주식을 얼마나 줘야 할까? 창업자가 마주하는 가장 어려운 질문들이지만, 두 질문의 답은 같다. 바로 1/(1 - n)이다.
 source_sha256: b65491df6513c0cba59af02ea3bceb320fc84f645d882526b5bf691dc288b172
 generated_at: '2026-09-28'
+tags:
+- equity
+- early-hiring
+- decision-making
 ---
 ## 남은 지분이 이전의 회사 전체보다 가치 있는가
 

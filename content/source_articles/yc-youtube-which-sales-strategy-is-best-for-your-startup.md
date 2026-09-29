@@ -6,6 +6,11 @@ lead: YC 방문 그룹 파트너이자 옵티마이즐리(Optimizely)의 공동 
   톱다운과 보텀업 영업을 비교한다. 어느 한쪽이 항상 우월한 것은 아니다. 제품이 조직 안에서 누구의 문제를 해결하는지에 따라 적합한 전략이 달라진다.
 source_sha256: 9021a5d86687cc5930be364990623985c84ea56df55cac45caaa6aedf89b5859
 generated_at: '2026-09-28'
+tags:
+- enterprise-sales
+- distribution
+- pricing-strategy
+- unit-economics
 ---
 ## 의사결정권자에게서 시작하는 톱다운 영업
 

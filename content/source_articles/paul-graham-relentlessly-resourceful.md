@@ -6,6 +6,8 @@ lead: 2009년 3월. 며칠 전, 나는 마침내 좋은 스타트업 창업자�
   resourceful)’이다.
 source_sha256: 002a8d8cba0f81243c3a97dc222b4ece39a56cdf70ba9a941d553071547f1372
 generated_at: '2026-09-28'
+tags:
+- founder-mindset
 ---
 ## 상황에 휘둘리는 사람의 반대편
 

@@ -7,6 +7,8 @@ lead: 생성형 AI의 놀라운 점은 다양한 결과를 비결정적으로 �
   특성 자체가 생성형 AI를 특별하게 만들며, ‘확률적 제품’이라는 새로운 제품 설계 영역을 열어 준다.
 source_sha256: 75bb2aae351effe3c428078ab09bafc9e9886119d52019971a603b68fdcd9649
 generated_at: '2026-09-27'
+tags:
+- idea-generation
 ---
 ## 예측하는 대신 관찰하는 제품
 

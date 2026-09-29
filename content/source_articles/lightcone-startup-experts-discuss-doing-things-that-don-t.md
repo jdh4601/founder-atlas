@@ -7,6 +7,11 @@ lead: 2013년 Y Combinator 창업자 폴 그레이엄은 「확장되지 않는 
   말라는 이 조언은 스타트업이 0에서 1로 나아가는 방법을 바꾸었고, 이후 실리콘밸리 창업 문화의 중요한 원칙으로 자리 잡았다.
 source_sha256: 5a817597e96cfee04280360cc1ac868e4a1a87d13e9c02ed9070ae17a950aff3
 generated_at: '2026-09-27'
+tags:
+- first-customers
+- problem-validation
+- founder-led-sales
+- user-feedback
 ---
 ## 확장성보다 먼저 풀어야 할 문제
 

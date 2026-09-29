@@ -7,6 +7,11 @@ lead: 지금까지 투자한 스타트업들은 대체로 학습 속도가 빨�
   일곱 가지 교훈으로 정리했다.
 source_sha256: f921700b5062764686da43360077e1ca36497472d82ae336331b0c86389ac4e4
 generated_at: '2026-09-28'
+tags:
+- launch
+- user-feedback
+- mvp-scope
+- founder-mindset
 ---
 ## 1. 일찍 출시하라
 

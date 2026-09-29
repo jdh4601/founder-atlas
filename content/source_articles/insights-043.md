@@ -6,7 +6,10 @@ tldr: 유료 광고는 브랜드를 만들지 못하고, 오가닉으로 쌓아�
 lead: 인플루언서 마케팅만으로는 월 2백만 달러 선에서 매출이 멈췄다. 그런데 TikTok·Instagram·Facebook 퍼포먼스 광고를 붙이자
   한 달 매출이 570만 달러까지 뛰었다. 광고가 효과를 낸 건 오가닉 콘텐츠로 먼저 인지도를 쌓아두었기 때문이다.
 tags:
-- 성장
+- distribution
+- content-marketing
+- cofounders
+- early-hiring
 source_sha256: fc0ee2cbfe30925697475aba0cf267816e1ad47a4da655e056bf933ee6b5d95d
 generated_at: '2026-09-29'
 ---

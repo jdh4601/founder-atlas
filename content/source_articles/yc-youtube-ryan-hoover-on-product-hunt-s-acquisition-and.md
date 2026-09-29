@@ -7,6 +7,11 @@ lead: 프로덕트헌트는 새로운 앱과 제품을 발견하고, 제작자�
   반드시 장기적인 성공을 뜻하지는 않는다는 사실, 그리고 수많은 선택지 앞에서 무엇에 집중해야 하는지를 이야기한다.
 source_sha256: f955c477c29233937b810a9afb5b24d1ad41f06283a8350f428702c9c156fd2b
 generated_at: '2026-09-27'
+tags:
+- prioritization
+- pivot
+- launch
+- when-to-raise
 ---
 ## 이메일 목록에서 시작된 ‘병 속의 번개’
 

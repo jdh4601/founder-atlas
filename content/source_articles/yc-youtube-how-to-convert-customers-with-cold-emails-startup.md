@@ -9,6 +9,9 @@ lead: YC 그룹 파트너 에런 엡스타인은 콜드 이메일의 출발점�
   눈에 띌 수 있다.
 source_sha256: c316bca1085cacf66192f18372ed80583bdec26cdccccb1753181e736ff199b6
 generated_at: '2026-09-28'
+tags:
+- founder-led-sales
+- first-customers
 ---
 ## 한 명의 고객을 얻으려면 몇 통을 보내야 하는가
 

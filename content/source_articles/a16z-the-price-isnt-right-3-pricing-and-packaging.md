@@ -6,6 +6,9 @@ lead: 초기 고객 유입을 이끌었던 수익화 전략이 성장 단계에�
   가격 전략을 다뤄온 경험을 바탕으로, 후기 단계 기업의 가격·패키징 전략이 제대로 작동하지 않는다는 세 가지 신호와 이를 바로잡을 방법을 살펴본다.
 source_sha256: b6aedb5c538d07fb277ff821f6d1011a0c2425284bd3b8950eef0afce62897ec
 generated_at: '2026-09-27'
+tags:
+- pricing-strategy
+- billing-model
 ---
 ## 초기의 성공 방정식은 성장기에 달라진다
 

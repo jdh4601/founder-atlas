@@ -6,6 +6,10 @@ lead: 2009년 초, 에어비앤비가 아직 ‘AirBedAndBreakfast’로 불리�
   다음은 이 사업이 얼마나 커질 수 있는지를 두고 두 사람이 주고받은 이메일이다.
 source_sha256: 7d4d13621a5bbab683f2dc50dfa7c64f64c43c8af03e09efa848c7801a5e9634
 generated_at: '2026-09-28'
+tags:
+- market-size
+- founder-market-fit
+- competition
 ---
 ## “이 팀이라면 해낼 수 있다”
 

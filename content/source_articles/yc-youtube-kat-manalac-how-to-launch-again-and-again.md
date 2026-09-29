@@ -7,6 +7,11 @@ lead: 많은 창업자는 출시를 단 한 번뿐인 결정적 순간으로 생
   회사가 사라질 수 있다. 출시는 한 번 치르고 끝내는 행사가 아니라, 아이디어와 고객을 검증하며 회사의 수명 내내 반복하는 과정이어야 한다.
 source_sha256: 13b5b0cf0cb3247e745c3893ab299253e9760b84a893e8c25aa65146e7c4f030
 generated_at: '2026-09-27'
+tags:
+- launch
+- distribution
+- community
+- problem-validation
 ---
 ## 계속 출시해야 하는 이유
 

@@ -14,6 +14,10 @@ lead: '유명한 고객사 로고 하나를 얻으려다 시장 전체를 놓칠
   제품이나 팀의 우열이 아니라 무엇을 누구에게 판매하느냐에 있다.'
 source_sha256: aa0aa97fb747562335e14fed466ce60d380aa2d7634a575e03a89c66286e801e
 generated_at: '2026-09-27'
+tags:
+- enterprise-sales
+- first-customers
+- distribution
 ---
 ## 새로운 범주를 증명하는 등대 전략
 

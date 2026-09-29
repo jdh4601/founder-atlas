@@ -7,6 +7,11 @@ lead: 초기 창업자가 반드시 풀어야 할 가장 어려운 질문은 두
   모든 논의를 관통하는 기준은 단순한 매출이나 인원수가 아니라 얼마나 빠르게 고객을 이해하고, 제품을 검증하며, 창업자의 확신을 키워 가느냐에 있다.
 source_sha256: 62052f966e96874a3153620fb72070d329fac8b05f7426826bd86ef3f23e813d
 generated_at: '2026-09-27'
+tags:
+- customer-interviews
+- pivot
+- enterprise-sales
+- early-hiring
 ---
 ## 전통 산업에 AI를 도입하는 세 가지 길
 

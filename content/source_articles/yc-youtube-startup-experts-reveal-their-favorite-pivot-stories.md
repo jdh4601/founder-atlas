@@ -7,6 +7,11 @@ lead: 피벗은 실패한 스타트업이 어쩔 수 없이 선택하는 수단�
   여러 기업의 사례를 통해, 창업자가 잘못된 아이디어를 버리고 진짜 시장을 발견하는 과정을 들려준다.
 source_sha256: 1cc059560aca421203ac2c77b40bae7ac63312476acd6e2d3377315aceca7d1b
 generated_at: '2026-09-27'
+tags:
+- pivot
+- problem-validation
+- customer-interviews
+- product-market-fit
 ---
 ## 피벗은 실패가 아니라 아이디어를 바꾸는 일이다
 

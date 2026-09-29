@@ -7,6 +7,11 @@ lead: YC 그룹 파트너이자 Optimizely 공동창업자·CTO였던 피트 쿠
   고객을 확보하는 전 과정을 단계별로 살펴본다.
 source_sha256: 0a68f0554c8cd337527f31938418f8fd8294552d1492556f7bd784183ee8393c
 generated_at: '2026-09-28'
+tags:
+- enterprise-sales
+- founder-led-sales
+- first-customers
+- pricing-strategy
 ---
 ## 제품·시장 적합성 전에는 창업자가 직접 팔아야 한다
 

@@ -7,6 +7,11 @@ lead: YC 그룹 파트너 구스타프는 훌륭한 창업자가 제품을 만�
   구하는 일이 아니라, 사용자가 현재 겪는 문제와 실제 행동을 편견 없이 이해하고 그 배움을 MVP로 옮기는 것이다.
 source_sha256: fcf76edd9fbe53ea03311a189934d962f3d0e5b289799b4a62537e2a783a7bb5
 generated_at: '2026-09-28'
+tags:
+- customer-interviews
+- problem-validation
+- user-feedback
+- mvp-scope
 ---
 ## 좋은 창업자는 제품보다 먼저 사용자를 만난다
 

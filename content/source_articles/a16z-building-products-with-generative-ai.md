@@ -8,6 +8,9 @@ lead: 생성형 AI가 제품과 사용자 경험을 어떻게 바꿀지는 아�
   어떻게 다시 만들 수 있는지 논의했다.
 source_sha256: bac6a9b04b18b9ec282ba685c7cace266cb485fcbdaa657b2ee922d775699e6f
 generated_at: '2026-09-27'
+tags:
+- idea-generation
+- competition
 ---
 ## 웹과 스마트폰의 등장에 버금가는 전환점
 

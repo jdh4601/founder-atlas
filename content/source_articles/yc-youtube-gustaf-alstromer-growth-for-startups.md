@@ -7,6 +7,11 @@ lead: 스타트업의 성장은 광고를 집행하거나 그로스 팀을 꾸�
   초기 고객 확보부터 리텐션, 성장 채널, 전환율 최적화, A/B 테스트까지 스타트업 성장의 순서를 설명한다.
 source_sha256: 06103504014dec7de68b6003b990463f817c7eee76945f0758334b277a7625ec
 generated_at: '2026-09-28'
+tags:
+- first-customers
+- retention
+- product-market-fit
+- distribution
 ---
 ## 출시했다고 사용자가 찾아오는 것은 아니다
 

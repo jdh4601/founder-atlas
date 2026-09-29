@@ -6,6 +6,10 @@ lead: 스타트업이 8~9개월 이상 운영됐다면 가장 먼저 확인해�
   남은 자금으로 흑자 전환까지 갈 수 있는가? 더 극적으로 말하면, 별다른 변화가 없을 때 이 회사는 살아남는가, 아니면 죽는가?
 source_sha256: 88edba8f313467f066ad667375d5d2b354ad89d72cdd2914f2caf76164a9620d
 generated_at: '2026-09-27'
+tags:
+- early-hiring
+- revenue-metrics
+- unit-economics
 ---
 ## 창업자 절반이 모르는 결정적 질문
 

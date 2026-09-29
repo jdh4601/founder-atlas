@@ -9,6 +9,11 @@ lead: YC 파트너 톰은 창업자들이 가장 자주 묻는 질문 가운데 
   계산하고 설명할 수 있다.
 source_sha256: 0ec347ba881c6a3c119534fbde26fa4c38a4dcf181b33e38767db3e9d64fbc15
 generated_at: '2026-09-28'
+tags:
+- pricing-strategy
+- billing-model
+- gross-margin
+- enterprise-sales
 ---
 ## 가격의 출발점은 고객이 얻는 가치다
 

@@ -7,6 +7,10 @@ lead: 1998년 자신의 스타트업을 매각한 폴 그레이엄은 언젠가 
   아니라 결국 올바른 스타트업과 창업자를 알아보는 능력이었다.
 source_sha256: c4f4ba12bdcf6b606b5aa9a9b58b2c084994b399579f3aaf3c51b742c992d1d6
 generated_at: '2026-09-27'
+tags:
+- founder-market-fit
+- valuation
+- decision-making
 ---
 ## 투자의 실무보다 중요한 것
 

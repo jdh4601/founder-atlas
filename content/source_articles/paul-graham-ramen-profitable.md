@@ -6,6 +6,9 @@ lead: 2009년 7월. 이제 ‘라면 수익성(ramen profitable)’이라는 표
   설명할 필요가 있다.
 source_sha256: 3c2642f274dd33bc4383e8e921a849e59d9f6738a77703af3e514484277a57eb
 generated_at: '2026-09-27'
+tags:
+- when-to-raise
+- unit-economics
 ---
 ## 창업자의 생활비를 감당하는 수익성
 

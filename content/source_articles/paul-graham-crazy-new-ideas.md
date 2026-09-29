@@ -7,6 +7,10 @@ lead: 내가 공개적으로 밝히기를 가장 두려워하는 의견이 하�
   그렇게 시작되었다는 사실을 안다. 누군가 미친 소리처럼 들리는 생각을 제안하고, 대다수는 이를 묵살하지만, 그 생각은 서서히 세상을 장악한다.
 source_sha256: fdef02dbc9bdbed8eb5a3b36b05f88822b79bb97de10dd619df368bcc42fb3ef
 generated_at: '2026-09-27'
+tags:
+- idea-generation
+- decision-making
+- founder-mindset
 ---
 ## 전문가의 황당한 생각이 특별한 이유
 

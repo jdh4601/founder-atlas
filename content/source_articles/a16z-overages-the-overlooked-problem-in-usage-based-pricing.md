@@ -7,6 +7,10 @@ lead: 사용량 기반 가격제를 도입하려면 선불 계약으로 현금�
   매출 예측과 추가 판매가 쉬워지지만, 고객에게는 더 많이 구매했다는 이유로 불이익을 받는 경험이 된다.
 source_sha256: 50d5114cec1244acc1eee87900988a483a2870eec4f1507d480a849e723f9181
 generated_at: '2026-09-27'
+tags:
+- billing-model
+- pricing-strategy
+- enterprise-sales
 ---
 ## 더 많이 쓸수록 벌을 받는 구조
 

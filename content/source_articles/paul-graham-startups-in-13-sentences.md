@@ -7,6 +7,11 @@ lead: 2009년 2월. 나는 스타트업 창업자들에게 폴 부크하이트�
   말했다. 그러고는 나머지 아홉 가지는 무엇일지 생각해 보았다. 막상 목록을 만들고 보니 모두 열세 가지였다.
 source_sha256: 7de65c5b206e1dc44d8cc572007b932ad2152f4db998ac1e05d745539351527b
 generated_at: '2026-09-28'
+tags:
+- user-feedback
+- launch
+- cofounders
+- founder-mindset
 ---
 ## 공동창업자를 신중히 고르고, 빠르게 출시하라
 

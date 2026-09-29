@@ -6,9 +6,10 @@ tldr: 신제품은 이제 인스타 공동구매에서 먼저 검증된 뒤 홈�
 lead: 예전에는 홈쇼핑에서 안 팔리던 물건이 인플루언서 시장으로 내려왔다면, 지금은 공동구매에서 가격과 반응을 먼저 검증한 뒤 홈쇼핑으로 올라간다.
   홈쇼핑 출신 유통인이 본 공구 시장의 구조를 통해 채널 선택, 마진 설계, 셀러 에그리게이터라는 다음 기회를 정리한다.
 tags:
-- 영업
-- 가격
-- 제품
+- distribution
+- unit-economics
+- moat
+- billing-model
 source_sha256: 06b84b24bffc14bba5e7e925a853dfb7389b913c3f4998f4dab21cbb41b43d19
 generated_at: '2026-09-29'
 ---

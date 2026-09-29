@@ -7,6 +7,11 @@ lead: YC 파트너이자 기업 선발 책임자인 달튼 콜드웰은 ‘피�
   것이 아니라, 기회비용을 따져 더 나은 아이디어에 여러 차례 제대로 도전하는 것이다.
 source_sha256: ac638c879bd9063abed5b57c458b5bce58de05791881bd1c7392589a806ca871
 generated_at: '2026-09-28'
+tags:
+- pivot
+- decision-making
+- product-market-fit
+- founder-market-fit
 ---
 ## 피벗은 거창한 사건이 아니라 아이디어를 바꾸는 일이다
 

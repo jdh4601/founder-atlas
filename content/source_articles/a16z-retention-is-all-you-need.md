@@ -7,6 +7,11 @@ lead: 선도적인 AI 기업에 반드시 리텐션 문제가 있는 것은 아�
   소비자 인터넷 기업을 평가하던 초기 리텐션 곡선만으로는 장기 성과를 제대로 읽기 어렵다.
 source_sha256: f3fbcc7385a1cd0a8be339c68882028f79e3913730ec841b376a800ee12f12de
 generated_at: '2026-09-27'
+tags:
+- retention
+- revenue-metrics
+- product-market-fit
+- unit-economics
 ---
 ## AI 리텐션 곡선은 세 구간으로 나뉜다
 

@@ -6,8 +6,8 @@ tldr: 객단가는 번들·정기배송 같은 설계로 만들어지고, 가격
 lead: 1,000원짜리를 판다고 객단가가 1,000원인 것은 아니다. 업계가 10~30만 원 받던 블로그 대행을 300만 원에 판 사례를 통해,
   객단가를 설계하고 본질에서 가격 기준을 찾는 법을 정리했다.
 tags:
-- 가격
-- 고객
+- pricing-strategy
+- billing-model
 source_sha256: 50aecfa140a2ce787a886dbc467fa61bef221eacf0e4771e04a72ae9bb5ee794
 generated_at: '2026-09-29'
 ---

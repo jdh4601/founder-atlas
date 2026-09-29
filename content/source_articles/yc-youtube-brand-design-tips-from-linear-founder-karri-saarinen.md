@@ -8,6 +8,11 @@ lead: 스타트업 웹사이트를 만드는 일은 어느 때보다 쉬워졌�
   사이트를 살펴보며 명확한 메시지와 시각적 개성, 전환 설계 사이에서 균형을 잡는 법을 설명한다.
 source_sha256: b4272cefff3695899108e4f03e920f5f76fb303eac49db2f655d085f0dd9b120
 generated_at: '2026-09-28'
+tags:
+- content-marketing
+- launch
+- first-customers
+- enterprise-sales
 ---
 ## 큰 회사처럼 보이기 전에, 지금의 회사를 정직하게 보여줘야 한다
 

@@ -7,6 +7,11 @@ lead: 초기 창업자가 자주 던지는 질문이 있다. “목표 고객이
   모아보니, 초기 고객은 정교한 자동화 도구보다 창업자가 직접 인맥을 두드리고 고객이 있는 곳에 나타날 때 만들어졌다.
 source_sha256: 93dfc1401ce3496c1fb892a59f82d989d6f39d8c5747358513bce87974f1753b
 generated_at: '2026-09-27'
+tags:
+- first-customers
+- founder-led-sales
+- distribution
+- community
 ---
 ## 도구보다 먼저, 고객이 시간을 보내는 곳을 찾아라
 

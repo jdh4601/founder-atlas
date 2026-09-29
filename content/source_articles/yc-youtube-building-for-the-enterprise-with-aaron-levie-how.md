@@ -8,6 +8,11 @@ lead: 박스(Box)는 처음부터 엔터프라이즈 소프트웨어 회사가 �
   하는지를 설명한다.
 source_sha256: 15720eebc67bb005a0140ec3de09f5c834d2cadb95a079e778e5fc6cc285c994
 generated_at: '2026-09-28'
+tags:
+- competition
+- mvp-scope
+- user-feedback
+- market-size
 ---
 ## 파일 공유의 불편에서 시작한 박스
 

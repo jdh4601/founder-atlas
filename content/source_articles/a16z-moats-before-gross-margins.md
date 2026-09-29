@@ -6,6 +6,10 @@ lead: 매출총이익률은 분명 중요한 지표다. 하지만 높은 매출�
   핵심은 경쟁자가 쉽게 따라올 수 없는 방어력이며, 그 방어력은 규모의 경제, 차별화된 기술, 네트워크 효과, 강력한 브랜드 같은 ‘해자’에서 나온다.
 source_sha256: 38cb4061a5743fbcbaaeadfc48d472490ef2ffaf2a03674070efe09aa57b0240
 generated_at: '2026-09-27'
+tags:
+- moat
+- gross-margin
+- unit-economics
 ---
 ## 매출총이익률만으로 기업의 가치를 판단할 수 없다
 

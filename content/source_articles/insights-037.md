@@ -6,7 +6,8 @@ tldr: 넓은 퍼널로 사람을 걸러 남은 사람을 뽑으면 결국 평균
 lead: 100명에게 연락해 답장한 20명은 상위 20%가 아니라 그날 마침 답장한 20명일 뿐입니다. 걸러내고 남은 사람을 뽑는 채용 방식을 버리고,
   처음부터 최고의 인재에서 출발하는 방법을 정리했습니다.
 tags:
-- 채용
+- early-hiring
+- prioritization
 source_sha256: 5752dbd58da94835dd56ebcdb4492f2c8b0415fd57ea19c3c0f5bfc21d15de9a
 generated_at: '2026-09-29'
 ---

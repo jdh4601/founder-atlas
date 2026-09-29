@@ -8,6 +8,11 @@ lead: 스타트업은 어렵고, 투자 유치는 그중에서도 가장 힘든 
   믿음이다. 어떤 말을 몇 번 듣더라도 자신이 만들려는 회사의 가능성을 믿어야 한다.
 source_sha256: 587b747aa4304d5031fc4fe68dafc19159f0163018e97c7f06683bd2ebaa3902
 generated_at: '2026-09-28'
+tags:
+- pitch
+- when-to-raise
+- valuation
+- investor-selection
 ---
 ## 투자 유치의 전 과정을 1분으로 요약하면
 

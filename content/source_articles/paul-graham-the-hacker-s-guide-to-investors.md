@@ -8,6 +8,10 @@ lead: 투자자의 세계는 대부분의 해커에게 낯설다. 투자자가 �
   스탠퍼드 ASES 서밋 기조연설을 바탕으로, 내가 투자자에 관해 뒤늦게 알게 된 뜻밖의 사실들을 정리한 것이다.
 source_sha256: 9ec5e2910f212184647a7dfc11060902a2162c27fa81253671073aaaa3a723af
 generated_at: '2026-09-28'
+tags:
+- investor-selection
+- valuation
+- seed-round
 ---
 ## 스타트업 허브를 만드는 사람들
 

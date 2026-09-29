@@ -6,9 +6,10 @@ tldr: 기존 제도를 대체하려면 기능 하나만 떼어 올 게 아니라
 lead: 대학의 대안들이 번번이 실패한 이유는 제품이 나빠서가 아니었습니다. 번들 중 '학습' 하나만 떼어 와 원본과 싸웠고, 불타는 수요를 가진
   구체적인 고객도 없었기 때문입니다. 이 교훈은 교육뿐 아니라 거대한 기존 시스템에 도전하는 모든 창업가에게 적용됩니다.
 tags:
-- 고객
-- 제품
-- AI
+- competition
+- problem-validation
+- idea-generation
+- founder-mindset
 source_sha256: bfaeabd49337eaec276463f0cdecca374e7f8310c5855d54e903b36ff3bf04c2
 generated_at: '2026-09-29'
 ---

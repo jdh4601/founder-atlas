@@ -6,8 +6,10 @@ tldr: 완벽한 공동창업자를 찾지 못했다는 건 시작을 미룰 이�
 lead: 공동창업자 후보와의 만남이 억지스럽게 느껴진다면 기다리기보다 먼저 실행하는 편이 확신을 만든다. 이 글은 솔로 창업을 하기 전에 점검할
   조건들을 정리하고, 모호한 문제를 잘게 쪼개는 법과 한 도메인을 깊게 파는 전략도 함께 다룬다.
 tags:
-- 아이디어
-- AI
+- cofounders
+- decision-making
+- founder-mindset
+- problem-validation
 source_sha256: a26a43e71e28c787c0672a9a5afb2edc58098659993de08a2028cea416f09015
 generated_at: '2026-09-29'
 ---

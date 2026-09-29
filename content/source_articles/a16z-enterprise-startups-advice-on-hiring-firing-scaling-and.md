@@ -7,6 +7,11 @@ lead: a16z는 초기 스타트업 CEO들을 초대해 작은 조직을 성장 �
   조직 확장, 초기 영업과 마케팅에 관한 핵심 내용을 정리했다.
 source_sha256: e774489c4c5713c2f56b587a77fd84206141fe402559f7ab687631efde36fe36
 generated_at: '2026-09-27'
+tags:
+- early-hiring
+- enterprise-sales
+- management
+- content-marketing
 ---
 ## 큰 회사 안에서 다시 ‘0에서 1’을 만드는 법
 

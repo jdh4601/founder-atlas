@@ -7,6 +7,10 @@ lead: 스타트업은 스키와 닮았다. 처음 스키를 탈 때 속도를 �
   젊은 예비 창업자에게 가장 중요한 조언은 단순하다. 지금은 그저 배우라는 것이다.
 source_sha256: bc66619a8880affec7b49882264272218eef4581281dd3f4642bba3bf4994115
 generated_at: '2026-09-27'
+tags:
+- idea-generation
+- founder-mindset
+- cofounders
 ---
 ## 본능을 의심하되, 사람에 대한 직감은 믿어라
 

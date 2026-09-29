@@ -5,7 +5,11 @@ tldr: 회사의 성패를 자기 정체성과 분리하고, 극한의 스트레�
   만큼의 규율을 지켜야 수십 년을 번아웃 없이 갈 수 있다.
 lead: WHOOP이 좋은 날이면 내가 좋은 날, WHOOP이 실패하면 내가 실패한 날이었다. 24세에 공황발작으로 병원에 가고 나서야 그는 회사와
   자신을 분리할수록 오히려 성공적인 회사를 만들기가 쉬워진다는 것을 배웠다.
-tags: []
+tags:
+- mental-health
+- prioritization
+- customer-interviews
+- billing-model
 source_sha256: 7f3cf9ccb2f263474f5ce3e42770df59acf8b5ea55cc092488deda5e9068cdde
 generated_at: '2026-09-29'
 ---

@@ -6,8 +6,10 @@ tldr: AI는 질문자의 눈높이에 맞춰 답하므로, 컨텍스트와 목�
 lead: 같은 구독료를 내고 같은 AI를 써도 누군가는 검색창으로 쓰고, 누군가는 미래에서 온 선생님으로 쓴다. 이 차이를 만드는 것은 모델이 아니라
   사용자가 넣는 컨텍스트와 목표를 정하는 능력이다.
 tags:
-- AI
-- 아이디어
+- founder-mindset
+- founder-market-fit
+- idea-generation
+- decision-making
 source_sha256: b8366d68e5b3288d24bf8f5961178b26e5c8a5507aec9b2d99a5aa84f1c10c3e
 generated_at: '2026-09-29'
 ---

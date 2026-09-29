@@ -6,9 +6,9 @@ tldr: 매출은 크지만 강사에게 IP가 쌓이는 강의 사업을 과감�
 lead: 런웨이가 4~5개월 남은 회사가 매출 약 20억의 강의 사업 대신 약 8억의 유니브클래스를 택했다. 기준은 매출 규모가 아니라 "어떤 게임이
   지속 가능하고 우리에게 유리한가"였다.
 tags:
-- 성장
-- 가격
-- 채용
+- moat
+- prioritization
+- gross-margin
 source_sha256: c1ef17136aaca4476b36bdb87f2e646bedf13a538ef78035d7c34bb9c974da50
 generated_at: '2026-09-28'
 ---

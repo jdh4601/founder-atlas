@@ -7,6 +7,9 @@ lead: 엔젤 투자 라운드에서 전환사채가 널리 쓰이기 시작한 �
   제공하는 도움을 더 세밀하게 가격에 반영하는 ‘고해상도 자금 조달’로 이어진다.
 source_sha256: b615d53e34f580fea06368955def7a1f25c9e27ffe6fc6bc203fc224dbcc14c1
 generated_at: '2026-09-27'
+tags:
+- valuation
+- seed-round
 ---
 ## 모두가 먼저 움직일 사람을 기다린다
 

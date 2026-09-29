@@ -8,6 +8,11 @@ lead: 위블리(Weebly)는 코딩을 몰라도 웹사이트와 온라인 스토�
   20개월 가까이 걸린 과정을 돌아보며, 고객이 정말 원하는 제품을 찾고 검증하는 실질적인 방법을 설명한다.
 source_sha256: f96b144e7dc5afbdebe38ce0b56f8fd4c6ace2960b9fbdeba30498ad648cd542
 generated_at: '2026-09-28'
+tags:
+- product-market-fit
+- customer-interviews
+- mvp-scope
+- retention
 ---
 ## 18개월 동안 찾지 못한 제품·시장 적합성
 

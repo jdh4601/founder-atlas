@@ -8,6 +8,11 @@ lead: Box 공동창업자이자 CEO인 에런 레비는 기업용 AI 시장을 �
   SaaS가 닦아 놓은 길 위에서 AI는 기업의 생산성뿐 아니라 소프트웨어 시장의 크기와 일의 경제학까지 바꾸기 시작했다.
 source_sha256: f95a7bbcb7bb7b35444d08e40bfb37208a678053cb8014b6efbba78278e7059c
 generated_at: '2026-09-27'
+tags:
+- moat
+- gross-margin
+- market-size
+- billing-model
 ---
 ## ‘챗GPT 래퍼’라는 말이 놓치는 것
 

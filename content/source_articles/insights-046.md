@@ -6,9 +6,10 @@ tldr: 스타트업 아이디어는 쉽게 바뀌지만 파운더는 그대로이
 lead: 다음 조 단위 회사는 어디서 나올까? 답은 참신한 아이디어가 아니라 어떤 상황에서도 원하는 걸 얻어내는 'formidable'한 파운더다.
   무거운 문제를 고르는 법부터 가진 돈에 맞춰 마일스톤을 잡는 법, AI 시대에도 여전히 출시 속도가 중요한 이유까지 차례로 짚는다.
 tags:
-- 아이디어
-- 투자
-- AI
+- founder-mindset
+- launch
+- idea-generation
+- prioritization
 source_sha256: 94f3b566f11b3fa97fbff63f0ad231aa3bed141f2945a80529377495db1de679
 generated_at: '2026-09-29'
 ---

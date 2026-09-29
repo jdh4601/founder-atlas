@@ -8,6 +8,11 @@ lead: 스타트업 창업자들은 제품을 출시하기 전에 제대로 작�
   아니라, 당장의 문제를 해결하는 다소 거친 방법으로 사람들이 원하는 제품부터 내놓았다.
 source_sha256: 9cdf1f792c1fddff5ec7dec5c10354401c878e59eb6fd7276951f910aa432a18
 generated_at: '2026-09-28'
+tags:
+- mvp-scope
+- launch
+- user-feedback
+- prioritization
 ---
 ## 일의 10%로 효용의 90%를 얻는 법
 

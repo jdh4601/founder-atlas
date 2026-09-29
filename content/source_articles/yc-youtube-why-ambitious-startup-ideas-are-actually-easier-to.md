@@ -8,6 +8,11 @@ lead: YC 2020년 겨울 배치에서 출발한 PostHog는 오픈소스 제품 �
   채용과 시장 진입, 투자 유치까지 오히려 쉽게 만드는지 설명한다.
 source_sha256: ebb3c108ca2d17cbc04fe13a6779fb55d742784398df9364cc124c7c4707d5bc
 generated_at: '2026-09-28'
+tags:
+- founder-mindset
+- launch
+- pivot
+- distribution
 ---
 ## 그래프를 설명하는 대신 직접 끌어올리는 소프트웨어
 

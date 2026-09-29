@@ -7,6 +7,11 @@ lead: 창업자들은 제품 출시를 오스카 시상식처럼 상상하곤 �
   왜 빠른 출시를 주저하는지, 그리고 오래 기다려도 되는 예외는 무엇인지 이야기한다.
 source_sha256: 1f0d0a586ee292977082629917ea01b10e1b1aed9a9b220088567eb703837a5a
 generated_at: '2026-09-28'
+tags:
+- launch
+- mvp-scope
+- user-feedback
+- founder-market-fit
 ---
 ## ‘빠르게 움직인다’는 말의 기준
 

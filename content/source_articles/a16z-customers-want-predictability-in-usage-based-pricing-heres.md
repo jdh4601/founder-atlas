@@ -7,6 +7,10 @@ lead: 사용한 만큼만 비용을 내는 사용량 기반 가격제는 고객�
   택하는 리더도 적지 않다. 공급자는 가격 체계와 영업, 제품, 고객 지원 전반을 설계해 이러한 불확실성을 줄일 수 있다.
 source_sha256: 03a17b44fbfc624b28c6f8e4cbe2aacddd12e46bc08574e18a34a3c827415a9d
 generated_at: '2026-09-27'
+tags:
+- billing-model
+- pricing-strategy
+- enterprise-sales
 ---
 ## 성장할수록 달라져야 하는 예측 지원 방식
 

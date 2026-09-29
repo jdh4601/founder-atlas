@@ -6,6 +6,11 @@ lead: 2020년 12월, 에어비앤비의 기업공개를 기념하고 미래의 �
   이야기해보려 한다.
 source_sha256: ca9930eda3a703799e6e0666e6be7a26409d7ec8edc60a21ba94b1b36d00349b
 generated_at: '2026-09-28'
+tags:
+- founder-mindset
+- first-customers
+- distribution
+- founder-market-fit
 ---
 ## 무슨 일이든 끝까지 해내는 사람들
 

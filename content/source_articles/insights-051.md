@@ -7,9 +7,10 @@ lead: 플랜트 업계에서는 열 번 중 아홉 번 맞는 AI를 쓰기 어�
   스냅스케일은 'AI를 얼마나 똑똑하게 만들까'보다 'AI가 틀렸을 때 어떻게 잡아낼까'를 먼저 고민했고, 그 답을 찾으려고 현업 엔지니어 80명
   이상을 만나고 파이프 1,000개가 넘는 Line List를 직접 손으로 작성했습니다.
 tags:
-- AI
-- 제품
-- 고객
+- moat
+- customer-interviews
+- founder-market-fit
+- first-customers
 source_sha256: 32e8452a388a37c64f733fc3b5f598865cb5d53f939ae9ffc427bf0ec2eea149
 generated_at: '2026-09-29'
 ---

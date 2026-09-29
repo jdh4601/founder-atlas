@@ -6,6 +6,10 @@ lead: 스타트업은 흔히 제품을 무료로 제공하거나, 받을 수 있
   가능성을 떨어뜨릴 뿐 아니라, 고객이 정말 제품을 원하는지 판단하는 일까지 방해한다.
 source_sha256: 4d90962c6247febf1d6f52754b6130925463293dd22421d75a854dbfa6b8d839
 generated_at: '2026-09-27'
+tags:
+- pricing-strategy
+- problem-validation
+- competition
 ---
 ## 받아야 할 가격의 100분의 1만 받는 회사들
 

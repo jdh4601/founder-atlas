@@ -6,7 +6,10 @@ tldr: AI가 전략을 평준화한 시대의 해자는 사람의 밀도이므로
 lead: 조직문화는 몇십 명이 된 뒤에 만드는 것이 아니라, 두 명이 일하는 시간을 정할 때부터 이미 시작된다. 인사관이 흔들리는 팀은 빠른 의사결정과
   실행력이라는 스타트업의 거의 유일한 우위를 스스로 내려놓게 된다.
 tags:
-- 채용
+- culture
+- early-hiring
+- management
+- moat
 source_sha256: ace05f97deef68c1c802235284e2060d14efbe9cc50aec3ac8a1e0fc535325c0
 generated_at: '2026-09-29'
 ---

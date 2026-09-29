@@ -6,6 +6,11 @@ lead: 회사를 세우는 데 반드시 해야 할 일은 제품을 만드는 �
   원하는 기능을 묻는 자리가 아니다. 창업자가 직접 사용자의 실제 경험을 듣고, 구체적인 문제와 행동을 근거로 제품의 방향을 판단하는 과정이다.
 source_sha256: 95fd17540a9fc57a0498c1f8d9d87b961b2593865e38ba69c2fb0c085f96f40a
 generated_at: '2026-09-28'
+tags:
+- customer-interviews
+- problem-validation
+- first-customers
+- product-market-fit
 ---
 ## 사용자와의 연결은 창업자의 일이다
 

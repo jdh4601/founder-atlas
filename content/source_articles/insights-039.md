@@ -6,9 +6,10 @@ tldr: 계약된 선수조차 차지 않은 나이키 웨어러블은 제품 실�
 lead: 자기 앰배서더가 쓰지 않는 제품은 전략이 아니라 제품이 틀렸다는 공개 진단서입니다. 나이키가 놓친 그 빈틈에서 WHOOP은 좁게 시작해
   브랜드를 쌓고, 리스크를 걸 곳을 골라 성장했습니다.
 tags:
-- 제품
-- 성장
-- 투자
+- distribution
+- billing-model
+- retention
+- founder-mindset
 source_sha256: f87be5ee4ed5e88a90660e66a686126d13c0af823402712e7cbadba72051e3c6
 generated_at: '2026-09-29'
 ---

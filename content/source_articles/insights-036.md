@@ -6,8 +6,10 @@ tldr: 조직 AX는 AI를 많이 쓰는 것이 아니라, 병목을 찾아 에이
 lead: 챔피언이 프롬프트를 잘 써서 보고서를 빨리 만들어도, 조직의 병목이 그대로면 프로세스는 바뀌지 않습니다. AX의 출발점은 "우리 조직의
   어떤 병목을 에이전트로 풀 것인가"라는 질문입니다.
 tags:
-- AI
-- 성장
+- prioritization
+- management
+- revenue-metrics
+- user-feedback
 source_sha256: 21d5c937ee0c5ef9b7393cc98803a0ad69c33a7cc5834e1a54243c625e762aaa
 generated_at: '2026-09-29'
 ---

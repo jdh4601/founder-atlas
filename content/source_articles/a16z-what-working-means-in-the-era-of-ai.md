@@ -9,6 +9,10 @@ lead: 생성형 AI 시대에는 스타트업이 더 적은 자원으로도 이�
   보여준다.
 source_sha256: 8360c30f0488ba91dd1afa834ae8791488f0a62be0227ff693c95de52f1fc0ad
 generated_at: '2026-09-27'
+tags:
+- revenue-metrics
+- when-to-raise
+- retention
 ---
 ## 첫해 ARR 100만 달러라는 오래된 기준
 

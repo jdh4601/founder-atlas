@@ -8,6 +8,11 @@ lead: Segment는 고객과 기업이 여러 디지털 접점에서 나눈 상호
   모호한 호평이 아니라, 실제 사용자가 제품을 가져가며 회사의 통제력을 흔드는 분명한 현상이라는 사실을 보여준다.
 source_sha256: 34519dbcc73f02eef651b8bd91fd5a4037ebb4a8f3086d223a8dcb585e422815
 generated_at: '2026-09-27'
+tags:
+- product-market-fit
+- customer-interviews
+- problem-validation
+- user-feedback
 ---
 ## 여러 고객 접점을 하나의 기록으로 연결하다
 

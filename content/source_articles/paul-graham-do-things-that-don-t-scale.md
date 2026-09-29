@@ -7,6 +7,10 @@ lead: 많은 예비 창업자는 좋은 제품을 내놓으면 스타트업이 �
   고된 시동 과정이 필요하다. 2013년 7월, 폴 그레이엄은 그 출발점에서 창업자가 해야 할 ‘확장되지 않는 일’이 무엇인지 설명했다.
 source_sha256: 065842824926c8e40207d9ee377d5b07a9520628d671106faf3cdf1ec236b62a
 generated_at: '2026-09-27'
+tags:
+- first-customers
+- founder-led-sales
+- user-feedback
 ---
 ## 사용자를 한 명씩 직접 데려오라
 

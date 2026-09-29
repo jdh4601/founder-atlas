@@ -6,8 +6,9 @@ tldr: 새 모델이 나오면 프롬프트와 스캐폴딩을 먼저 지우고 �
 lead: Claude Code는 Opus 5 출시와 함께 시스템 프롬프트를 80% 넘게 지웠습니다. 모델이 이미 할 수 있는 일을 제품이 가로막고
   있다면 다음 기회는 더 좋은 모델이 아니라 그 족쇄를 푸는 데서 나옵니다.
 tags:
-- AI
-- 제품
+- decision-making
+- idea-generation
+- founder-mindset
 source_sha256: 63934cb15d67ba4c4a15d6e1e3dab679802d4f00a9ad02e5ca5d4430debcd0a5
 generated_at: '2026-09-29'
 ---

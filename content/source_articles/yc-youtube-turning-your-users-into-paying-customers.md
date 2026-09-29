@@ -7,6 +7,11 @@ lead: 제품에 관한 가장 솔직한 피드백은 가격을 말한 직후 3�
   아니지만, 두려움 때문에 과금을 미루면 사람들이 정말 원하는 제품인지 확인할 결정적인 기회까지 놓치게 된다.
 source_sha256: b90c5e98dee8a2e3f5e66b58acebb9801d6677f19c431438cb9b90e86edc56ef
 generated_at: '2026-09-28'
+tags:
+- pricing-strategy
+- billing-model
+- product-market-fit
+- enterprise-sales
 ---
 ## 창업자들은 왜 과금을 미루는가
 

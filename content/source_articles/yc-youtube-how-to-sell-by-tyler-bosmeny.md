@@ -8,6 +8,11 @@ lead: 수학과 통계를 공부한 타일러 보스메니는 자신이 영업�
   과정이다.
 source_sha256: 0e786a7c0b8fc37f04a8388ab0d848dd47728f905aaf5c17841e862e7a3b3bb0
 generated_at: '2026-09-28'
+tags:
+- founder-led-sales
+- enterprise-sales
+- first-customers
+- pricing-strategy
 ---
 ## 영업은 나중에 채용할 누군가의 일이 아니다
 

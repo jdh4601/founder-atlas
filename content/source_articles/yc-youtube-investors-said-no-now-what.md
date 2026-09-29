@@ -7,6 +7,10 @@ lead: 스타트업이 투자자에게 거절당했을 때 기억해야 할 원�
   거절에서 반복되는 신호를 살피고, 말이 아닌 사업의 진전으로 투자자의 판단을 바꿔야 한다.
 source_sha256: 1ba6ad3ce73ab3f5cb9d80225f1657c4b0f76c841ebfa9082844644aa9989e12
 generated_at: '2026-09-28'
+tags:
+- pitch
+- decision-making
+- founder-mindset
 ---
 ## 30분 만난 투자자보다 창업자가 더 잘 안다
 

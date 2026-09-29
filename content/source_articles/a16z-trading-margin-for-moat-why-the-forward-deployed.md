@@ -8,6 +8,11 @@ lead: OpenAI 기반 음성 에이전트를 하나 만든다고 해서 Salesforce
   구매하는 일이 할머니가 아이폰을 사는 것과 비슷하다는 사실을 받아들이는 데 있다. 사용하고 싶어 하지만, 누군가 곁에서 제대로 설정해 줘야 한다.
 source_sha256: 772f08f87c16adffeb1e04966b8ef33d9c75addbd3d97ca4701f11343a3bd986
 generated_at: '2026-09-27'
+tags:
+- moat
+- gross-margin
+- enterprise-sales
+- early-hiring
 ---
 ## 제품 주도 성장이라는 통념과 역사의 반례
 

@@ -13,6 +13,10 @@ lead: '토큰 기반 가격은 모델 계층에서는 합리적이었다. 2020�
   귀속할 수 있는 사업 성과를 제공한다면 결과를 기준으로 가격을 매기는 것이 맞다.'
 source_sha256: 4ae2918731c757bfb008a0e85ab424e6c210afc504a84e3bc8269718fcdbb0de
 generated_at: '2026-09-27'
+tags:
+- billing-model
+- pricing-strategy
+- gross-margin
 ---
 ## 1. 판매하는 가치의 계층에 맞춰 가격을 정하라
 

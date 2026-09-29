@@ -8,6 +8,9 @@ lead: 세계적인 기업은 기술만으로 만들어지지 않는다. 아무�
   순서대로 살펴본다.
 source_sha256: d7dac9d5159e86a862643ac98ebe312a52a6c8eecda004822ba16c349baa1750
 generated_at: '2026-09-27'
+tags:
+- enterprise-sales
+- competition
 ---
 ## 제품과 고객에 따라 달라지는 영업의 출발점
 

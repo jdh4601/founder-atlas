@@ -7,6 +7,11 @@ lead: YC 그룹 파트너 아론 엡스타인은 거의 모든 10억 달러 기�
   느끼는 가치와 시장의 반응을 빠르게 배우기 위한 도구다.
 source_sha256: f9872a06dd86cbb0c62581477efea12805db1c3dfcae5b6bc11f4b3b67a338d1
 generated_at: '2026-09-27'
+tags:
+- pricing-strategy
+- billing-model
+- moat
+- retention
 ---
 ## 거대한 기업을 만든 아홉 가지 비즈니스 모델
 

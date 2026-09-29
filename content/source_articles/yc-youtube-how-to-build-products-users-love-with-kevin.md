@@ -7,6 +7,11 @@ lead: 성장은 흔히 전환율과 이탈률의 수학으로 설명된다. 하�
   첫인상부터 관계를 지키는 고객지원, 작은 팀의 운영 방식까지, 우푸가 사용자의 사랑을 얻은 과정을 통해 그 원리를 설명한다.
 source_sha256: fa62e6e19f3ddbaca18205cdd552ef74511f34f5289185ba9c3f9c71cc9a685c
 generated_at: '2026-09-28'
+tags:
+- user-feedback
+- retention
+- first-customers
+- culture
 ---
 ## 첫 1달러와 첫 사용자를 제대로 얻는 법
 

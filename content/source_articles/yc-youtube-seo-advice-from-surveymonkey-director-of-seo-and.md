@@ -7,6 +7,9 @@ lead: 2018년 당시 SEO는 이미 오래된 마케팅 수단처럼 보였지만
   실제 트래픽과 전환을 통해 계속 개선하는 방법을 설명한다.
 source_sha256: ff75402808cd15a03e1388037ca846e36d6d89ab51171ea5f081a1b351a1b81f
 generated_at: '2026-09-27'
+tags:
+- content-marketing
+- distribution
 ---
 ## 유료 채널이 비싸질수록 SEO의 가치가 커진다
 

@@ -6,6 +6,11 @@ lead: 초기 B2B 창업자는 대개 길고 모호한 무료 디자인 파트너
   거쳐 계약상 반복 매출을 만드는 것이다. YC가 여러 창업자를 지켜보며 발견한 전형적인 영업 단계와 각 단계에서 피해야 할 실수를 살펴본다.
 source_sha256: 924793a0786a97ebe9837f02fbf6d7ea90ac1ce09c8dd804cd86006f4df41d01
 generated_at: '2026-09-28'
+tags:
+- enterprise-sales
+- design-partners
+- founder-led-sales
+- billing-model
 ---
 ## 길고 모호한 디자인 파트너십에서 벗어나기
 

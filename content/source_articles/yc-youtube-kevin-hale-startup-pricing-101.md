@@ -7,6 +7,11 @@ lead: 가격은 스타트업의 성장을 좌우하지만, 많은 창업자가 �
   실제 전환율과 매출을 보며 계속 조정해야 할 성장 수단으로 이해하는 데 있다.
 source_sha256: a57e034616489b16ca476ca4cadd0ed610faf3f1af5404f0fea1ed5d647c7bed
 generated_at: '2026-09-27'
+tags:
+- pricing-strategy
+- unit-economics
+- enterprise-sales
+- revenue-metrics
 ---
 ## 가장 강력하지만 가장 소홀한 성장 수단
 

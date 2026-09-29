@@ -12,6 +12,11 @@ lead: '새로운 기술로 수익을 내려면 시장점유율을 빠르게 확�
   프로슈머 기업이 초기 사용 데이터, 고객 유형, 제품 비전을 함께 살펴보면 자사 전략이 현재 시장에서 어디에 해당하는지 판단할 수 있다.'
 source_sha256: 8b77debc6658673c780b67733a3b1c839936c86c0502a42987b88964c557509e
 generated_at: '2026-09-27'
+tags:
+- pricing-strategy
+- billing-model
+- gross-margin
+- unit-economics
 ---
 ## 사용 데이터와 고객 유형, 제품 비전을 함께 살펴라
 

@@ -6,7 +6,10 @@ tldr: 내적 확신을 바탕으로 필요한 변화를 끈질기게 밀어붙�
 lead: 조직이 굳어지고 성과가 멈췄을 때, 창업가는 기꺼이 '까다로운' 사람이 되어야 합니다. 비전은 크게 품되, 매일의 작은 개선과 사람과의
   관계에서 승리가 만들어집니다.
 tags:
-- 성장
+- management
+- founder-mindset
+- prioritization
+- culture
 source_sha256: 99e8fc66a60be13dd6d4503b4b808c70b884a87b24c3585e35f553b9d07686d1
 generated_at: '2026-09-29'
 ---

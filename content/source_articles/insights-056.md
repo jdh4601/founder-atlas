@@ -6,9 +6,10 @@ tldr: 한국에서 버텨온 난이도가 이미 증명이니, 미국에서는 �
 lead: 한국에서 시리즈 A를 받았다면 미국에서는 시리즈 D에 해당하는 난이도를 이미 통과한 셈입니다. 그런데도 실리콘밸리에 간 창업자들은 VC와
   고객을 만나는 대신 코드 리뷰와 QA에 매달리다 돌아오곤 합니다. 병목은 기술이 아니라 자기 검열입니다.
 tags:
-- 영업
-- 고객
-- 투자
+- founder-led-sales
+- problem-validation
+- first-customers
+- distribution
 source_sha256: 2d6e2ccf21c6a8d894f0123cb9b241e77e4b5d0e80162607069b744611c483e8
 generated_at: '2026-09-29'
 ---

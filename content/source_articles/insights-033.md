@@ -6,9 +6,8 @@ tldr: 조회수가 고객으로 이어지지 않는 건 콘텐츠 품질 문제�
 lead: 창업자의 콘텐츠는 창작물이 아니라 영업팀이자 고객 여정의 첫 화면이어야 한다. 트래픽에서 시스템까지 7단계로 설계된 구조가 있어야 조회수가
   매출로 바뀐다.
 tags:
-- 고객
-- 성장
-- 영업
+- content-marketing
+- distribution
 source_sha256: 154e31d24d42f670c4b29e22ca989e69ddcb650fd644f23e6b75fa06cc6a6a17
 generated_at: '2026-09-29'
 ---

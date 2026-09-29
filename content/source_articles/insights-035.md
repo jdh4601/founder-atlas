@@ -6,9 +6,10 @@ tldr: 만드는 비용이 0에 가까워지면 병목은 배포로 옮겨 가므
 lead: 누구나 원하는 걸 만들 수 있게 됐지만, 만든 것을 사람들 눈앞에 가져다 놓는 방법은 그대로다. "만들면 사람들이 온다"는 명제가 더는
   통하지 않는 시장에서 배포 자체를 제품으로 파는 팀은 고객을 찾고, 기능을 덜어내고, 이탈을 막는 방식이 달랐다.
 tags:
-- 고객
-- 제품
-- 성장
+- distribution
+- user-feedback
+- mvp-scope
+- content-marketing
 source_sha256: eebbc055b169620653982e61da7a032151aaa008787d9c50ab6cb6df0c2a74ce
 generated_at: '2026-09-29'
 ---

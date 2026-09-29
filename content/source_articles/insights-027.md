@@ -6,8 +6,10 @@ tldr: AI로 모두의 속력이 올라간 시대에 방향이 정렬되지 않�
 lead: 기업들이 AX에 실패하는 건 도구가 없어서가 아니라 도구를 정렬시킬 방향이 없어서다. 방향이 틀린 상태에서 속력만 올리면 틀린 곳에 더
   빨리 도착할 뿐이다.
 tags:
-- AI
-- 성장
+- culture
+- management
+- prioritization
+- founder-mindset
 source_sha256: a9efdfdab4c0135fe8b9ac0c929706a1dcb5d26e68b5fb3ab8bf93c502d750f9
 generated_at: '2026-09-29'
 ---

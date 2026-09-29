@@ -6,6 +6,9 @@ lead: 2012년 3월 11일은 Y Combinator가 일곱 살이 되는 날이었다. �
   사실을 알아차렸다. 지금까지 창립 기념일을 바로 그날 기억해 낸 적은 한 번도 없는 것 같다.
 source_sha256: cdbd0a167d7cda84ec41f9091907b137147549a29ded67d2147566d0237ecfcb
 generated_at: '2026-09-27'
+tags:
+- seed-round
+- idea-generation
 ---
 ## 하버드 스퀘어에서 시작된 투자사 구상
 

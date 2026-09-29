@@ -7,9 +7,9 @@ lead: 독일 자동차, 이탈리아 의류, 고급 커피처럼 서로 전혀 �
   수 있다는 점입니다. Packard부터 Chanel, Nespresso, Lululemon까지의 사례를 통해 그 힘이 비주얼이 아니라 고객이 발을
   들이고 싶은 세계에서 나온다는 것을 살펴봅니다.
 tags:
-- 가격
-- 고객
-- 성장
+- content-marketing
+- pricing-strategy
+- community
 source_sha256: f7292acf168434aa004bb2325005203eb926161e07f4949a96ccf0874540801a
 generated_at: '2026-09-29'
 ---

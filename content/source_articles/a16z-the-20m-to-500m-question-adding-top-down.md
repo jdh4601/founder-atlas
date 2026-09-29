@@ -8,6 +8,11 @@ lead: 많은 엔터프라이즈 스타트업은 제품이 사용자를 끌어들
   이 전환이 단순히 영업팀을 추가하는 일이 아니라 가격, 제품, 고객 성공, 보상과 문화까지 바꾸는 전사적 과제임을 보여준다.
 source_sha256: 1802f918a175c89b57124ae13d1869ce0e228df993e6bb316e0b92475693891f
 generated_at: '2026-09-27'
+tags:
+- enterprise-sales
+- pricing-strategy
+- retention
+- culture
 ---
 ## 바텀업 성장만으로는 넘기 어려운 벽
 

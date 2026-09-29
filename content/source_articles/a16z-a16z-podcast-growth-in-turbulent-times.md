@@ -8,6 +8,11 @@ lead: 평상시 기업은 제품이 어떻게 확산되고 신규 사용자를 �
   어떤 가정을 버려야 하는지를 이야기한다.
 source_sha256: a9d0bd1884fc9b94f6534cfc9632e7762672bf3bb754197f80cfdd37e2dee75f
 generated_at: '2026-09-27'
+tags:
+- distribution
+- decision-making
+- user-feedback
+- unit-economics
 ---
 ## 성장 모델의 가정을 단계별로 다시 점검하라
 

@@ -8,6 +8,10 @@ lead: 기업들에 가장 중요한 소프트웨어를 묻는다면 매입채무
   폭발적인 성장을 이끌 수 있음을 보여준 사례다.
 source_sha256: 596c2cc37972f85bedb03a9d9cbc361fbf734185435079b0feaa2de659169d9f
 generated_at: '2026-09-27'
+tags:
+- distribution
+- moat
+- billing-model
 ---
 ## 평범한 결제 도구가 2019년의 뜻밖의 성공작이 되기까지
 

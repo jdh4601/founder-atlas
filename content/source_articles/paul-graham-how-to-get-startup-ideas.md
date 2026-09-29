@@ -7,6 +7,11 @@ lead: 스타트업 아이디어를 얻는 가장 좋은 방법은 억지로 아�
   알아본다는 점이다. 마이크로소프트, 애플, 야후, 구글, 페이스북도 모두 그렇게 시작했다.
 source_sha256: db9a91d558eaaab0b08bd5d0625f6be721b77d01111c56f9621e138c7ea653ea
 generated_at: '2026-09-27'
+tags:
+- idea-generation
+- problem-validation
+- first-customers
+- market-size
 ---
 ## 존재하지 않는 문제를 만들지 말 것
 

@@ -7,6 +7,10 @@ lead: 좋은 지표가 성장하고 있다면 투자 유치는 훨씬 쉬워진�
   사실을 보여준다.
 source_sha256: 73b5de988b78e9c49b231802b7a7b9db7ac020f6949e4d5f98455cb11ce6a578
 generated_at: '2026-09-28'
+tags:
+- when-to-raise
+- revenue-metrics
+- equity
 ---
 ## 성장하는 지표가 가장 강력한 투자 유치 전략이다
 

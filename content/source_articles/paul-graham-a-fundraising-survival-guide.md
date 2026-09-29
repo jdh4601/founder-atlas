@@ -7,6 +7,11 @@ lead: 스타트업을 시작할 때 가장 어려운 일은 사람들이 원하�
   이를 견디려면 투자자를 설득하는 기술과는 별개로, 그 과정에서 살아남는 기술이 필요하다.
 source_sha256: b3be93b8a8da18067bf8ec7915c46909f29fecd89f2b1479446b77d8310e65d6
 generated_at: '2026-09-27'
+tags:
+- founder-mindset
+- prioritization
+- seed-round
+- unit-economics
 ---
 ## 투자 시장이 유난히 가혹한 이유
 

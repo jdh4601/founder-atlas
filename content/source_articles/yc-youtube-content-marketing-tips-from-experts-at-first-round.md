@@ -7,6 +7,11 @@ lead: 콘텐츠의 성과는 페이지뷰 하나로 설명되지 않는다. 무�
   법부터 매체 선택, 독자 조사, 인터뷰, 제작 시스템, 창작 에너지와 배포 전략까지 자신들이 현장에서 익힌 원칙을 이야기한다.
 source_sha256: f369c1f235fc61d661474b1c32e1936bb2d2be07f3bcd2d105ecb1061329467e
 generated_at: '2026-09-28'
+tags:
+- content-marketing
+- distribution
+- customer-interviews
+- time-management
 ---
 ## 페이지뷰보다 먼저 물어야 할 것
 

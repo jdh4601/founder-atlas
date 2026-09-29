@@ -7,6 +7,11 @@ lead: Y Combinator에서 액셀러레이터 운영을 돕는 마이클 사이벨
   지극히 단순한 첫 제품이다.
 source_sha256: ee3bf0c6165618e26395d9231931dbcbd2714ad5208555cb6352dd7ab6c7d6d7
 generated_at: '2026-09-27'
+tags:
+- mvp-scope
+- launch
+- user-feedback
+- first-customers
 ---
 ## 먼저 문제를 가진 사람을 찾아라
 

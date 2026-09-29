@@ -7,6 +7,9 @@ lead: 2024년 9월, 브라이언 체스키는 YC 행사에서 참석자들이 �
   질문에서 출발한다.
 source_sha256: 3be9306529e86728d500d81cb54557e55d5ff90425bcd5ac26167bc122a0b7b2
 generated_at: '2026-09-27'
+tags:
+- management
+- founder-mindset
 ---
 ## 회사가 커지면 경영 방식도 바뀌어야 하는가
 

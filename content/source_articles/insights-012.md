@@ -6,9 +6,10 @@ tldr: 프론티어 모델이 기능을 삼키는 시대에는 그들이 다루�
 lead: Claude와 ChatGPT가 스케치를 3D로 바꾸는 일까지 해내는 시대에 스타트업이 살아남는 방법은 더 나은 모델이 아닙니다. 초점입니다.
   기능으로 경쟁하면 프론티어 모델에게 잡아먹히지만, 미션으로 경쟁하면 그들은 관심조차 두지 않습니다.
 tags:
-- AI
-- 제품
-- 성장
+- moat
+- problem-validation
+- founder-market-fit
+- distribution
 source_sha256: fa3d6bc6336a40e603140931c5d019abcdbcb2ac1a0d44b810ee246d39d02a31
 generated_at: '2026-09-29'
 ---

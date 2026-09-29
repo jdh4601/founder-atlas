@@ -7,6 +7,11 @@ lead: 첫 고객은 정교하게 작성한 콜드 이메일에서 오기도 하�
   한 가지 공통점은 분명하다. 제품이 완성되기를 기다리기보다 먼저 사람을 만나고, 반응을 확인하고, 가능한 방식으로 판매를 시작했다는 점이다.
 source_sha256: ec9ae04a79051e7173fd4aaaaaa785e10ef8903b46d9dd6935b25a9e7f2d2e9e
 generated_at: '2026-09-28'
+tags:
+- first-customers
+- founder-led-sales
+- community
+- customer-interviews
 ---
 ## 콜드 아웃리치에서 문전 영업까지
 

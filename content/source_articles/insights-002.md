@@ -6,9 +6,9 @@ tldr: 경쟁사가 유료로 파는 것의 원가를 계산해 더 좋은 것을
 lead: 마케팅은 어느 비즈니스에서나 늘 모자라고, 창업자가 혼자 떠안는 경우도 많다. 이럴 때 고객을 빠르게 얻으려면 남들이 돈 받고 파는 것보다
   더 좋은 것을 무료로 줘서 시장의 관심과 신뢰를 한 번에 가져와야 한다.
 tags:
-- 고객
-- 성장
-- 가격
+- distribution
+- unit-economics
+- competition
 source_sha256: 34aa8ed8ae48f8bc1e7459be7c7bedf16c29b1ba07c032a7d1a59cab132c0d7a
 generated_at: '2026-09-28'
 ---

@@ -7,6 +7,8 @@ lead: 2009년 9월. 초기 단계의 스타트업에 투자할수록 성공 여�
   아무것도 이루지 못하는 사람은 얼마든지 있다.
 source_sha256: 39df8c37737d8ff59f5fa7d996d7bbe25bb3572a8ff706d5bca1e6172e77e43a
 generated_at: '2026-09-28'
+tags:
+- founder-mindset
 ---
 ## 재능보다 중요한 결단력
 

@@ -7,6 +7,10 @@ lead: “기업의 AI 프로젝트 95%가 실패한다”는 문장은 AI가 과
   전에 없던 기회를 열어준다는 것이다.
 source_sha256: 1482a754ecebf6efeac2a5a65fe6260359fc2ef9269b3f606043fc90328096d5
 generated_at: '2026-09-27'
+tags:
+- enterprise-sales
+- competition
+- moat
 ---
 ## ‘95% 실패’라는 숫자가 감춘 이야기
 

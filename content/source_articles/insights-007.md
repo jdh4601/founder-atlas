@@ -6,9 +6,10 @@ tldr: 경쟁이 몰린 K-뷰티 시장 대신 제품을 모르는 98%로 가서,
 lead: 아마존과 인스타 시딩에 돈만 녹이던 브랜드가 뉴욕 소호에서 워크인 고객만으로 하루 1만 달러를 팔았다. 그런데 진짜 교훈은 그다음에 나왔다.
   이미 K-뷰티를 아는 고객보다 아직 모르는 고객 쪽이 더 큰 시장이었다.
 tags:
-- 고객
-- 성장
-- 제품
+- founder-market-fit
+- founder-led-sales
+- user-feedback
+- competition
 source_sha256: 90a3b5aaff7ab308d55f0c9c926736a212a98b04fc74e21081448e4f8b35ea4a
 generated_at: '2026-09-29'
 ---

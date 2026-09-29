@@ -5,9 +5,8 @@ tldr: 스펙만 명확하면 구현은 쉬워진 AI 시대에는 문제를 정�
 lead: AI 시대의 병목은 엔지니어링이 아니라 기획과 결정이다. 실패 비용이 주말 이틀 수준으로 낮아진 지금, 무엇을 만들지 정하고 명확한 스펙으로
   쓰는 사람이 이긴다.
 tags:
-- AI
-- 아이디어
-- 성장
+- decision-making
+- founder-mindset
 source_sha256: 51fc2eb636a19320d9d45972b4c316fa55466d3ce19e917e93d6c8bfdb520289
 generated_at: '2026-09-28'
 ---

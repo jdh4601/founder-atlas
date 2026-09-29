@@ -8,6 +8,11 @@ lead: 대부분의 스타트업은 여러 차례에 걸쳐 자금을 조달한�
   퍼즐이라는 점에서도 어렵다. 전자는 피할 수 없지만 후자는 지도를 갖추면 상당 부분 줄일 수 있다.
 source_sha256: c5ea9723ff00271e515c5aff9ac6a36bbf08087960d8d0de62a620a95da06c0d
 generated_at: '2026-09-27'
+tags:
+- seed-round
+- when-to-raise
+- investor-selection
+- valuation
 ---
 ## 투자자의 두려움을 이해하고, 모금할 때만 모금하라
 

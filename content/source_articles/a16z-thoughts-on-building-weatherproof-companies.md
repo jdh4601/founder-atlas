@@ -7,6 +7,11 @@ lead: 좋은 창업자이자 CEO라면 오래가는 강한 회사를 만들고 �
   창업자는 긴박감을 잃지 않으면서도 회사가 스스로 끝까지 갈 수 있도록 자신과 조직을 한 단계 더 성장시켜야 한다.
 source_sha256: 8019e3f90edbc7311dd86adefa3a03260bab6349e6dba4deedeaa8259df08fc9
 generated_at: '2026-09-27'
+tags:
+- management
+- culture
+- founder-mindset
+- early-hiring
 ---
 ## 빠른 매각이 아니라 궂은 날씨를 견디는 회사를 세운다
 

@@ -7,6 +7,11 @@ lead: 홈조이(Homejoy)를 만들기까지 여러 차례 방향을 바꾸고 �
   가능한 성장으로 나아가는 방법까지 다룬다. 다만 모든 사업과 창업자는 서로 다르므로, 이 내용은 정답이라기보다 방향을 잡는 지침에 가깝다.
 source_sha256: 71d7e7cc701565441a6188ddb8523300853c00b145f0c2bde7899e937956a014
 generated_at: '2026-09-28'
+tags:
+- problem-validation
+- mvp-scope
+- user-feedback
+- distribution
 ---
 ## 아이디어보다 먼저 확인해야 할 문제
 

@@ -6,9 +6,10 @@ tldr: 큰 회사는 코어 영역에서만 A팀을 두므로 인접 시장에서
 lead: '"랩이 이 시장을 삼키지 않을까"는 잘못된 질문일 수 있습니다. 진짜로 물어야 할 것은 내가 그들의 A팀과 붙는지, 아니면 그들이 신경
   쓰지 않는 27번째 우선순위와 싸우는지입니다.'
 tags:
-- AI
-- 성장
-- 투자
+- competition
+- distribution
+- unit-economics
+- investor-selection
 source_sha256: d34789e9f9b5f5247fdc7bbf51eacb3336597c7f2a6dae525f466b2a35f8682f
 generated_at: '2026-09-29'
 ---

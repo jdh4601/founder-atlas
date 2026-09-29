@@ -6,9 +6,9 @@ tldr: AI로 지능과 실행력이 흔해진 지금은 남들이 동의하기 �
 lead: 성공한 회사는 모두 그 아이디어가 대중화되기 한참 전에 시작했다. 2015년에 VC들이 "unsexy"하다고 했던 데이터가 이제 가장 중요한
   기회가 된 것처럼, AI 시대의 차이는 처리 능력보다 비전과 조기 신념에서 나온다.
 tags:
-- 아이디어
-- AI
-- 성장
+- founder-mindset
+- idea-generation
+- culture
 source_sha256: 578d601ff00498ba2703a4cd371cf9a60da18dc12e476ccfa411a6b8701cbe40
 generated_at: '2026-09-29'
 ---

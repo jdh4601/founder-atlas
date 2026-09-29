@@ -9,6 +9,11 @@ lead: 2010년대 벤처투자를 받은 헬스테크 기업들은 주로 대형 
   시장의 기회와 성장법을 살펴봤다.
 source_sha256: b9940feef2ab0e01612103e7edead8b61d39da714e14a51c4ec77b19d17c0ef4
 generated_at: '2026-09-27'
+tags:
+- distribution
+- unit-economics
+- revenue-metrics
+- enterprise-sales
 ---
 ## 지금 중소기업 시장이 주목받는 이유
 

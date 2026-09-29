@@ -7,6 +7,10 @@ lead: 우리가 알던 검색의 시대가 끝나가고 있다. 마케터들은 
   전문 대행사까지 낳은 거대한 산업의 토대가 이제 새로운 전환점을 맞았다.
 source_sha256: 77246da086578e5acf1c8c3f5a3d6b400f387e897704d93baf7878dd3459e0c4
 generated_at: '2026-09-27'
+tags:
+- distribution
+- content-marketing
+- moat
 ---
 ## 링크의 시대에서 언어 모델의 시대로
 

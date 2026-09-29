@@ -9,6 +9,10 @@ lead: 새로운 제품을 처음 시장에 내놓을 때, 실제로 사용해 �
   ‘최소 진화 가능 제품’이다.
 source_sha256: 97814411e4da983fd9ded8fdf32e7eb0bc4c63bae6a14e1811fcb5b8d266f60a
 generated_at: '2026-09-28'
+tags:
+- first-customers
+- user-feedback
+- mvp-scope
 ---
 ## 설득하기보다 절실한 사용자를 찾아라
 

@@ -8,6 +8,11 @@ lead: 물리학을 공부하던 시절, 나는 종이비행기와 칵테일 웹�
   성장의 핵심이 화려한 전술이 아니라 사용자가 제품에 남아 있는가에 있다는 것이다.
 source_sha256: 64b7d09c379e1193db6e153245e2f71bc62203d2d715454e4a041dcb0be9e121
 generated_at: '2026-09-28'
+tags:
+- retention
+- product-market-fit
+- distribution
+- revenue-metrics
 ---
 ## 성장을 결정하는 단 하나의 지표, 리텐션
 

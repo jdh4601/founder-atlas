@@ -8,6 +8,9 @@ lead: 가격과 패키징은 성장과 매출, 마진을 좌우하는 핵심 의
   적합한 모델에 접근할 수 있다.
 source_sha256: 4e90b9a92053ba50593866743a6ce9cd95221e37945dfad2d0c5d8d91a0fcca3
 generated_at: '2026-09-27'
+tags:
+- pricing-strategy
+- billing-model
 ---
 ## 가격표보다 먼저 사용자 여정을 그려라
 

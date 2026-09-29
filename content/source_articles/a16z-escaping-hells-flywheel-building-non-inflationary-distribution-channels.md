@@ -7,6 +7,11 @@ lead: 스타트업을 빠르게 키우는 익숙한 공식이 있다. 고객 만
   벗어나려면 더 많은 광고비가 아니라, 경쟁 입찰에 휘둘리지 않는 유통 구조를 만들어야 한다.
 source_sha256: 497049fe9ba1c40bc28e2307b2216b1f5c62e43dd5f111e8cc87a2b0e7ae8c92
 generated_at: '2026-09-27'
+tags:
+- distribution
+- unit-economics
+- moat
+- pivot
 ---
 ## 빠른 성장을 약속하는 위험한 공식
 

@@ -7,6 +7,10 @@ lead: 생성형 AI 시장이 빠르게 모습을 갖춰가는 과정을 보면, 
   될지를 좌우할 가능성이 크다.
 source_sha256: d3710654b8594f1a033cce8cd053ae2559b42f182ae6e7045023dce2367da727
 generated_at: '2026-09-27'
+tags:
+- founder-market-fit
+- distribution
+- moat
 ---
 ## 제품 주기에 따라 달라지는 창업자의 우위
 

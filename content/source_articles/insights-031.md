@@ -7,8 +7,10 @@ lead: DOAC에는 실패할 방법을 최대한 많이 찾는 것이 유일한 �
   이번 주에 돌린 실험 수입니다. 1년에 10만이던 구독자 증가가 이제 이틀에 10만이 된 비결은 대부분이 포기하는 밋밋한 구간에서도 계속 실패하며
   버틴 데 있습니다.
 tags:
-- 성장
-- 채용
+- founder-mindset
+- content-marketing
+- distribution
+- culture
 source_sha256: f7be68d7ce8c0a1087685f5a6ddc13f97027a8a58822bc5c772e249aac19ff69
 generated_at: '2026-09-29'
 ---

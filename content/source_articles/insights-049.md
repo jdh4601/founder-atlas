@@ -6,9 +6,10 @@ tldr: 현금흐름은 직접 고칠 수 없으니 지금 시기에 맞는 오퍼
 lead: 손익분기에 못 미치는 매출로 이번 달을 넘기기 어렵다는 보고를 받은 회사가 90일 안에 확장 가능한 프론트엔드 오퍼 두 개를 확보했습니다.
   입력 지표를 보는 법부터 할인 명분, 경품 앵커, 마감 설계, 병목이 옮겨가는 과정까지 그 과정을 순서대로 짚어 봅니다.
 tags:
-- 가격
-- 성장
-- 영업
+- pricing-strategy
+- distribution
+- prioritization
+- early-hiring
 source_sha256: 11546a780b4b4d8b01a24c29df8b5aa470acf26d39e8ff1831a146ec006306cc
 generated_at: '2026-09-29'
 ---

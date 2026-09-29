@@ -7,6 +7,11 @@ lead: 상위 시장으로 제대로 확장하면 새로운 사용자와 활용 �
   뒤, 실제로 그들의 요구를 충족할 수 있는지 판단하는 것이다.
 source_sha256: 0a798682f89022ad926325723dbe648c32964625096d2034de8f8238a20d3853
 generated_at: '2026-09-27'
+tags:
+- enterprise-sales
+- product-market-fit
+- market-size
+- prioritization
 ---
 ## 초기 엔터프라이즈 수요가 제품·시장 적합성을 뜻하지는 않는다
 

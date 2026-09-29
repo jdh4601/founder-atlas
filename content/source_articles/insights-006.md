@@ -6,8 +6,10 @@ tldr: 미국에 가면 한국에서 쌓은 소셜 캐피털은 사라진다. 그
 lead: 한국에서 쌓은 학벌과 네트워크는 미국행 비행기에서 리셋된다. 미국 시장에서 이길 생각이라면 한국은 의식적으로 포기하고 첫 투자, 피칭,
   네트워킹의 기준을 모두 미국에 맞춰야 한다.
 tags:
-- 투자
-- 성장
+- investor-selection
+- pitch
+- seed-round
+- founder-mindset
 source_sha256: 9ef321d42a42dd37e015f2f580a828bf3b57a96bb8470499c33f0c1cc39dd206
 generated_at: '2026-09-29'
 ---

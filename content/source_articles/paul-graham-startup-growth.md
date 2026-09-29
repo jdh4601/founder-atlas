@@ -8,6 +8,11 @@ lead: 스타트업은 단순히 새로 생긴 회사가 아니다. 기술 기업
   것들은 대체로 제자리를 찾는다. 그래서 성장은 창업자가 마주하는 거의 모든 결정을 안내하는 나침반이 될 수 있다.
 source_sha256: ee2cc4a0ea487755f0eb37f90dc4d6203ce29b7527b6ca52f84e257806c48a1a
 generated_at: '2026-09-28'
+tags:
+- market-size
+- revenue-metrics
+- decision-making
+- idea-generation
 ---
 ## 새 회사와 스타트업은 어떻게 다른가
 

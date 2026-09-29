@@ -7,6 +7,9 @@ lead: 요약하면 관계는 단순하다. LTV:CAC가 높을수록 마진이 커
   바탕으로, 이 지표가 수익성과 기업가치로 이어지는 과정을 살펴본다.
 source_sha256: 63f327bff667adf5ddaa953fb903a707fb592c5c08595d94ce745ef6c7b12a54
 generated_at: '2026-09-27'
+tags:
+- unit-economics
+- valuation
 ---
 ## 소비자 기업의 재무 건전성을 보여주는 기준
 

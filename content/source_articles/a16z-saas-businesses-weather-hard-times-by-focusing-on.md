@@ -9,6 +9,11 @@ lead: 기업용 SaaS 시장은 11년 넘게 이어진 강세장 속에서 성장
   기업이라면 성장에 앞서 효율을 챙기고, 고객 유지와 수익성 있는 고객 획득, 생존 기간을 늘리는 비용 관리에 우선순위를 두어야 한다.
 source_sha256: 3825fe80038e00c9d8c70396bbbc969f2b0a1d929b3ca7313bae802e62102acd
 generated_at: '2026-09-27'
+tags:
+- retention
+- unit-economics
+- revenue-metrics
+- prioritization
 ---
 ## 2008년의 SaaS는 느려졌지만 멈추지 않았다
 

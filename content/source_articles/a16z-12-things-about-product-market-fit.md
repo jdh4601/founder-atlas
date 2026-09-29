@@ -7,6 +7,10 @@ lead: 제품-시장 적합성(Product-Market Fit·PMF)이라는 개념을 만들
   시장이라는 생각이다. PMF는 좋은 제품을 출시했다는 선언이 아니라, 시장이 그 제품을 받아들이고 더 많이 원하기 시작한 상태를 뜻한다.
 source_sha256: 6f1a8c541ba26c0098da90d9d09b12ac3087c4617716df3e6453b7fce395bfb7
 generated_at: '2026-09-27'
+tags:
+- product-market-fit
+- market-size
+- problem-validation
 ---
 ## 1. 훌륭한 팀보다 먼저 봐야 할 것은 시장이다
 

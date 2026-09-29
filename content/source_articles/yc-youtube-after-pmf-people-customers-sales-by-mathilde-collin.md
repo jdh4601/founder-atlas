@@ -7,6 +7,11 @@ lead: 협업 이메일 도구 프런트(Front)의 공동창업자이자 CEO인 �
   삶이 중요하다는 사실이었다. 프런트의 초기 창업부터 채용, 제품·시장 적합성, 가격과 영업, 투자 유치에 이르기까지 그 과정에서 얻은 교훈을 들여다본다.
 source_sha256: 12ed3a18e493c051a0c1830fe5465d437ecd9c42d4f242c7a0632c2d92c5de23
 generated_at: '2026-09-28'
+tags:
+- culture
+- customer-interviews
+- early-hiring
+- founder-led-sales
 ---
 ## 나쁜 조직문화에서 발견한 창업의 기준
 

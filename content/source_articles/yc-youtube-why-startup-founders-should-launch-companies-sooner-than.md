@@ -7,6 +7,11 @@ lead: 첫 창업자는 대개 제품 출시를 지나치게 오래 미룬다. �
   실제 고객에게서 배우고, 문제를 진단하고, 다음 출시로 나아가는 데 있다.
 source_sha256: b4679861d601dfdce392187207e145c4a65ad79b3f85cf2934889d2f29eb6d42
 generated_at: '2026-09-28'
+tags:
+- launch
+- mvp-scope
+- user-feedback
+- first-customers
 ---
 ## 아무도 찾아오지 않을까 봐 두려운 마음
 

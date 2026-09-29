@@ -6,8 +6,10 @@ tldr: 바이럴 조회수보다 명확한 타겟에게 반복적으로 도달해
 lead: 마케팅 퍼널은 더 이상 일직선으로 움직이지 않습니다. 고객의 흔한 문제를 엔터테인먼트로 바꾸고, 같은 사람을 여러 번 만나 신뢰를 쌓는
   브랜드가 살아남습니다.
 tags:
-- 성장
-- 고객
+- content-marketing
+- distribution
+- retention
+- founder-mindset
 source_sha256: a8391633f7f33ddf65f85dd78f859940e22298f46ad43b0811c4d9e70de11706
 generated_at: '2026-09-29'
 ---

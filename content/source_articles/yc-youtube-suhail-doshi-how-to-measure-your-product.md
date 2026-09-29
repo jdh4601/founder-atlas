@@ -8,6 +8,11 @@ lead: Mixpanel 공동창업자 수하일 도시(Suhail Doshi)는 제품 분석�
   끈질기게 개선하는 일이다.
 source_sha256: a2c3e720fb41d688e6be9a44ec6b8a1b4e0f1b9c9221afc6298e3caaeac2a279
 generated_at: '2026-09-27'
+tags:
+- retention
+- prioritization
+- product-market-fit
+- user-feedback
 ---
 ## 복잡한 분석보다 먼저 물어야 할 세 가지
 

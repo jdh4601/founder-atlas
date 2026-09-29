@@ -8,6 +8,11 @@ lead: 2022년 9월, 나는 Y Combinator 지원자들에게 합격을 위해 해�
   나는 무엇을 배웠을까?
 source_sha256: d802b4f9d776a5f32ab3fae3b92fd9bd6ffc88cb44f87ff1d5b15c8a4f50238d
 generated_at: '2026-09-28'
+tags:
+- prioritization
+- decision-making
+- user-feedback
+- community
 ---
 ## 스타트업의 문제는 놀라울 만큼 반복된다
 

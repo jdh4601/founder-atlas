@@ -8,6 +8,11 @@ lead: 전통적인 SaaS에서는 기능이 부족한 최소기능제품(MVP)을 
   있다.
 source_sha256: 17fd0f053a3433934f34fcfcac33e6de40821c45380217a57e5e8a6b7500eb71
 generated_at: '2026-09-27'
+tags:
+- retention
+- product-market-fit
+- moat
+- mvp-scope
 ---
 ## MVP와 이탈을 전제로 했던 SaaS의 공식
 

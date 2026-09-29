@@ -6,7 +6,9 @@ tldr: 조직이 커질수록 창업자는 직접 뛰기보다 KPI, 하지 않을
 lead: 숫자가 없는 조직은 바쁜 것을 성과로 착각합니다. 조직이 커질수록 창업자의 일은 직접 실행하는 데서 우선순위와 기준을 설계하는 쪽으로 옮겨가야
   합니다.
 tags:
-- 성장
+- management
+- prioritization
+- culture
 source_sha256: 84c190ff5c6daaf4cb7ac1317c78bd5f231b8bd05222db4378ae89d6dd38aed0
 generated_at: '2026-09-28'
 ---

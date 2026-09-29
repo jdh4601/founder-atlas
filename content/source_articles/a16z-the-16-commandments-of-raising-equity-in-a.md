@@ -9,6 +9,11 @@ lead: 인플레이션과 금리 상승, 지정학적 긴장, 경기 침체 우�
   시장의 건전성을 둘러싼 우려 속에서 많은 창업자가 미지의 영역에 들어섰다.
 source_sha256: 8849bc6db5782a3212b9d037705ca0263591bd8f99ac16e242939f9200869472
 generated_at: '2026-09-27'
+tags:
+- valuation
+- when-to-raise
+- unit-economics
+- investor-selection
 ---
 ## 투자시장의 판이 달라졌다
 

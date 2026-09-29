@@ -7,6 +7,10 @@ lead: 성장 단계 SaaS 기업이 자주 묻는 질문 가운데 하나는 기�
   적합한 것은 아니다. 판단의 출발점은 제품의 최종 사용자가 사람인지, 다른 소프트웨어인지 살펴보는 데 있다.
 source_sha256: c82f279252ef2dd67212950bd87ee97c99b686bc292d44e56ff8b196cecb932a
 generated_at: '2026-09-27'
+tags:
+- billing-model
+- pricing-strategy
+- unit-economics
 ---
 ## 최종 사용자가 요금제의 방향을 결정한다
 

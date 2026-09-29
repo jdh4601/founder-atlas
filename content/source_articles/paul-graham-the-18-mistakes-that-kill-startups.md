@@ -9,6 +9,11 @@ lead: 2006년 10월, 강연 뒤 질의응답에서 누군가 스타트업이 실
   요인까지 망라한 목록은 아니다.
 source_sha256: b79dced1783060a1cad80bbadcba7519f265b0d994e4d7709abf1d30b1c634b5
 generated_at: '2026-09-28'
+tags:
+- user-feedback
+- cofounders
+- launch
+- pivot
 ---
 ## 혼자 시작하거나, 경쟁을 피해 변두리로 가는 실수
 

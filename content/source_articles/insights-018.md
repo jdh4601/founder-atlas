@@ -6,8 +6,7 @@ tldr: 도메인 전문가가 AI를 배우는 것보다 AI 네이티브가 도메
 lead: AI 시대의 승부는 누가 이미 더 많이 아느냐가 아니라 누가 더 빨리 배우고 최적화하느냐로 갈린다. YC가 뽑는 창업자들이 점점 어려지고
   대학 졸업장의 가치가 흔들리는 이유도 여기에 있다.
 tags:
-- AI
-- 채용
+- founder-market-fit
 source_sha256: 9b8562cbfcc475b883073865d8b6d52bbe1b9e7ac282e24430c06a08126b495c
 generated_at: '2026-09-29'
 ---

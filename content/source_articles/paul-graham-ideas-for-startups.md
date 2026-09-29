@@ -7,6 +7,11 @@ lead: 좋은 스타트업 아이디어는 완성된 ‘백만 달러짜리 발�
   진짜 아이디어가 생긴다고 말한다.
 source_sha256: 0e763243296f16dbd48f717b9cd69c51a8f6c8016e549883ba6378cdba13f19d
 generated_at: '2026-09-27'
+tags:
+- idea-generation
+- problem-validation
+- cofounders
+- founder-market-fit
 ---
 ## 아이디어는 설계도가 아니라 질문이다
 

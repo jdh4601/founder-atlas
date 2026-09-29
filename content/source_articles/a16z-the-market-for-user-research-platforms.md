@@ -9,6 +9,9 @@ lead: B2B 기업이 제품 주도 성장으로 전환하면서, 고객의 새로
   수 있고, 결과를 쉽게 이해할 수 있는 사용자 리서치 도구를 요구하고 있다.
 source_sha256: 86b97c749088126fb166f596ea16e7e52fbbba3afa7886b0a9c94128a13a5aad
 generated_at: '2026-09-27'
+tags:
+- user-feedback
+- customer-interviews
 ---
 ## 제품 개발의 필수 요소가 된 사용자 리서치
 

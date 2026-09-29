@@ -6,9 +6,10 @@ tldr: 한계비용이 낮은 서비스에 무제한 구독을 붙이면 예측 �
 lead: 미국 세차 체인 미스터 카워시는 세차 매출의 76%를 무제한 구독으로 벌어들입니다. 파는 서비스는 그대로인데 과금 방식이 바뀌자 매출의
   성격이 달라졌고, 흩어진 동네 가게를 사서 묶는 롤업으로 몸값의 배수까지 뛰었습니다.
 tags:
-- 가격
-- 투자
-- 성장
+- billing-model
+- valuation
+- retention
+- revenue-metrics
 source_sha256: 7f30006d2866c1a82d27bcd00de0c3c7c0b9dab98ffddda07def1eac80d321be
 generated_at: '2026-09-29'
 ---

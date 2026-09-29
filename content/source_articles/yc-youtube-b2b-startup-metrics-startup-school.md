@@ -7,6 +7,11 @@ lead: YC 그룹 파트너 톰 블롬필드는 좋은 지표를 갖추는 일을 
   핵심 지표 몇 개를 일관되게 추적하고, 고객과의 대화 및 제품에 대한 직관을 함께 활용하는 일이다.
 source_sha256: 8f42509db177e800b5d2d6a2a45c5f921d3fc90413121482496f760ab3f950db
 generated_at: '2026-09-28'
+tags:
+- revenue-metrics
+- retention
+- gross-margin
+- unit-economics
 ---
 ## 출시 전에 네다섯 가지 지표부터 정하라
 

@@ -8,6 +8,11 @@ lead: 초기 스타트업에서 창업자의 중요한 역할 중 하나는 회�
   통해 사람들이 원하는 제품을 만들고 있다는 확신을 얻는 일이 언제나 먼저다.
 source_sha256: 53889b065e3a20666b849b6e65ff94b13a1d6de0f2d9485bb51d63ad3d5b24c2
 generated_at: '2026-09-27'
+tags:
+- content-marketing
+- distribution
+- product-market-fit
+- launch
 ---
 ## 콘텐츠도 하나의 제품이다
 

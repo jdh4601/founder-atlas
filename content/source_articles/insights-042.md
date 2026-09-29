@@ -6,8 +6,8 @@ tldr: 좋은 훅은 맥락으로 기울이고, 통념으로 정지시키고, 같
 lead: 바이럴 훅 문장을 모아 베끼는 것만으로는 부족합니다. 시청자가 첫 문장을 본 뒤 두 번째 문장을 보지 않고는 못 배기게 만드는 호기심 루프를
   설계해야 하고, 그 구조는 B2B 콘텐츠에도 그대로 적용됩니다.
 tags:
-- 성장
-- 고객
+- content-marketing
+- retention
 source_sha256: 391c6b4b9f9d6e225bf5abc9ab2f6a5822fa4e858c56da85d8a27225a37d81a6
 generated_at: '2026-09-29'
 ---

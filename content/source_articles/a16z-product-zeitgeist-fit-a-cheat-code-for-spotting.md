@@ -8,6 +8,9 @@ lead: 실리콘밸리에서는 제품과 시장의 궁합, 즉 제품-시장 적
   맞닿을 때, 사람들은 기능적 완성도와 별개로 그 제품이 성공하기를 바라게 된다.
 source_sha256: 44e0d075eb9a730414f61af4437d151b5f6f402606f120d9e1abf7a2c2783d7d
 generated_at: '2026-09-27'
+tags:
+- product-market-fit
+- idea-generation
 ---
 ## 제품이 시대의 정서와 만날 때
 

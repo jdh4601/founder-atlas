@@ -6,6 +6,10 @@ lead: 기업은 저절로 성장하지 않는다. CEO가 맡아야 할 가장 �
   성장은 일반적으로 기업의 경쟁력을 높이고 규모의 경제와 레버리지를 키우며, 투자자 역시 성장하는 기업을 분명하게 높이 평가한다.
 source_sha256: fc3d783bfda0ad0ef0feb4c9e4cc24dcc5cf49ee6b44cf3e5c1330258d49bb77
 generated_at: '2026-09-27'
+tags:
+- prioritization
+- moat
+- billing-model
 ---
 ## 성장을 끌어내리는 ‘중력’
 

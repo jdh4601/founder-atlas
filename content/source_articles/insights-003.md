@@ -6,8 +6,8 @@ tldr: 예산이 적은 팀은 배포에 돈을 쓰기보다, 사람들이 자신
 lead: 콘텐츠가 평범해서 돈을 들여 배포해야 한다면 이미 실패한 것입니다. 대기업은 막대한 미디어 예산으로 지루한 콘텐츠도 밀어붙일 수 있지만,
   작은 회사는 지루할 여유조차 없습니다.
 tags:
-- 성장
-- AI
+- content-marketing
+- distribution
 source_sha256: 8d31bdfcc526b974f1c487c69e600bac6a45f9e624bbb93bea4f8de60080e799
 generated_at: '2026-09-28'
 ---

@@ -10,6 +10,11 @@ lead: 2010년 10월. 수십 년 동안 거의 변하지 않았던 스타트업 �
   의미하는지 살펴볼 필요가 있다.
 source_sha256: cd09f8a5ecea111ac6c4b59df16f3367a82bc8ac4d88acf0071865e504cf7d8b
 generated_at: '2026-09-28'
+tags:
+- investor-selection
+- equity
+- valuation
+- seed-round
 ---
 ## 엔젤과 벤처캐피털 사이에 등장한 슈퍼엔젤
 

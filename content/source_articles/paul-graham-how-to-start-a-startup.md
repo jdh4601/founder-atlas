@@ -7,6 +7,11 @@ lead: 성공하는 스타트업에는 세 가지가 필요하다. 좋은 사람�
   천재만 풀 수 있는 마법 같은 단계가 따로 있는 것도 아니다.
 source_sha256: 66fcb04facce555e41a611f38307211ed94b389db0400cecbe0fa9d958bf32d4
 generated_at: '2026-09-27'
+tags:
+- user-feedback
+- cofounders
+- idea-generation
+- early-hiring
 ---
 ## 기발한 아이디어보다 중요한 것
 

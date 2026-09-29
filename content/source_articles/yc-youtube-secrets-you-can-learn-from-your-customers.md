@@ -7,6 +7,10 @@ lead: 마이클 세이벨과 달튼 콜드웰은 초기 스타트업이 문제�
   대화에서 나올 때가 많다.
 source_sha256: c563dffc5ce5f3e2a6d3cc65dbbb5b60b51180df3fae12948201c9c86a526c60
 generated_at: '2026-09-27'
+tags:
+- customer-interviews
+- user-feedback
+- founder-led-sales
 ---
 ## 모든 것을 안다는 확신을 버리는 순간
 

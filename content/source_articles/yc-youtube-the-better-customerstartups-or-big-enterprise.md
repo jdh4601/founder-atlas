@@ -8,6 +8,11 @@ lead: Stripe와 PagerDuty처럼 다른 스타트업을 고객으로 삼아 크�
   택했으며 첫 고객이 그 경로에서 어떤 역할을 하는지 이해하는 것이다.
 source_sha256: 0ae7b9c784bbdfb5ea4440c2aaa188a5a4af5d1464df9654f93504a6ecc9d3f9
 generated_at: '2026-09-28'
+tags:
+- first-customers
+- enterprise-sales
+- distribution
+- problem-validation
 ---
 ## 스타트업을 고객으로 삼는 공식이 항상 통하지 않는 이유
 

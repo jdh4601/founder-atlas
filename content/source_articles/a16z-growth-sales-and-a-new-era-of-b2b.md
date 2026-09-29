@@ -8,6 +8,9 @@ lead: 소비자 기업은 바이럴과 네트워크 효과로 성장하고, 엔�
   영업의 결합’이 앞으로 10년간 B2B 시장을 바꿀 핵심 흐름이라고 본다.
 source_sha256: 1efee13a2b6d8925d3dd560ce28cfad0049271453dbd89ebf7e70bb766b9d06c
 generated_at: '2026-09-27'
+tags:
+- distribution
+- enterprise-sales
 ---
 ## B2B의 가장 큰 변화는 기술이 아니라 시장 진입 방식이다
 
