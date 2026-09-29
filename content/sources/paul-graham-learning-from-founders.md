@@ -1,0 +1,15 @@
+---
+id: paul-graham-learning-from-founders
+title: Learning from Founders
+title_ko: ''
+url: https://paulgraham.com/foundersatwork.html
+origin: paul-graham
+format: essay
+published: '2007-01-01'
+speakers:
+- Paul Graham
+thumbnail: null
+images: []
+ingested_at: '2026-09-29'
+---
+

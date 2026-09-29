@@ -48,7 +48,7 @@ id: yc-youtube-how-to-price-your-product
 title: How to Price Your Product         # original title
 title_ko: 제품 가격을 정하는 법            # Korean title; '' until written (ingest needs no API key), UI falls back to title
 url: https://www.youtube.com/watch?v=XXXXXXXXXXX   # '' for insight memos with no public original
-origin: yc-youtube        # yc-youtube | lightcone | paul-graham | a16z | insights
+origin: yc-youtube        # yc-youtube | lightcone | paul-graham | a16z | elad-gil | reid-hoffman | andrew-chen | justin-kan | sarah-guo | li-jin | amjad-masad | alexandr-wang | insights
 format: video             # video | essay | blog | podcast
 youtube_id: XXXXXXXXXXX   # only when format is video/podcast on YouTube
 published: 2024-03-01     # may be null
@@ -71,6 +71,15 @@ ingested_at: 2026-09-25
 ```
 
 Only one of `segments` / `paragraphs` is present.
+
+## Founder and investor blogs
+
+Blog origins are decided by host (e.g. `blog.eladgil.com` -> `elad-gil`).
+Reid Hoffman's writing lives on LinkedIn and Greylock, so it is ingested with
+`atlas ingest --from-file ... --origin reid-hoffman`. `speakers` is the author.
+Relative image URLs and LinkedIn's logo are not used as covers. Posts whose only
+cover is a repeated site image have `thumbnail: null` until an AI thumbnail is
+made (`docs/notes/pending-thumbnail-concepts.json`).
 
 ## Insight notes (`origin: insights`)
 

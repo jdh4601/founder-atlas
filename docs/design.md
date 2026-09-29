@@ -21,7 +21,7 @@ AI 스타트업 창업자가 **특정 문제에 부딪혔을 때**, YC·a16z 등
 | 중간 층 | 조언 단위(advice) = 하나의 주장 + 원문 위치 |
 | 분류 | 범주 8개 고정, 범주당 세부 키워드 최대 20개(시작은 5개) |
 | 상황 속성 | AI, 단계, 업종은 범주가 아니라 "내 상황" 필터 속성 |
-| 출처 | YC 유튜브, Lightcone, Paul Graham 에세이, a16z (4개) + 옵시디언 볼트의 인사이트 노트(`07_Insights`) |
+| 출처 | YC 유튜브, Lightcone, Paul Graham 에세이, a16z + 창업가·투자자 블로그(Elad Gil, Reid Hoffman, Andrew Chen, Justin Kan, Sarah Guo, Li Jin, Amjad Masad, Alexandr Wang) + 옵시디언 볼트의 인사이트 노트(`07_Insights`). 블로그 글은 창업·투자와 관련된 글만 골라 넣는다 |
 | 분량 | 콘텐츠 100개 목표 |
 | 검증 | 영어 인용문은 내부에만 저장하고 유사도 대조로 자동 검증. 사람은 키워드 페이지만 검수 |
 | 타임스탬프 | 인용문이 일치한 자막 구간의 시작 시각을 코드로 계산 (AI 추정값 사용 금지) |
