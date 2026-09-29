@@ -8,6 +8,7 @@ const articleSchema = z.object({
   title_ko: z.string().min(1),
   tldr: z.string().default(""),
   lead: z.string().min(1),
+  tags: z.array(z.string()).default([]),
   source_sha256: z.string().length(64),
   generated_at: z.string().min(1),
 });
@@ -16,6 +17,7 @@ export interface SourceArticle {
   readonly titleKo: string;
   readonly tldr: string;
   readonly lead: string;
+  readonly tags: readonly string[];
   readonly body: string;
 }
 
@@ -32,6 +34,7 @@ export function loadSourceArticle(contentDir: string, sourceId: string): SourceA
     titleKo: parsed.data.title_ko,
     tldr: parsed.data.tldr,
     lead: parsed.data.lead,
+    tags: parsed.data.tags,
     body: content.trim(),
   };
 }

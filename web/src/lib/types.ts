@@ -30,6 +30,7 @@ export const ORIGINS = [
   "lightcone",
   "paul-graham",
   "a16z",
+  "insights",
 ] as const;
 export type Origin = (typeof ORIGINS)[number];
 
@@ -71,6 +72,8 @@ export interface Source {
   readonly images: readonly string[];
   readonly ingestedAt: string;
   readonly summary: string;
+  /** Topic hashtags chosen for the article; empty means infer from the title. */
+  readonly tags?: readonly string[];
 }
 
 export interface AdviceContext {

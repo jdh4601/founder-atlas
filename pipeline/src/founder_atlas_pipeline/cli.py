@@ -216,6 +216,57 @@ def write_source_articles_command(
         sys.exit(1)
 
 
+@main.command("import-insights")
+@click.argument("vault_dir", type=click.Path(exists=True, file_okay=False, path_type=Path))
+@click.option("--folder", default="07_Insights", show_default=True, help="Notes folder inside the vault.")
+@click.option("--force", is_flag=True, help="Re-import notes that were already imported.")
+@click.option("--jobs", type=click.IntRange(1, 8), default=1, show_default=True)
+@click.option("--provider", type=click.Choice(("codex-cli", "claude-code-cli")), default="claude-code-cli")
+@click.pass_context
+def import_insights_command(
+    ctx: click.Context, vault_dir: Path, folder: str, force: bool, jobs: int, provider: str
+) -> None:
+    """Import Obsidian insight notes as `insights-*` sources with Korean articles."""
+    from founder_atlas_pipeline.insights import (
+        AnyLanguageTranscripts,
+        CLIInsightWriter,
+        import_insight_note,
+        note_ids,
+        youtube_thumbnail,
+    )
+
+    content = _content_dir(ctx)
+    notes = sorted((vault_dir / folder).glob("*.md"))
+    writer = CLIInsightWriter(provider)
+    transcripts = AnyLanguageTranscripts()
+    counts = {"written": 0, "skipped": 0, "failed": 0}
+
+    def run_one(note: Path, source_id: str):
+        try:
+            result = import_insight_note(
+                content, vault_dir, note, writer, youtube=transcripts,
+                thumbnail_for=youtube_thumbnail, source_id=source_id, force=force,
+            )
+            return note, result, None
+        except Exception as exc:
+            return note, None, exc
+
+    with ThreadPoolExecutor(max_workers=jobs) as executor:
+        futures = [executor.submit(run_one, note, source_id) for note, source_id in note_ids(notes)]
+        for future in as_completed(futures):
+            note, result, exc = future.result()
+            if exc is not None:
+                counts["failed"] += 1
+                click.echo(f"[failed] {note.name}: {exc}", err=True)
+                continue
+            assert result is not None
+            counts[result.status] += 1
+            click.echo(f"[{result.status}] {result.source_id} <- {note.name}")
+    click.echo(", ".join(f"{status}: {count}" for status, count in counts.items()))
+    if counts["failed"]:
+        sys.exit(1)
+
+
 @main.command("add-figures")
 @click.argument("source_id", required=False)
 @click.option("--all", "add_all", is_flag=True, help="Add figures to every source article.")

@@ -17,6 +17,7 @@ const originLabels: Record<Source["origin"], string> = {
   lightcone: "Lightcone",
   "paul-graham": "PaulGraham",
   a16z: "a16z",
+  insights: "인사이트",
 };
 
 const formatLabels: Record<Source["format"], string> = {
@@ -54,9 +55,11 @@ export function toBrowseSources(sources: readonly Source[]): BrowseSource[] {
       speakers: source.speakers,
       // Filters stay focused on founder topics. Source and format are shown
       // as metadata on each card, but are not useful content facets.
-      tags: titleTopics
-        .filter(({ pattern }) => pattern.test(`${source.title} ${source.titleKo}`))
-        .map(({ tag }) => tag),
+      tags: source.tags?.length
+        ? source.tags
+        : titleTopics
+            .filter(({ pattern }) => pattern.test(`${source.title} ${source.titleKo}`))
+            .map(({ tag }) => tag),
     }))
     .sort((a, b) =>
       (b.published ?? "").localeCompare(a.published ?? "") ||

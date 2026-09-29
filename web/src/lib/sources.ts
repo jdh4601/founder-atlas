@@ -12,7 +12,8 @@ const sourceFrontmatterSchema = z.object({
   title: z.string().min(1),
   // Empty until a Korean title is written; ingest runs without an API key.
   title_ko: z.string().default(""),
-  url: z.string().min(1),
+  // Empty for notes that have no public original (e.g. personal insight memos).
+  url: z.string().default(""),
   origin: z.enum(ORIGINS),
   format: z.enum(SOURCE_FORMATS),
   youtube_id: z.string().nullable().optional(),
@@ -48,6 +49,7 @@ function parseSourceFile(filePath: string): Source {
     images: fm.images,
     ingestedAt: fm.ingested_at,
     summary: content.trim(),
+    tags: article?.tags ?? [],
   };
 }
 

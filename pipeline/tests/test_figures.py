@@ -327,3 +327,30 @@ def test_add_figures_falls_back_to_search_when_the_original_page_fails(tmp_path:
     )
 
     assert result.count == 2
+
+
+def test_add_figures_tops_up_video_frames_with_search(tmp_path: Path) -> None:
+    content = tmp_path / "content"
+    (content / "sources").mkdir(parents=True)
+    source = SourceMeta(
+        id="insights-001", title="t", title_ko="", url="https://www.youtube.com/watch?v=abc",
+        origin="insights", format="video", published=None, speakers=[], thumbnail=None,
+        images=[], ingested_at="2026-09-28", summary_ko="", youtube_id="abc",
+    )
+    write_source(content, source, Transcript(kind="paragraphs", paragraphs=["no captions"]))
+    article = content / "source_articles" / "insights-001.md"
+    article.parent.mkdir()
+    article.write_text(dump({"source": source.id, "title_ko": "t"}, BODY), encoding="utf-8")
+    requested: list[int] = []
+
+    def search(body: str, count: int) -> list[Figure]:
+        requested.append(count)
+        return [Figure(1, f"/f/{i}.jpg", "a", "c") for i in range(count)]
+
+    result = add_figures_to_source(
+        content, tmp_path / "public", source.id, FakePlanner({"figures": []}),
+        capture_frame=lambda *args: None, fetch_html=None, search_figures=search,
+    )
+
+    assert requested == [2]
+    assert result.count == 2

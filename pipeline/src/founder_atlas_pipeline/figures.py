@@ -437,10 +437,18 @@ def add_figures_to_source(
     figures: list[Figure] = []
     if source.format == "video" and source.youtube_id:
         transcript = read_transcript(content_root, source_id)
-        for frame in plan_video_figures(body, transcript, planner, count=target_figure_count(body)):
+        frames = (
+            plan_video_figures(body, transcript, planner, count=target_figure_count(body))
+            if transcript.kind == "segments"
+            else []
+        )
+        for frame in frames:
             name = _clock(frame.start).replace(":", "-") + ".jpg"
             capture_frame(source.youtube_id, frame.start, public_dir / "figures" / source_id / name)
             figures.append(Figure(frame.after_paragraph, f"/figures/{source_id}/{name}", frame.alt, frame.caption))
+        # Videos without captions (or unmatched quotes) are topped up with search images.
+        if search_figures is not None and len(figures) < MIN_FIGURES:
+            figures = [*figures, *search_figures(body, MIN_FIGURES - len(figures))]
     elif fetch_html is not None:
         try:
             images = extract_article_images(fetch_html(source.url))

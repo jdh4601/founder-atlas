@@ -43,3 +43,12 @@ it("shows more recently published sources first", () => {
   ]);
   expect(results.map(({ id }) => id)).toEqual(["newer", "older"]);
 });
+
+it("prefers an article's explicit topic tags and labels insight notes", () => {
+  const [result] = toBrowseSources([
+    source({ origin: "insights", format: "blog", title: "Pricing notes", titleKo: "가격 노트", tags: ["채용"] }),
+  ]);
+
+  expect(result.tags).toEqual(["채용"]);
+  expect(result.origin).toBe("인사이트");
+});

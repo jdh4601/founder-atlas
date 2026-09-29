@@ -46,7 +46,10 @@ uv run atlas write-source-articles --all --jobs 4
 uv run atlas write-source-articles <source_id> --force
 uv run atlas write-source-tldrs  # add one-line takeaways to older articles
 
-# 7. Put 2-5 figures inside each Korean article (needs yt-dlp, ffmpeg, a model CLI)
+# 7. Import Obsidian insight notes (07_Insights) as `insights-*` sources
+uv run atlas import-insights ~/Obsidian-vault --jobs 3
+
+# 8. Put 2-5 figures inside each Korean article (needs yt-dlp, ffmpeg, a model CLI)
 uv run atlas add-figures --all --jobs 3
 uv run atlas add-figures <source_id> --force  # replace an article's figures
 uv run atlas add-figures --all --recapture-frames --provider claude-code-cli  # re-pick clearer frames

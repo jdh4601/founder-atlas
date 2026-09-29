@@ -47,8 +47,8 @@ domain: [ai, b2b]         # any of: ai, b2b, b2c, saas, marketplace, devtools, c
 id: yc-youtube-how-to-price-your-product
 title: How to Price Your Product         # original title
 title_ko: 제품 가격을 정하는 법            # Korean title; '' until written (ingest needs no API key), UI falls back to title
-url: https://www.youtube.com/watch?v=XXXXXXXXXXX
-origin: yc-youtube        # yc-youtube | lightcone | paul-graham | a16z
+url: https://www.youtube.com/watch?v=XXXXXXXXXXX   # '' for insight memos with no public original
+origin: yc-youtube        # yc-youtube | lightcone | paul-graham | a16z | insights
 format: video             # video | essay | blog | podcast
 youtube_id: XXXXXXXXXXX   # only when format is video/podcast on YouTube
 published: 2024-03-01     # may be null
@@ -71,6 +71,16 @@ ingested_at: 2026-09-25
 ```
 
 Only one of `segments` / `paragraphs` is present.
+
+## Insight notes (`origin: insights`)
+
+`atlas import-insights <vault>` imports `07_Insights/*.md` from the Obsidian vault
+as `insights-{NNN}` sources. The article body is the note's numbered insight
+sections; personal sections (why it matters to me, linked notes, to-dos, the
+original backlink) are dropped and wikilinks become plain text. A model writes
+only `title_ko` (a founder-facing claim, not "X interview"), `tldr`, `lead`, and
+`tags`. YouTube notes use the video thumbnail and Korean/English captions as the
+transcript; others keep the note paragraphs as the transcript.
 
 ## source_articles/{source_id}.md
 
@@ -168,7 +178,8 @@ updated_at: 2026-09-25
 ## Content explore (computed by web, not stored)
 
 - The home page content grid (`/#contents`) lists source metadata from `sources/{source_id}.md`.
-- Hashtags are derived from each source's origin and format, plus literal matches
-  from a fixed vocabulary against its title. They are view filters, not stored
-  source metadata or model-generated claims.
+- Hashtags are literal matches from a fixed vocabulary against the title. An
+  article may instead list `tags` (subset of the same 9 hashtags) in its
+  frontmatter; `insights` articles do, since their Korean titles don't match
+  the English vocabulary.
 - The former `/explore` and `/map` routes redirect to `/#contents`.

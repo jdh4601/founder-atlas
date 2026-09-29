@@ -46,3 +46,13 @@ it("keeps ordinary text in a paragraph", () => {
   const { container } = render(<P {...props} />);
   expect(container.querySelector("p")).toHaveTextContent("문단");
 });
+
+it.each(["ul", "ol", "li", "blockquote", "h3", "strong"] as const)("styles markdown %s", (tag) => {
+  expect(articleComponents[tag]).toBeDefined();
+});
+
+it("renders a blockquote as a highlighted aside", () => {
+  const Blockquote = articleComponents.blockquote as unknown as Renderer;
+  const { container } = render(<Blockquote>새길 문장</Blockquote>);
+  expect(container.querySelector("blockquote")).toHaveClass("border-l-2");
+});

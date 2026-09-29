@@ -17,6 +17,7 @@ const originLabels = {
   lightcone: "Lightcone",
   "paul-graham": "Paul Graham",
   a16z: "a16z",
+  insights: "인사이트",
 } as const;
 
 const formatLabels = {
@@ -142,6 +143,7 @@ export default async function SourcePage({ params }: SourcePageProps) {
       </section>
       )}
 
+      {source.url && (
       <footer className="mt-12 border-t border-line pt-6">
         <a
           href={source.url}
@@ -152,6 +154,7 @@ export default async function SourcePage({ params }: SourcePageProps) {
           원문 열기 →
         </a>
       </footer>
+      )}
 
       {related.length > 0 && (
         <section className="mt-12 border-t border-line pt-8" aria-labelledby="related-heading">
