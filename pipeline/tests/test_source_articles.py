@@ -112,3 +112,35 @@ def test_backfill_tldr_preserves_body_and_removes_review_status(
     assert article.frontmatter["tldr"].startswith("고객이 이해하고")
     assert "reviewed" not in article.frontmatter
     assert "## 핵심" in article.body
+
+
+def test_generate_article_never_rewrites_an_insights_article(tmp_path: Path) -> None:
+    # Insight articles come from Obsidian notes and hold a hash of the note, not
+    # of the transcript, so a fingerprint check would wrongly regenerate them.
+    (tmp_path / "sources").mkdir()
+    source = SourceMeta(
+        id="insights-001",
+        title="노트",
+        title_ko="",
+        url="",
+        origin="insights",
+        format="blog",
+        youtube_id=None,
+        published=None,
+        speakers=[],
+        thumbnail=None,
+        images=[],
+        ingested_at="2026-09-28",
+        summary_ko="",
+    )
+    write_source(tmp_path, source, Transcript(kind="paragraphs", paragraphs=["노트 본문 " * 400]))
+    article = tmp_path / "source_articles" / "insights-001.md"
+    article.parent.mkdir()
+    article.write_text("---\nsource: insights-001\ntldr: x\nsource_sha256: notthetranscripthash\n---\n본문\n", encoding="utf-8")
+    writer = FakeWriter()
+
+    result = generate_article(tmp_path, source.id, writer)
+
+    assert result.status == "skipped"
+    assert writer.prompts == []
+    assert article.read_text(encoding="utf-8").endswith("본문\n")

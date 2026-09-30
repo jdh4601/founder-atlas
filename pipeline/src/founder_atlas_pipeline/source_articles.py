@@ -122,6 +122,10 @@ def generate_article(
     raw = transcript_file.read_bytes()
     fingerprint = hashlib.sha256(raw).hexdigest()
     output = article_path(content_root, source_id)
+    # Insight articles are written by `import-insights` from Obsidian notes and
+    # store the note's hash, so the transcript fingerprint below never matches.
+    if source.origin == "insights" and output.exists():
+        return ArticleResult(source_id, "skipped", output)
     if output.exists() and not force:
         prior = parse(output.read_text(encoding="utf-8"))
         if prior.frontmatter.get("source_sha256") == fingerprint and prior.frontmatter.get("tldr"):
