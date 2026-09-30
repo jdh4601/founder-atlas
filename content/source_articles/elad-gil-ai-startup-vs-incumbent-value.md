@@ -38,6 +38,8 @@ generated_at: '2026-09-29'
 
 1970년대 스탠퍼드의 Mycin 프로젝트가 이를 잘 보여 줍니다. 프로그래머들이 만든 이 전문가 시스템은 환자가 무엇에 감염됐는지 예측하는 일에서 스탠퍼드 감염내과 의료진보다 뛰어났지만, 끝내 도입되지 않았습니다. 어떤 시장은 머신러닝으로 10배 좋아져도 다른 이유 때문에 받아들여지지 않습니다.
 
+![Mycin 평가 실험 설계를 보여 주는 흐름도](</figures/elad-gil-ai-startup-vs-incumbent-value/web-1.jpg> "10개의 치료 추천 문제에 대해 전문가 8인 패널, Mycin, 원래 추천이 각각 낸 추천을 섞어 100개로 만든 뒤, 전문가 심사위원 8인이 800건의 판단(동등, 수용 가능, 수용 불가)을 내리는 평가 과정을 보여 줍니다. Mycin이 의료진과 비교해 평가된 방식을 이해하는 데 도움이 됩니다. 출처: expertsystem101.weebly.com")
+
 넷째로, 이 밖에 다른 이유가 있을 수도 있습니다. Gil은 독자들에게 의견을 들려 달라고 합니다.
 
 ## 이번 물결이 다를 이유 ①: 여러 분야에서 동시에 좋아지는 기술
@@ -55,6 +57,8 @@ Gil은 오랫동안 AI 기반 제품을 다뤄 왔습니다. 15년 전 Google에
 이전 AI 물결과 달리, 이번에는 널리 쓰이고 사용량이 빠르게 늘어나는 인프라 중심 기업들이 뚜렷하게 있습니다. OpenAI, Stability.AI, Hugging Face, Weights and Biases 등이 그렇습니다. 일부는 매출이 사용량을 따라가지 못하고 있지만, 오픈소스나 API 중심 사업 모델에서 흔히 보이듯 매출도 빠르게 늘고 있습니다.
 
 OpenAI는 이제 LLM API 시장의 확실한 선두입니다. 4년 전만 해도 이 자리는 당연히 Google이 차지할 것처럼 보였습니다. Gil은 Google이 AI에서 가진 많은 이점을 살리지 못한 것이 놀랍다고 말합니다. 트랜스포머를 발명했고, 인재와 데이터와 유통망까지 모두 갖춰 산업의 핵심 인프라를 만들 수 있었는데, 결국 Apple처럼 한 스타트업이 나타나 산업을 이끌게 됐습니다. 그에게는 이것이 Xerox PARC의 순간처럼 느껴집니다. Xerox PARC는 GUI와 마우스를 발명해 Steve Jobs에게 보여 줬고, 그것을 세상에 내놓은 것은 Apple Mac이었습니다. 마찬가지로 Google은 트랜스포머를 발명해 세상에 알렸지만, 이 기술을 지금까지 가장 잘 활용한 것은 OpenAI입니다.
+
+![Xerox PARC와 Apple의 관계를 설명하는 박물관 전시 패널](</figures/elad-gil-ai-startup-vs-incumbent-value/web-2.jpg> "전시 패널은 1979년 Steve Jobs와 Apple 엔지니어들이 Xerox PARC를 방문해 Alto의 그래픽 인터페이스를 본 일을 설명하고, 당시 Dorado 화면 사진도 보여 줍니다. 문단이 Google과 OpenAI의 관계를 비유한 Xerox PARC와 Apple Mac의 사례를 뒷받침합니다. 출처: tomshardware.com")
 
 Hugging Face와 Weights and Biases 같은 회사들도 기존 개발 도구 기업들이 지금까지 해내지 못한 방식으로 AI 산업에 도구를 공급하고 있습니다.
 

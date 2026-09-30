@@ -17,6 +17,8 @@ Replit은 배경과 거주지, 사회경제적 조건에 관계없이 누구나 
 
 나는 SpaceX 캠퍼스의 Ad Astra 학교를 방문했을 때 Synthesis 공동 창업자 Joshua Dahn을 처음 만났다. 학생들이 Replit으로 코딩을 배우고 프로젝트를 만든다는 이야기를 듣고 평범한 학교를 예상했지만, 그곳에서 본 것은 급진적인 실험이었다. Elon Musk는 자신의 자녀와 SpaceX 엔지니어들의 자녀를 위한 실험학교를 만들고자 Josh를 영입했고, Josh가 만든 학교는 나를 놀라게 했다.
 
+![화성 표면을 배경으로 파란 작업복 차림의 남성이 아이를 안고 있고 옆에 Ad Astra School 로고가 있는 합성 이미지](</figures/amjad-masad-investing-in-synthesis/web-1.jpg> "붉은 화성 지형 위에 파란 작업복을 입은 남성이 로켓 장난감을 든 아이를 안고 있고, 오른쪽에는 'Ad Astra School' 로고가 보입니다. 우주 탐사를 연상시키는 이 분위기는 SpaceX 캠퍼스에 세워진 실험학교 Ad Astra를 소개하는 문단과 어울립니다. 출처: guiauniversitaria.mx")
+
 이제 Synthesis는 그 학교에서 가장 인기 있었던 수업을 세계 각지의 아이들에게 제공하고 있다. 이 프로그램의 목표는 인류 문명의 발전에 필요한 복잡한 문제를 함께 풀 수 있는 탁월한 협업가를 길러내는 것이다. 지난달 Synthesis CEO Chrisman Frank에게 진행 상황을 들었을 때도 그들이 이룬 성과를 믿기 어려웠다. 이미 수천 명의 아이에게 문명을 앞으로 나아가게 할 기술을 가르치고 있었다. Balaji와 나는 Synthesis의 성공을 돕기 위해 할 수 있는 일을 해야 한다는 데 뜻을 모았다.
 
 ## Synthesis가 새로운 교육 체계를 만드는 방식
